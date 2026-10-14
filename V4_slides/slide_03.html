@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920,height=1080">
+<title>VROOM Logo & Symbol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:linear-gradient(180deg,#050510 0%,#0a0a1a 100%);position:relative}
+.header{position:absolute;top:50px;left:80px;font-family:'Space Grotesk',sans-serif;font-size:16px;color:rgba(255,255,255,0.4);letter-spacing:4px;text-transform:uppercase}
+.center-symbol{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:400px;height:400px}
+.symbol-container{width:100%;height:100%;position:relative}
+.main-symbol{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+.vroom-wordmark{position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;letter-spacing:12px;color:#fff}
+.context-row{display:flex;position:absolute;bottom:80px;left:80px;right:80px;justify-content:space-between;align-items:flex-end}
+.context-item{text-align:center}
+.context-label{font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:15px;text-transform:uppercase;letter-spacing:2px}
+.context-box{background:#0d1117;border:1px solid rgba(0,102,255,0.3);border-radius:8px;padding:30px;display:flex;align-items:center;justify-content:center}
+.phone-thumb{width:60px;height:100px;background:#1a1a2e;border-radius:8px;border:2px solid #333;display:flex;align-items:center;justify-content:center}
+.badge-car{width:100px;height:50px;background:linear-gradient(135deg,#0066FF,#0044AA);border-radius:25px;display:flex;align-items:center;justify-content:center}
+.badge-text{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;color:#fff;letter-spacing:2px}
+.billboard{width:200px;height:80px;background:#0066FF;display:flex;align-items:center;justify-content:center}
+.billboard-text{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#fff}
+.app-icon{width:80px;height:80px;background:linear-gradient(135deg,#0066FF,#FFD600);border-radius:16px;display:flex;align-items:center;justify-content:center}
+.design-note{position:absolute;top:50px;right:80px;text-align:right;max-width:400px}
+.design-note h3{font-family:'Space Grotesk',sans-serif;font-size:18px;color:#FFD600;margin-bottom:15px;font-weight:600}
+.design-note p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.6}
+.rationale{position:absolute;left:80px;top:200px;max-width:450px}
+.rationale h2{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:#fff;margin-bottom:25px}
+.rationale p{font-size:16px;color:rgba(255,255,255,0.6);line-height:1.8}
+.glow-ring{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:500px;height:500px;border:1px solid rgba(0,102,255,0.2);border-radius:50%}
+.glow-ring-2{width:600px;height:600px;border:1px solid rgba(0,102,255,0.1)}
+</style>
+</head>
+<body>
+<div class="header">BRAND IDENTITY</div>
+
+<div class="glow-ring"></div>
+<div class="glow-ring glow-ring-2"></div>
+
+<div class="rationale">
+<h2>The VROOM Mark</h2>
+<p>A stylized "V" formed by two speed lanes converging — like a road rushing toward you. The negative space creates a forward-pointing arrow, symbolizing motion, progress, and velocity.</p>
+</div>
+
+<div class="design-note">
+<h3>Design Rationale</h3>
+<p>The symbol works at 16px (app icon) and 10 meters (billboard). VOLT BLUE primary, IGNITION YELLOW accent. Clean, ownable, unmistakably automotive.</p>
+</div>
+
+<div class="center-symbol">
+<svg class="main-symbol" viewBox="0 0 300 300" width="400" height="400">
+<defs>
+<linearGradient id="symGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#0066FF"/>
+<stop offset="50%" stop-color="#0088FF"/>
+<stop offset="100%" stop-color="#FFD600"/>
+</linearGradient>
+<filter id="symGlow">
+<feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+<feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<!-- Outer ring -->
+<circle cx="150" cy="150" r="140" fill="none" stroke="rgba(0,102,255,0.1)" stroke-width="1"/>
+<circle cx="150" cy="150" r="120" fill="none" stroke="rgba(0,102,255,0.15)" stroke-width="1"/>
+<!-- Speed lanes converging -->
+<path d="M150 40 L80 220 L150 180 Z" fill="url(#symGrad)" opacity="0.9" filter="url(#symGlow)"/>
+<path d="M150 40 L220 220 L150 180 Z" fill="url(#symGrad)" opacity="0.9" filter="url(#symGlow)"/>
+<!-- Center arrow -->
+<path d="M150 60 L150 190 M130 160 L150 190 L170 160" stroke="#FFD600" stroke-width="4" fill="none" stroke-linecap="round"/>
+<!-- Corner accents -->
+<path d="M40 40 L60 40 M40 40 L40 60" stroke="#0066FF" stroke-width="2" opacity="0.5"/>
+<path d="M260 40 L240 40 M260 40 L260 60" stroke="#0066FF" stroke-width="2" opacity="0.5"/>
+<path d="M40 260 L60 260 M40 260 L40 240" stroke="#0066FF" stroke-width="2" opacity="0.5"/>
+<path d="M260 260 L240 260 M260 260 L260 240" stroke="#FFD600" stroke-width="2" opacity="0.5"/>
+</svg>
+<div class="vroom-wordmark">VROOM</div>
+</div>
+
+<div class="context-row">
+<div class="context-item">
+<div class="context-label">App Icon</div>
+<div class="app-icon">
+<svg viewBox="0 0 60 60" width="50" height="50">
+<path d="M30 10 L20 40 L30 32 L40 40 Z" fill="#FFD600"/>
+<path d="M30 15 L30 38" stroke="#fff" stroke-width="2"/>
+</svg>
+</div>
+</div>
+<div class="context-item">
+<div class="context-label">On Car</div>
+<div class="badge-car">
+<span class="badge-text">VROOM</span>
+</div>
+</div>
+<div class="context-item">
+<div class="context-label">Mobile App</div>
+<div class="phone-thumb">
+<svg viewBox="0 0 40 70" width="40" height="70">
+<rect x="10" y="15" width="20" height="40" rx="3" fill="#1a1a2e"/>
+<path d="M18 28 L20 22 L22 28 Z" fill="#FFD600"/>
+</svg>
+</div>
+</div>
+<div class="context-item">
+<div class="context-label">Billboard Scale</div>
+<div class="billboard">
+<span class="billboard-text">VROOM</span>
+</div>
+</div>
+</div>
+</body>
+</html>
