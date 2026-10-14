@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920,height=1080">
+<title>VROOM Website Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:linear-gradient(180deg,#050510 0%,#0a0a1a 100%);position:relative;display:flex;align-items:center;justify-content:center}
+.header{position:absolute;top:40px;left:80px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:rgba(255,255,255,0.4);letter-spacing:4px;text-transform:uppercase}
+.title{position:absolute;top:50px;right:80px;text-align:right}
+.title h1{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;color:#fff;margin-bottom:10px}
+.title h1 .accent{color:#0066FF}
+.title p{font-size:16px;color:rgba(255,255,255,0.5)}
+/* Laptop mockup */
+.laptop{width:1100px;height:700px;position:relative}
+.laptop-top{width:100%;height:100%;background:#1a1a2e;border-radius:15px;padding:15px;box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 100px rgba(0,102,255,0.1)}
+.laptop-screen{width:100%;height:100%;background:#0D1117;border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+/* Browser bar */
+.browser-bar{background:#1a1a2e;padding:10px 15px;display:flex;align-items:center;gap:15px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.browser-dots{display:flex;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.red{background:#FF5F57}
+.dot.yellow{background:#FFBD2E}
+.dot.green{background:#28CA41}
+.browser-url{flex:1;background:#0D1117;border-radius:5px;padding:6px 12px;font-size:12px;color:rgba(255,255,255,0.5)}
+/* Website content */
+.website{flex:1;display:flex;flex-direction:column}
+/* Hero */
+.hero{background:linear-gradient(135deg,rgba(0,102,255,0.2) 0%,rgba(0,102,255,0.05) 100%);padding:25px 35px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.05)}
+.site-logo{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px}
+.logo-mark{width:30px;height:30px;background:linear-gradient(135deg,#0066FF,#FFD600);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.nav{display:flex;gap:25px}
+.nav-item{font-size:13px;color:rgba(255,255,255,0.6);cursor:pointer}
+.nav-item.active{color:#FFD600}
+.nav-item:hover{color:#fff}
+/* Search section */
+.search-section{padding:30px 35px;text-align:center}
+.main-search{background:rgba(255,255,255,0.1);border:1px solid rgba(0,102,255,0.3);border-radius:12px;padding:18px 25px;display:flex;align-items:center;gap:15px;max-width:600px;margin:0 auto}
+.search-icon{font-size:20px;color:rgba(255,255,255,0.4)}
+.search-placeholder{color:rgba(255,255,255,0.4);font-size:15px;flex:1;text-align:left}
+.search-btn{background:#0066FF;padding:10px 20px;border-radius:8px;color:#fff;font-size:13px;font-weight:500}
+/* Modules grid */
+.modules{padding:0 35px;display:grid;grid-template-columns:repeat(4,1fr);gap:15px;flex:1}
+.module{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px;text-align:center;transition:all 0.3s}
+.module:hover{background:rgba(0,102,255,0.1);border-color:#0066FF}
+.module-icon{font-size:36px;margin-bottom:12px}
+.module-name{font-size:14px;color:#fff;font-weight:600;margin-bottom:5px}
+.module-desc{font-size:11px;color:rgba(255,255,255,0.4)}
+.module-badge{background:#FFD600;color:#0D1117;font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;margin-top:8px;display:inline-block}
+/* Map section */
+.map-section{height:120px;background:linear-gradient(180deg,#0a1525 0%,#0D1117 100%);position:relative;margin:20px 35px;border-radius:10px;overflow:hidden}
+.map-title{position:absolute;top:10px;left:15px;font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px}
+.map-content{position:absolute;inset:0;opacity:0.5}
+.road-h{position:absolute;height:2px;background:rgba(0,102,255,0.3)}
+.road-v{position:absolute;width:2px;background:rgba(0,102,255,0.3)}
+.road-h:nth-child(1){top:30%;left:0;right:0}
+.road-h:nth-child(2){top:60%;left:0;right:0}
+.road-v:nth-child(3){left:30%;top:0;bottom:0}
+.road-v:nth-child(4){left:70%;top:0;bottom:0}
+.map-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-size:11px;color:#0066FF;font-weight:500}
+/* Laptop base */
+.laptop-base{width:120%;height:20px;background:linear-gradient(180deg,#2a2a3e 0%,#1a1a2e 100%);margin-left:-10%;border-radius:0 0 10px 10px;margin-top:-5px}
+/* Glow */
+.glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(0,102,255,0.1) 0%,transparent 70%);top:-200px;left:-200px;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="header">WEBSITE EXPERIENCE</div>
+
+<div class="title">
+<h1>One platform.<br><span class="accent">Every automotive need.</span></h1>
+<p>vroom.app</p>
+</div>
+
+<div class="laptop">
+<div class="laptop-top">
+<div class="laptop-screen">
+<div class="browser-bar">
+<div class="browser-dots">
+<div class="dot red"></div>
+<div class="dot yellow"></div>
+<div class="dot green"></div>
+</div>
+<div class="browser-url">vroom.app</div>
+</div>
+<div class="website">
+<div class="hero">
+<div class="site-logo">
+<div class="logo-mark">
+<svg viewBox="0 0 30 30" width="20" height="20">
+<path d="M8 22 L15 6 L22 22" stroke="#FFD600" stroke-width="2" fill="none"/>
+<path d="M12 16 L15 10 L18 16" fill="#FFD600"/>
+</svg>
+</div>
+VROOM
+</div>
+<div class="nav">
+<div class="nav-item active">Inicio</div>
+<div class="nav-item">Vehículos</div>
+<div class="nav-item">Repuestos</div>
+<div class="nav-item">Grúas</div>
+<div class="nav-item">Rental</div>
+<div class="nav-item">Mi Cuenta</div>
+</div>
+</div>
+<div class="search-section">
+<div class="main-search">
+<span class="search-icon">🔍</span>
+<span class="search-placeholder">Buscar repuestos, talleres, grúas, vehículos...</span>
+<button class="search-btn">Buscar</button>
+</div>
+</div>
+<div class="modules">
+<div class="module">
+<div class="module-icon">🔧</div>
+<div class="module-name">Repuestos</div>
+<div class="module-desc">+50,000 piezas</div>
+<div class="module-badge">EXPRESS</div>
+</div>
+<div class="module">
+<div class="module-icon">🚗</div>
+<div class="module-name">Vehículos</div>
+<div class="module-desc">Autos nuevos y usados</div>
+</div>
+<div class="module">
+<div class="module-icon">🏪</div>
+<div class="module-name">Talleres</div>
+<div class="module-desc">+200 talleres</div>
+<div class="module-badge">CERCA</div>
+</div>
+<div class="module">
+<div class="module-icon">🚜</div>
+<div class="module-name">Grúas</div>
+<div class="module-desc">24/7 disponible</div>
+<div class="module-badge">URGENTE</div>
+</div>
+<div class="module">
+<div class="module-icon">📦</div>
+<div class="module-name">Rental</div>
+<div class="module-desc">Renta por día</div>
+</div>
+<div class="module">
+<div class="module-icon">💳</div>
+<div class="module-name">Financiamiento</div>
+<div class="module-desc">Crédito rápido</div>
+</div>
+<div class="module">
+<div class="module-icon">🛡️</div>
+<div class="module-name">Seguros</div>
+<div class="module-desc">Cotiza en segundos</div>
+</div>
+<div class="module">
+<div class="module-icon">📍</div>
+<div class="module-name">Combustible</div>
+<div class="module-desc">Delivery a tu auto</div>
+</div>
+</div>
+<div class="map-section">
+<div class="map-content">
+<div class="road-h"></div>
+<div class="road-h"></div>
+<div class="road-v"></div>
+<div class="road-v"></div>
+</div>
+<div class="map-title">Cobertura Caracas</div>
+<div class="map-label">📍 +500 conductores activos</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="laptop-base"></div>
+</div>
+</body>
+</html>
