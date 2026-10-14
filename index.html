@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>VROOM — Venezuela's Automotive Future</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --volt: #0066FF;
+      --ignition: #FFD600;
+      --night: #0D1117;
+      --cloud: #F1F3F5;
+      --dark: #050510;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    /* Animated background */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,102,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,102,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-1 {
+      top: -200px;
+      right: -100px;
+      background: rgba(0,102,255,0.12);
+    }
+    .glow-2 {
+      bottom: -200px;
+      left: -100px;
+      background: rgba(255,214,0,0.08);
+    }
+
+    .content { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header {
+      padding: 48px 0 0;
+      text-align: center;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+    }
+    .logo-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--volt);
+    }
+    .tagline {
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, white 0%, rgba(0,102,255,0.9) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 18px;
+      color: rgba(255,255,255,0.6);
+      max-width: 600px;
+      margin: 0 auto 60px;
+      line-height: 1.6;
+    }
+    .v4-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--volt), #0044cc);
+      color: white;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 48px;
+      text-transform: uppercase;
+    }
+
+    /* Status bar */
+    .status-bar {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+      padding: 20px 32px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+    }
+    .status-item {
+      text-align: center;
+    }
+    .status-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--volt);
+    }
+    .status-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* Section title */
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ignition);
+      margin-bottom: 20px;
+    }
+
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 80px;
+    }
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 32px;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(0,102,255,0.3), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card:hover { border-color: rgba(0,102,255,0.3); transform: translateY(-4px); }
+    .card:hover::before { opacity: 1; }
+    .card:hover .card-arrow { transform: translateX(4px); }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, var(--volt), #0044cc);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .card-icon svg { width: 26px; height: 26px; }
+    .card-icon.yellow { background: linear-gradient(135deg, var(--ignition), #e6c000); }
+    .card-icon.green { background: linear-gradient(135deg, #00c853, #009624); }
+    .card-icon.purple { background: linear-gradient(135deg, #9c27b0, #7b1fa2); }
+    .card-icon.orange { background: linear-gradient(135deg, #ff6d00, #e65100); }
+
+    .card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .card-meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .tag {
+      font-size: 11px;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.6);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-version {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+    .card-arrow {
+      font-size: 20px;
+      color: var(--volt);
+      transition: transform 0.3s;
+    }
+
+    /* Phase timeline */
+    .timeline {
+      margin-bottom: 80px;
+      padding: 40px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+    }
+    .timeline h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .phases {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .phase {
+      text-align: center;
+      padding: 24px 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .phase-num {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--volt);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 36px;
+      margin-bottom: 12px;
+    }
+    .phase h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .phase p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.4;
+    }
+    .phase.active .phase-num { background: var(--ignition); color: var(--night); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--volt);
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+    .footer-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-text a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-text a:hover { color: var(--volt); }
+
+    @media (max-width: 768px) {
+      .phases { grid-template-columns: repeat(2, 1fr); }
+      .status-bar { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <div class="content">
+    <header>
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
+          <rect width="48" height="48" rx="12" fill="url(#lg)"/>
+          <path d="M10 34L18 14H24L20 24L32 14H36L28 34H22L24 28L18 34H10Z" fill="white" opacity="0.9"/>
+          <path d="M32 14L28 26" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="48" y2="48">
+              <stop offset="0%" stop-color="#0066FF"/>
+              <stop offset="100%" stop-color="#0044cc"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-text">VROOM</span>
+      </div>
+
+      <p class="tagline">Venezuela's Automotive Super App</p>
+      <div class="v4-badge">Vision Deck — V4 — Brand World</div>
+      <h1>The brand that moves<br>a nation.</h1>
+      <p class="subtitle">Venezuela's first automotive Super App. Four modules. One vision. From Repuestos Express to the most ambitious automotive platform in Latin America.</p>
+
+      <div class="status-bar">
+        <div class="status-item">
+          <div class="status-value">V4</div>
+          <div class="status-label">Brand Deck</div>
+        </div>
+        <div class="status-item">
+          <div class="status-value">4</div>
+          <div class="status-label">Modules</div>
+        </div>
+        <div class="status-item">
+          <div class="status-value">19</div>
+          <div class="status-label">App Screens</div>
+        </div>
+        <div class="status-item">
+          <div class="status-value">21</div>
+          <div class="status-label">Wireframes</div>
+        </div>
+        <div class="status-item">
+          <div class="status-value">2M</div>
+          <div class="status-label">Target MAU</div>
+        </div>
+        <div class="status-item">
+          <div class="status-value">2027</div>
+          <div class="status-label">Launch</div>
+        </div>
+      </div>
+    </header>
+
+    <p class="section-title">📁 Project Sections</p>
+
+    <div class="card-grid">
+      <!-- Brand World -->
+      <a class="card" href="VROOM_DECK_VIEWER_V4.html">
+        <div class="card-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+          </svg>
+        </div>
+        <h3>Brand World</h3>
+        <p>Visual identity, logo exploration, color system, typography, automotive art direction, and the complete brand universe of VROOM V4.</p>
+        <div class="card-meta">
+          <span class="tag">15 slides</span>
+          <span class="tag">4.6 MB</span>
+          <span class="tag">Brand Identity</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-version">V4 · October 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- UX/UI -->
+      <a class="card" href="VROOM_UX_UI_V1.html">
+        <div class="card-icon yellow">
+          <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3>UX / UI Prototype</h3>
+        <p>Interactive mobile prototype with all 4 modules — Repuestos Express, Grúas 24/7, Vehículos, and Rental. Tap through the full app experience.</p>
+        <div class="card-meta">
+          <span class="tag">19 screens</span>
+          <span class="tag">Clickable</span>
+          <span class="tag">100% Spanish</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-version">V1 · October 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Wireframes -->
+      <a class="card" href="VROOM_WIREFRAMES_V1.html">
+        <div class="card-icon green">
+          <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm0 8a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zm12 0a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+          </svg>
+        </div>
+        <h3>Wireframes</h3>
+        <p>Low-fidelity wireframes for all 4 modules. Architecture, layout decisions, and UX annotations for the complete VROOM application.</p>
+        <div class="card-meta">
+          <span class="tag">21 screens</span>
+          <span class="tag">B&W</span>
+          <span class="tag">Annotated</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-version">V1 · October 2026</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Documents -->
+      <a class="card" href="VROOM_CONSTITUTION.html">
+        <div class="card-icon purple">
+          <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <h3>Project Documents</h3>
+        <p>Project Constitution V3, founder intent, strategic decisions, market context, AI strategy, and the complete narrative of VROOM.</p>
+        <div class="card-meta">
+          <span class="tag">Constitution V3</span>
+          <span class="tag">Strategic</span>
+          <span class="tag">Locked</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-version">V3 · Approved</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Phase roadmap -->
+    <div class="timeline">
+      <h2>Build Phases</h2>
+      <div class="phases">
+        <div class="phase active">
+          <div class="phase-num">1</div>
+          <h4>Repuestos Express</h4>
+          <p>Parts marketplace. 15-min delivery. AI search. Payment via Pago Móvil, Zelle, USDT.</p>
+        </div>
+        <div class="phase">
+          <div class="phase-num">2</div>
+          <h4>Grúas 24/7</h4>
+          <p>Emergency towing. GPS matching. Real-time tracking. Driver verification.</p>
+        </div>
+        <div class="phase">
+          <div class="phase-num">3</div>
+          <h4>Vehículos</h4>
+          <p>Buy/sell vehicles. Vehicle verification. In-app chat. Escrow payment.</p>
+        </div>
+        <div class="phase">
+          <div class="phase-num">4</div>
+          <h4>Super App</h4>
+          <p>All modules unified. Rental. Full automotive ecosystem. LatAm expansion.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-brand">VROOM</div>
+      <p class="footer-text">Built by <a href="#">TEMPLARIOS</a> · <a href="#">jesusgarevalo-ship-it/vroom-portal</a></p>
+    </footer>
+    <br><br>
+  </div>
+</body>
+</html>
