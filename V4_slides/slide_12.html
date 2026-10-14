@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920,height=1080">
+<title>Automotive Ecosystem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:linear-gradient(180deg,#050510 0%,#0a0a1a 100%);position:relative}
+.header{position:absolute;top:50px;left:80px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:rgba(255,255,255,0.4);letter-spacing:4px;text-transform:uppercase}
+.title{position:absolute;top:60px;left:80px;font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;color:#fff;margin-top:30px}
+.title .accent{color:#0066FF}
+/* Central car hub */
+.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-45%);width:200px;height:200px}
+.car-hub{width:100%;height:100%;background:radial-gradient(circle,#0066FF 0%,rgba(0,102,255,0.3) 50%,transparent 70%);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 60px rgba(0,102,255,0.4)}
+.car-icon{font-size:80px}
+/* Satellite nodes */
+.node{position:absolute;width:140px;height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:rgba(13,17,23,0.9);border:2px solid rgba(0,102,255,0.3);border-radius:16px;backdrop-filter:blur(10px);transition:all 0.3s}
+.node:hover{border-color:#0066FF;box-shadow:0 0 30px rgba(0,102,255,0.3);transform:scale(1.05)}
+.node-icon{font-size:32px;margin-bottom:8px}
+.node-name{font-size:14px;color:#fff;font-weight:600;margin-bottom:4px}
+.node-value{font-size:11px;color:#FFD600}
+/* Node positions - arranged around center in a circle */
+.node-1{top:180px;left:200px}
+.node-2{top:280px;left:320px}
+.node-3{top:420px;left:380px}
+.node-4{top:520px;left:560px}
+.node-5{top:520px;right:560px}
+.node-6{top:420px;right:380px}
+.node-7{top:280px;right:320px}
+.node-8{top:180px;right:200px}
+/* Connection lines */
+.connections{position:absolute;left:50%;top:50%;transform:translate(-50%,-45%);width:100%;height:100%;pointer-events:none}
+.line{position:absolute;height:3px;background:linear-gradient(90deg,rgba(0,102,255,0.8),rgba(0,102,255,0.2));transform-origin:left center;animation:flow 3s ease-in-out infinite}
+@keyframes flow{0%,100%{opacity:0.5}50%{opacity:1}}
+.line-1{width:350px;top:-80px;left:-175px;transform:rotate(-20deg)}
+.line-2{width:280px;top:-20px;left:-140px;transform:rotate(30deg)}
+.line-3{width:300px;top:60px;left:-150px;transform:rotate(-45deg)}
+.line-4{width:320px;top:140px;left:-160px;transform:rotate(60deg)}
+.line-5{width:320px;top:140px;right:-160px;transform:rotate(-60deg)}
+.line-6{width:300px;top:60px;right:-150px;transform:rotate(45deg)}
+.line-7{width:280px;top:-20px;right:-140px;transform:rotate(-30deg)}
+.line-8{width:350px;top:-80px;right:-175px;transform:rotate(20deg)}
+/* Value flow animation */
+.flow-dot{position:absolute;width:8px;height:8px;background:#FFD600;border-radius:50%;box-shadow:0 0 10px #FFD600}
+.flow-dot-1{top:-78px;left:-170px;animation:dot-flow-1 3s ease-in-out infinite}
+@keyframes dot-flow-1{0%{left:-170px}100%{left:175px}}
+/* Bottom label */
+.bottom-note{position:absolute;bottom:60px;left:80px;right:80px;text-align:center}
+.bottom-note p{font-size:16px;color:rgba(255,255,255,0.5);font-weight:300}
+/* Glow effect */
+.glow{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(0,102,255,0.15) 0%,transparent 70%);left:50%;top:45%;transform:translate(-50%,-50%)}
+/* Animated rings */
+.ring{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);border:1px solid rgba(0,102,255,0.2);border-radius:50%;animation:ring-pulse 4s ease-out infinite}
+@keyframes ring-pulse{0%{width:200px;height:200px;opacity:1}100%{width:600px;height:600px;opacity:0}}
+.ring-1{animation-delay:0s}
+.ring-2{animation-delay:1s}
+.ring-3{animation-delay:2s}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="ring ring-1"></div>
+<div class="ring ring-2"></div>
+<div class="ring ring-3"></div>
+
+<div class="header">THE ECOSYSTEM</div>
+<div class="title">Value flows in <span class="accent">every direction.</span></div>
+
+<div class="connections">
+<div class="line line-1"></div>
+<div class="line line-2"></div>
+<div class="line line-3"></div>
+<div class="line line-4"></div>
+<div class="line line-5"></div>
+<div class="line line-6"></div>
+<div class="line line-7"></div>
+<div class="line line-8"></div>
+</div>
+
+<div class="hub">
+<div class="car-hub">
+<div class="car-icon">🚗</div>
+</div>
+</div>
+
+<div class="node node-1">
+<div class="node-icon">🔧</div>
+<div class="node-name">Repuestos</div>
+<div class="node-value">Parts in minutes</div>
+</div>
+<div class="node node-2">
+<div class="node-icon">🏪</div>
+<div class="node-name">Talleres</div>
+<div class="node-value">Expert service</div>
+</div>
+<div class="node node-3">
+<div class="node-icon">🚜</div>
+<div class="node-name">Grúas</div>
+<div class="node-value">24/7 rescue</div>
+</div>
+<div class="node node-4">
+<div class="node-icon">📦</div>
+<div class="node-name">Rental</div>
+<div class="node-value">Temp wheels</div>
+</div>
+<div class="node node-5">
+<div class="node-icon">💳</div>
+<div class="node-name">Pagos</div>
+<div class="node-value">Any method</div>
+</div>
+<div class="node node-6">
+<div class="node-icon">🛡️</div>
+<div class="node-name">Seguros</div>
+<div class="node-value">Instant quote</div>
+</div>
+<div class="node node-7">
+<div class="node-icon">🤖</div>
+<div class="node-name">AI Search</div>
+<div class="node-value">Smart match</div>
+</div>
+<div class="node node-8">
+<div class="node-icon">📍</div>
+<div class="node-name">Delivery</div>
+<div class="node-value">Track live</div>
+</div>
+
+<div class="bottom-note">
+<p>Every service connects. Every transaction enriches the ecosystem. One driver, infinite possibilities.</p>
+</div>
+</body>
+</html>
