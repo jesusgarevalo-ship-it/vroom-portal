@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920,height=1080">
+<title>The Human Problem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:linear-gradient(180deg,#020208 0%,#0a0a15 50%,#050510 100%);position:relative}
+.scene{position:absolute;inset:0;overflow:hidden}
+/* Night sky */
+.sky{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(0,102,255,0.1) 0%,transparent 50%)}
+/* City silhouette */
+.city-silhouette{position:absolute;bottom:150px;left:0;right:0;height:300px}
+.building{position:absolute;bottom:0;background:#050510}
+.building-1{left:5%;width:80px;height:200px;background:linear-gradient(180deg,#0a0a15 0%,#030308 100%)}
+.building-2{left:12%;width:60px;height:280px}
+.building-3{left:20%;width:100px;height:220px}
+.building-4{left:30%;width:70px;height:300px}
+.building-5{left:40%;width:90px;height:250px}
+.building-6{left:55%;width:120px;height:180px}
+.building-7{left:70%;width:80px;height:260px}
+.building-8{left:82%;width:100px;height:220px}
+.building-9{left:92%;width:60px;height:240px}
+/* City lights */
+.city-lights{position:absolute;bottom:150px;left:0;right:0;height:300px}
+.light{position:absolute;width:4px;height:4px;background:#FFD600;border-radius:50%;animation:blink 2s ease-in-out infinite}
+.light.red{background:#FF4444}
+.light.blue{background:#0066FF}
+@keyframes blink{0%,100%{opacity:0.8}50%{opacity:0.3}}
+/* Road */
+.road{position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(180deg,#0a0a15 0%,#050508 100%)}
+.road-line{position:absolute;bottom:90px;height:6px;background:rgba(255,214,0,0.4);border-radius:3px}
+.road-line:nth-child(1){left:100px;width:80px}
+.road-line:nth-child(2){left:300px;width:80px}
+.road-line:nth-child(3){left:500px;width:80px}
+.road-line:nth-child(4){left:700px;width:80px}
+.road-line:nth-child(5){left:900px;width:80px}
+.road-line:nth-child(6){left:1100px;width:80px}
+.road-line:nth-child(7){left:1300px;width:80px}
+.road-line:nth-child(8){left:1500px;width:80px}
+.road-line:nth-child(9){left:1700px;width:80px}
+/* Car silhouette */
+.car{position:absolute;bottom:160px;left:380px;width:500px;height:200px}
+.car-body{position:absolute;bottom:0;left:0;width:100%;height:100%}
+.car-svg{width:100%;height:100%}
+/* Hazard lights */
+.hazard{position:absolute;bottom:180px;left:400px;width:460px;height:160px;pointer-events:none}
+.hazard-light{position:absolute;width:20px;height:20px;border-radius:50%;background:#FFD600;animation:hazard-pulse 0.8s ease-in-out infinite alternate}
+.hazard-light:nth-child(1){left:10px;top:60px}
+.hazard-light:nth-child(2){right:10px;top:60px}
+@keyframes hazard-pulse{from{box-shadow:0 0 10px #FFD600,0 0 20px #FFD600;opacity:1}to{box-shadow:0 0 5px #FFD600;opacity:0.4}}
+/* Overlay text */
+.overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;z-index:100;pointer-events:none}
+.main-text{position:absolute;top:80px;left:80px;right:80px;text-align:center}
+.main-text h1{font-family:'Space Grotesk',sans-serif;font-size:72px;font-weight:700;color:#fff;text-shadow:0 4px 40px rgba(0,0,0,0.8);line-height:1.1;margin-bottom:30px}
+.main-text h1 span{color:#FFD600}
+.main-text p{font-size:28px;color:rgba(255,255,255,0.7);font-weight:300}
+/* Problem icons floating */
+.problem{position:absolute;padding:15px 25px;background:rgba(255,68,68,0.2);border:1px solid rgba(255,68,68,0.5);border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;color:rgba(255,255,255,0.8);backdrop-filter:blur(10px)}
+.problem-1{top:280px;left:150px;animation:float 3s ease-in-out infinite}
+.problem-2{top:350px;right:150px;animation:float 3s ease-in-out infinite 0.5s}
+.problem-3{bottom:250px;right:200px;animation:float 3s ease-in-out infinite 1s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+/* Vignette */
+.vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 40%,rgba(0,0,0,0.7) 100%)}
+/* Ground glow */
+.ground-glow{position:absolute;bottom:100px;left:300px;width:600px;height:100px;background:radial-gradient(ellipse,rgba(255,214,0,0.2) 0%,transparent 70%)}
+</style>
+</head>
+<body>
+<div class="scene">
+<div class="sky"></div>
+
+<div class="city-silhouette">
+<div class="building building-1"></div>
+<div class="building building-2"></div>
+<div class="building building-3"></div>
+<div class="building building-4"></div>
+<div class="building building-5"></div>
+<div class="building building-6"></div>
+<div class="building building-7"></div>
+<div class="building building-8"></div>
+<div class="building building-9"></div>
+</div>
+
+<div class="city-lights">
+<div class="light" style="left:8%;top:70%;animation-delay:0.1s"></div>
+<div class="light blue" style="left:15%;top:60%;animation-delay:0.5s"></div>
+<div class="light" style="left:22%;top:75%;animation-delay:1.2s"></div>
+<div class="light red" style="left:35%;top:65%;animation-delay:0.3s"></div>
+<div class="light blue" style="left:45%;top:55%;animation-delay:0.8s"></div>
+<div class="light" style="left:58%;top:70%;animation-delay:1.5s"></div>
+<div class="light" style="left:72%;top:60%;animation-delay:0.2s"></div>
+<div class="light blue" style="left:85%;top:68%;animation-delay:0.9s"></div>
+<div class="light red" style="left:95%;top:72%;animation-delay:1.1s"></div>
+</div>
+
+<div class="road">
+<div class="road-line"></div><div class="road-line"></div><div class="road-line"></div>
+<div class="road-line"></div><div class="road-line"></div><div class="road-line"></div>
+<div class="road-line"></div><div class="road-line"></div><div class="road-line"></div>
+</div>
+
+<div class="ground-glow"></div>
+
+<svg class="car-svg" viewBox="0 0 500 200" style="position:absolute;bottom:160px;left:380px">
+<path d="M40 150 Q60 130 100 120 L180 100 Q220 70 280 65 L350 65 Q380 65 400 80 L450 100 Q470 110 480 130 L480 145 Q480 160 450 160 L80 160 Q50 160 40 150 Z" fill="#030308" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+<path d="M190 105 Q230 75 290 70 L350 66 Q370 65 380 75 L420 95 Q430 100 435 105 L200 105 Z" fill="rgba(0,102,255,0.15)"/>
+<circle cx="130" cy="160" r="30" fill="#050510" stroke="#1a1a2e"/>
+<circle cx="130" cy="160" r="18" fill="#0a0a1a"/>
+<circle cx="400" cy="160" r="30" fill="#050510" stroke="#1a1a2e"/>
+<circle cx="400" cy="160" r="18" fill="#0a0a1a"/>
+</svg>
+
+<div class="hazard">
+<div class="hazard-light"></div>
+<div class="hazard-light"></div>
+</div>
+
+<div class="vignette"></div>
+
+<div class="overlay">
+<div class="main-text">
+<h1>In Venezuela, every driver<br>has a <span>story</span>.</h1>
+<p>Most of them end the same way — stuck, frustrated, alone.</p>
+</div>
+</div>
+
+<div class="problem problem-1">❌ Wrong parts delivered</div>
+<div class="problem problem-2">❌ Shops already closed</div>
+<div class="problem problem-3">❌ Payment failed</div>
+</div>
+</body>
+</html>
