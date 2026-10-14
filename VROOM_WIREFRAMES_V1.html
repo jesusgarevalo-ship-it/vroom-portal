@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>VROOM Wireframes V1</title>
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 20mm;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #000;
+            padding: 20px;
+        }
+        .page {
+            page-break-after: always;
+            margin-bottom: 40px;
+        }
+        .page:last-child {
+            page-break-after: avoid;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 28px;
+            margin: 0 0 8px 0;
+        }
+        .header p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+        .screens-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .screen-frame {
+            border: 2px solid #000;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .screen-header {
+            background: #f0f0f0;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: bold;
+            border-bottom: 1px solid #000;
+            display: flex;
+            justify-content: space-between;
+        }
+        .screen-number {
+            color: #666;
+        }
+        .screen-content {
+            padding: 12px;
+            min-height: 400px;
+            position: relative;
+        }
+        .wireframe-box {
+            border: 2px dashed #666;
+            background: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #999;
+            font-weight: bold;
+        }
+        .wireframe-text {
+            font-size: 11px;
+            color: #333;
+            padding: 4px 0;
+        }
+        .annotation {
+            background: #fff9c4;
+            border: 1px solid #000;
+            padding: 6px 10px;
+            font-size: 10px;
+            margin-top: 8px;
+            border-radius: 4px;
+        }
+        .annotation strong {
+            color: #c00;
+        }
+        .status-bar {
+            height: 24px;
+            background: #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 12px;
+            font-size: 10px;
+        }
+        .nav-bar {
+            height: 44px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+        }
+        .nav-icon {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #666;
+            border-radius: 50%;
+        }
+        .nav-title {
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .tab-bar {
+            height: 60px;
+            border-top: 1px solid #ccc;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .tab-icon {
+            width: 24px;
+            height: 24px;
+            border: 1px solid #666;
+        }
+        .content-area {
+            flex: 1;
+            padding: 12px;
+        }
+        .search-bar {
+            height: 44px;
+            border: 2px solid #666;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        .card-wire {
+            border: 2px solid #666;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        .btn-wire {
+            height: 44px;
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .btn-primary-wire {
+            background: #000;
+            color: #fff;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .section-label {
+            font-size: 11px;
+            font-weight: bold;
+            color: #666;
+            margin: 12px 0 8px;
+            text-transform: uppercase;
+        }
+        .divider {
+            height: 1px;
+            background: #ccc;
+            margin: 12px 0;
+        }
+        .module-tile-wire {
+            border: 2px solid #666;
+            padding: 16px;
+            text-align: center;
+        }
+        .category-pill-wire {
+            display: inline-block;
+            height: 32px;
+            width: 80px;
+            border: 2px solid #666;
+            border-radius: 16px;
+        }
+        .flow-arrow {
+            text-align: center;
+            font-size: 24px;
+            color: #c00;
+            margin: 8px 0;
+        }
+        .flow-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .flow-step {
+            border: 2px solid #000;
+            padding: 12px 20px;
+            text-align: center;
+            background: #f0f0f0;
+        }
+        .table-of-contents {
+            column-count: 2;
+        }
+        .toc-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: Cover + Table of Contents -->
+    <div class="page">
+        <div class="header">
+            <h1>📱 VROOM UX WIREFRAMES</h1>
+            <p>Auto Super App Venezuela • Stage 4 UX/UI • Versión 1.0</p>
+            <p style="margin-top: 12px;">40 pantallas • 4 módulos • Mobile-first (375px)</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+            <div>
+                <h2 style="font-size: 16px; margin-bottom: 16px;">Contenido</h2>
+                <div class="table-of-contents">
+                    <div class="toc-item"><span>Módulo 1: Repuestos Express</span><span>1-11</span></div>
+                    <div class="toc-item"><span>├── Home + Búsqueda IA</span><span>1-2</span></div>
+                    <div class="toc-item"><span>├── Resultados + Detalle</span><span>3-4</span></div>
+                    <div class="toc-item"><span>├── Carrito + Checkout</span><span>5-6</span></div>
+                    <div class="toc-item"><span>└── Tracking + Historial</span><span>7-8</span></div>
+                    <div class="toc-item"><span>Módulo 2: Grúas 24/7</span><span>12-18</span></div>
+                    <div class="toc-item"><span>Módulo 3: Vehículos</span><span>19-26</span></div>
+                    <div class="toc-item"><span>Módulo 4: Rental</span><span>27-33</span></div>
+                    <div class="toc-item"><span>Super App Home</span><span>34-36</span></div>
+                    <div class="toc-item"><span>Perfil + Navegación</span><span>37-40</span></div>
+                </div>
+            </div>
+            <div>
+                <h2 style="font-size: 16px; margin-bottom: 16px;">Decisiones UX Clave</h2>
+                <div class="annotation">
+                    <strong>MUSK:</strong> ≤3 taps para cualquier acción principal. Checkout en 1 paso.
+                </div>
+                <div class="annotation">
+                    <strong>BEZOS:</strong> Búsqueda IA elimina fricción. Autocompletado de ubicación.
+                </div>
+                <div class="annotation">
+                    <strong>ZUCKERBERG:</strong> Cross-selling: compre auto → sugiera repuestos, seguros.
+                </div>
+                <div class="annotation">
+                    <strong>IVE:</strong> Diseño coherente. Colores VROOM en todos los módulos.
+                </div>
+                <div class="annotation">
+                    <strong>DROGA:</strong> Venezuela auténtico: Pago Móvil, ciudades reales, emergencias 24/7.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PAGE 2: Repuestos Home + AI Search -->
+    <div class="page">
+        <div class="header">
+            <h1>MÓDULO 1: REPUESTOS EXPRESS</h1>
+            <p>Pantalla 1-2: Home con búsqueda IA y categorías</p>
+        </div>
+        
+        <div class="screens-grid">
+            <!-- Screen 1: Repuestos Home -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 1</span>
+                    <span class="screen-number">Home</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div style="width: 40px; text-align: center;">☰</div>
+                        <div class="nav-title">Repuestos Express</div>
+                        <div style="width: 40px; text-align: center;">🛒</div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="wireframe-box" style="height: 70px; margin-bottom: 16px;">
+                            AI SEARCH BAR<br/>
+                            "¿Qué necesitas?"
+                        </div>
+                        
+                        <div class="section-label">CATEGORÍAS</div>
+                        <div style="display: flex; gap: 8px; overflow-x: auto; margin-bottom: 16px;">
+                            <div class="category-pill-wire"></div>
+                            <div class="category-pill-wire"></div>
+                            <div class="category-pill-wire"></div>
+                            <div class="category-pill-wire"></div>
+                        </div>
+                        
+                        <div class="section-label">PROVEEDORES CERCANOS</div>
+                        <div class="card-wire" style="height: 80px;">
+                            <div style="float: left; width: 60px; height: 60px; border: 1px dashed #666; margin-right: 10px;"></div>
+                            <div style="font-weight: bold;">Nombre Tienda</div>
+                            <div style="font-size: 10px; color: #666;">★ 4.8 • Desde $15</div>
+                            <div style="font-size: 10px; background: #000; color: #fff; display: inline-block; padding: 2px 8px; margin-top: 4px;">Express 30min</div>
+                        </div>
+                        <div class="card-wire" style="height: 80px;">
+                            <div style="float: left; width: 60px; height: 60px; border: 1px dashed #666; margin-right: 10px;"></div>
+                            <div style="font-weight: bold;">Nombre Tienda</div>
+                            <div style="font-size: 10px; color: #666;">★ 4.6 • Desde $12</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> AI search prominente reduce steps. Categorías rápidas para no pensar.
+                </div>
+            </div>
+            
+            <!-- Screen 2: Search Results -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 2</span>
+                    <span class="screen-number">Resultados</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Pastillas de freno</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="search-bar"></div>
+                        
+                        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                            <div style="flex: 1; text-align: center; border: 2px solid #000; padding: 8px;">Lista</div>
+                            <div style="flex: 1; text-align: center; border: 1px solid #666; padding: 8px;">Mapa</div>
+                        </div>
+                        
+                        <div style="font-size: 11px; color: #666; margin-bottom: 8px;">12 proveedores</div>
+                        
+                        <div class="card-wire" style="height: 100px; margin-bottom: 8px;">
+                            <div style="float: left; width: 80px; height: 70px; border: 1px dashed #666; margin-right: 10px;"></div>
+                            <div style="font-weight: bold;">Autopartes La 5ta</div>
+                            <div style="font-size: 10px; color: #666;">★ 4.8 (234)</div>
+                            <div style="font-size: 18px; font-weight: bold; margin-top: 8px;">$45</div>
+                            <div style="font-size: 10px; background: #000; color: #fff; display: inline-block; padding: 4px 8px;">Express 30min</div>
+                        </div>
+                        
+                        <div class="card-wire" style="height: 100px;">
+                            <div style="float: left; width: 80px; height: 70px; border: 1px dashed #666; margin-right: 10px;"></div>
+                            <div style="font-weight: bold;">AutoRepuestos C.A.</div>
+                            <div style="font-size: 10px; color: #666;">★ 4.6 (189)</div>
+                            <div style="font-size: 18px; font-weight: bold; margin-top: 8px;">$38</div>
+                            <div style="font-size: 10px; border: 1px solid #666; display: inline-block; padding: 4px 8px;">Express 45min</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #000;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Toggle lista/mapa. Cards muestran precio + ETA. 1 tap → detalle.
+                </div>
+            </div>
+            
+            <!-- Screen 3: Part Detail -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 3</span>
+                    <span class="screen-number">Detalle</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Detalle</div>
+                        <div class="nav-icon">♡</div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="wireframe-box" style="height: 120px; margin-bottom: 12px;">
+                            GALERÍA FOTOS<br/>
+                            (swipeable)
+                        </div>
+                        
+                        <div style="font-size: 18px; font-weight: bold;">Pastillas Brembo</div>
+                        <div style="font-size: 12px; color: #666;">Honda Civic 2018-2022</div>
+                        
+                        <div style="font-size: 28px; font-weight: bold; color: #0066FF; margin: 12px 0;">$45</div>
+                        
+                        <div style="background: #e8f5e9; border: 2px solid #4caf50; padding: 10px; margin-bottom: 12px;">
+                            ✓ Compatible con Civic 2019
+                        </div>
+                        
+                        <div class="card-wire" style="margin-bottom: 12px;">
+                            <div style="font-weight: bold;">Autopartes La 5ta</div>
+                            <div style="font-size: 11px;">★ 4.8 (234) • Chacao, Caracas</div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 8px;">
+                            <div class="btn-wire" style="flex: 1;">Añadir al carrito</div>
+                            <div class="btn-wire btn-primary-wire" style="flex: 1;">Comprar ahora</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #000;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Compatibilidad visible inmediatamente. CTAs duales (cart vs buy).
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PAGE 3: Cart + Checkout -->
+    <div class="page">
+        <div class="header">
+            <h1>MÓDULO 1: REPUESTOS EXPRESS</h1>
+            <p>Pantalla 4-5: Carrito y Checkout</p>
+        </div>
+        
+        <div class="screens-grid">
+            <!-- Screen 4: Cart -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 4</span>
+                    <span class="screen-number">Carrito</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Carrito (1)</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="card-wire" style="display: flex; gap: 12px;">
+                            <div style="width: 60px; height: 60px; border: 1px dashed #666;"></div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold; font-size: 13px;">Pastillas Brembo</div>
+                                <div style="font-size: 11px; color: #666;">Honda Civic 2019</div>
+                                <div style="font-size: 14px; font-weight: bold; color: #0066FF;">$45</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="border: 1px solid #666; padding: 4px 8px;">-</div>
+                                <span>1</span>
+                                <div style="border: 1px solid #000; padding: 4px 8px; background: #000; color: #fff;">+</div>
+                            </div>
+                        </div>
+                        
+                        <div class="divider"></div>
+                        
+                        <div class="section-label">RESUMEN</div>
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+                            <span>Subtotal</span><span>$45</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+                            <span>Envío</span><span style="color: green;">Incluido</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 2px solid #000; font-weight: bold;">
+                            <span>Total</span><span style="font-size: 18px; color: #0066FF;">$45</span>
+                        </div>
+                        
+                        <div class="section-label">DIRECCIÓN</div>
+                        <div class="card-wire" style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 32px; height: 32px; background: #0066FF;">📍</div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 12px;">Calle 8, Las Mercedes</div>
+                                <div style="font-size: 10px; color: #666;">Caracas, Miranda</div>
+                            </div>
+                            <span style="font-size: 10px; color: #0066FF;">Cambiar</span>
+                        </div>
+                        
+                        <div class="btn-wire btn-primary-wire" style="margin-top: 16px;">Continuar al pago</div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #000;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> GPS auto-fill地址. Total claro. 1 tap → checkout.
+                </div>
+            </div>
+            
+            <!-- Screen 5: Checkout -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 5</span>
+                    <span class="screen-number">Checkout</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Método de pago</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="section-label">MÉTODO DE PAGO</div>
+                        
+                        <div class="card-wire" style="border: 2px solid #000;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 40px; height: 40px; background: #0066FF;"></div>
+                                <div>
+                                    <div style="font-weight: bold;">Pago Móvil</div>
+                                    <div style="font-size: 10px; color: #666;">BS 0424 XXX-XXXX</div>
+                                </div>
+                                <div style="margin-left: auto;">✓</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-wire">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 40px; height: 40px; background: #1DA1F2;">Z</div>
+                                <div>
+                                    <div style="font-weight: bold;">Zelle</div>
+                                    <div style="font-size: 10px; color: #666;">carlos@email.com</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-wire">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 40px; height: 40px; background: #26A17B;">₮</div>
+                                <div>
+                                    <div style="font-weight: bold;">USDT (TRC20)</div>
+                                    <div style="font-size: 10px; color: #666;">TXXX...XXXX</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-label" style="margin-top: 16px;">VELOCIDAD</div>
+                        <div style="display: flex; gap: 8px;">
+                            <div class="card-wire" style="flex: 1; text-align: center; border: 2px solid #000;">
+                                <div style="font-size: 20px; font-weight: bold; color: #0066FF;">30min</div>
+                                <div style="font-size: 10px;">Express</div>
+                            </div>
+                            <div class="card-wire" style="flex: 1; text-align: center;">
+                                <div style="font-size: 20px; font-weight: bold;">2h</div>
+                                <div style="font-size: 10px;">Standard</div>
+                            </div>
+                            <div class="card-wire" style="flex: 1; text-align: center;">
+                                <div style="font-size: 20px; font-weight: bold;">4h</div>
+                                <div style="font-size: 10px;">Economy</div>
+                            </div>
+                        </div>
+                        
+                        <div class="btn-wire btn-primary-wire" style="margin-top: 16px;">Confirmar — $45</div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #000;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Venezuela-specific: Pago Móvil, Zelle, USDT. Velocidad = diferenciador.
+                </div>
+            </div>
+            
+            <!-- Screen 6: Tracking -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 6</span>
+                    <span class="screen-number">Tracking</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Seguimiento</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="wireframe-box" style="height: 150px; margin-bottom: 12px; position: relative;">
+                            MAPA EN VIVO<br/>
+                            ━━━━━━●━━━━━━━━━
+                            <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; background: #f0f0f0; padding: 8px; display: flex; justify-content: space-between;">
+                                <div><div style="font-size: 10px; color: #666;">ETA</div><div style="font-size: 18px; font-weight: bold;">12 min</div></div>
+                                <div><div style="font-size: 10px; color: #666;">Distancia</div><div style="font-size: 14px;">2.4 km</div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-wire" style="display: flex; gap: 12px; align-items: center;">
+                            <div style="width: 48px; height: 48px; border-radius: 50%; background: #0066FF; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold;">MR</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold;">Miguel Rodríguez</div>
+                                <div style="font-size: 11px;">★ 4.9 • 1,234 entregas</div>
+                                <div style="font-size: 10px; color: #666;">Yamaha ABC-123</div>
+                            </div>
+                            <div style="width: 40px; height: 40px; background: #4caf50; border-radius: 50%; display: flex; align-items: center; justify-content: center;">📞</div>
+                        </div>
+                        
+                        <div class="section-label">DETALLES</div>
+                        <div class="card-wire">
+                            <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+                                <span style="color: #666;">Orden</span><span>#VROOM-2024-1287</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+                                <span style="color: #666;">Repuesto</span><span>Pastillas Brembo</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+                                <span style="color: #666;">Total</span><span style="font-weight: bold; color: #0066FF;">$45</span>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 8px; margin-top: 12px;">
+                            <div class="btn-wire" style="flex: 1;">Reportar</div>
+                            <div class="btn-wire btn-primary-wire" style="flex: 1;">Ver orden</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #000;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Live map + ETA countdown. Contacto 1 tap. Transparency builds trust.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PAGE 4: Order History -->
+    <div class="page">
+        <div class="header">
+            <h1>MÓDULO 1: REPUESTOS EXPRESS</h1>
+            <p>Pantalla 7-8: Historial de pedidos y reorden</p>
+        </div>
+        
+        <div class="screens-grid">
+            <!-- Screen 7: Order History -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 7</span>
+                    <span class="screen-number">Historial</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Historial</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                            <div style="padding: 6px 12px; border: 2px solid #000; background: #000; color: #fff;">Todos</div>
+                            <div style="padding: 6px 12px; border: 1px solid #666;">Repuestos</div>
+                            <div style="padding: 6px 12px; border: 1px solid #666;">Grúas</div>
+                        </div>
+                        
+                        <div class="card-wire">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <span style="font-size: 11px; color: #666;">#VROOM-2024-1287</span>
+                                <span style="font-size: 10px; background: #0066FF; color: #fff; padding: 2px 8px;">En camino</span>
+                            </div>
+                            <div style="font-weight: bold;">Pastillas de freno Honda Civic</div>
+                            <div style="font-size: 11px; color: #666;">Hoy, 9:30 AM • Bs 4.275.000</div>
+                        </div>
+                        
+                        <div class="card-wire">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <span style="font-size: 11px; color: #666;">#VROOM-2024-1234</span>
+                                <span style="font-size: 10px; background: #4caf50; color: #fff; padding: 2px 8px;">Entregado</span>
+                            </div>
+                            <div style="font-weight: bold;">Filtro aceite Toyota Corolla</div>
+                            <div style="font-size: 11px; color: #666;">12 Oct 2024 • Bs 185.000</div>
+                            <div style="display: flex; gap: 8px; margin-top: 8px;">
+                                <div class="btn-wire" style="flex: 1; height: 32px; font-size: 10px;">Reordenar</div>
+                                <div class="btn-wire" style="flex: 1; height: 32px; font-size: 10px; background: #000; color: #fff;">Ver detalle</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-wire">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <span style="font-size: 11px; color: #666;">#GRUA-2024-089</span>
+                                <span style="font-size: 10px; background: #4caf50; color: #fff; padding: 2px 8px;">Completado</span>
+                            </div>
+                            <div style="font-weight: bold;">Remolque - Sabana Grande</div>
+                            <div style="font-size: 11px; color: #666;">7 Oct 2024 • Bs 250.000</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #000;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Reordenar = 1 tap. Filtros por tipo. Estados claros con colores.
+                </div>
+            </div>
+            
+            <!-- Screen 8: Reorder Confirmation -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 8</span>
+                    <span class="screen-number">Reorden</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Reordenar</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div style="text-align: center; padding: 20px 0;">
+                            <div style="width: 60px; height: 60px; background: #4caf50; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 30px;">✓</div>
+                            <div style="font-size: 18px; font-weight: bold;">¡Pedido duplicado!</div>
+                            <div style="font-size: 12px; color: #666;">Se creó un nuevo pedido con los mismos items</div>
+                        </div>
+                        
+                        <div class="card-wire">
+                            <div style="font-weight: bold; margin-bottom: 8px;">Filtro aceite Toyota Corolla</div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: #666;">Cantidad</span>
+                                <span>1</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: #666;">Precio</span>
+                                <span style="font-weight: bold;">$8</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-wire">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 32px; height: 32px; background: #0066FF;">📍</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 12px;">Misma dirección</div>
+                                    <div style="font-size: 10px; color: #666;">Calle 8, Las Mercedes</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-label">CAMBIASTES ALGO?</div>
+                        <div class="card-wire" style="display: flex; align-items: center;">
+                            <div style="width: 40px; height: 40px; background: #f0f0f0; display: flex; align-items: center; justify-content: center;">✏️</div>
+                            <div style="flex: 1; padding-left: 12px;">
+                                <div style="font-size: 12px;">Modificar antes de confirmar</div>
+                            </div>
+                        </div>
+                        
+                        <div class="btn-wire btn-primary-wire" style="margin-top: 16px;">Confirmar reorden — $8</div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #000;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Zero friction reorder. Solo confirmar. Oportunidad de modificar.
+                </div>
+            </div>
+            
+            <!-- Screen 9: Rate Experience -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 9</span>
+                    <span class="screen-number">Calificar</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Calificar</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div style="text-align: center; padding: 20px 0;">
+                            <div style="font-size: 16px; font-weight: bold; margin-bottom: 16px;">¿Cómo fue tu experiencia?</div>
+                            <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 16px;">
+                                <div style="width: 40px; height: 40px; border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">★</div>
+                                <div style="width: 40px; height: 40px; border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">★</div>
+                                <div style="width: 40px; height: 40px; border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">★</div>
+                                <div style="width: 40px; height: 40px; border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; background: #000; color: #fff;">★</div>
+                                <div style="width: 40px; height: 40px; border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">★</div>
+                            </div>
+                            <div style="font-size: 12px; color: #666;">Toca para calificar</div>
+                        </div>
+                        
+                        <div class="section-label">COMENTA TU EXPERIENCIA</div>
+                        <div style="border: 2px solid #666; padding: 12px; min-height: 60px; font-size: 12px; color: #999;">
+                            Escribe tu experiencia (opcional)...
+                        </div>
+                        
+                        <div class="section-label" style="margin-top: 16px;">¿QUIERES DEJAR BACKSCHUH?</div>
+                        <div style="display: flex; gap: 8px;">
+                            <div style="flex: 1; text-align: center; border: 2px solid #000; padding: 16px;">
+                                <div style="font-size: 24px;">🙂</div>
+                                <div style="font-size: 11px;">$0</div>
+                            </div>
+                            <div style="flex: 1; text-align: center; border: 1px solid #666; padding: 16px;">
+                                <div style="font-size: 24px;">😊</div>
+                                <div style="font-size: 11px;">$1</div>
+                            </div>
+                            <div style="flex: 1; text-align: center; border: 1px solid #666; padding: 16px;">
+                                <div style="font-size: 24px;">🤩</div>
+                                <div style="font-size: 11px;">$2</div>
+                            </div>
+                        </div>
+                        
+                        <div class="btn-wire btn-primary-wire" style="margin-top: 16px;">Enviar calificación</div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #000;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Tipping opcional. Emoji selector. Rápido de completar.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: Grúas 24/7 -->
+    <div class="page">
+        <div class="header">
+            <h1>MÓDULO 2: GRÚAS 24/7</h1>
+            <p>Pantalla 10-12: Emergency, Request, Matching</p>
+        </div>
+        
+        <div class="screens-grid">
+            <!-- Screen 10: Grúas Home -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 10</span>
+                    <span class="screen-number">Grúas Home</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Grúas 24/7</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div style="text-align: center; padding: 16px 0;">
+                            <div style="width: 60px; height: 60px; background: #f44336; border-radius: 50%; margin: 0 auto 12px;"></div>
+                            <div style="font-size: 18px; font-weight: bold;">Servicio de grúa</div>
+                            <div style="font-size: 11px; color: #666;">24 horas, 7 días</div>
+                        </div>
+                        
+                        <div style="background: linear-gradient(to bottom, #f44336, #ff5722); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 16px;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">🚛</div>
+                            <div style="font-size: 18px; font-weight: bold; color: #fff;">SOLICITAR GRÚA</div>
+                            <div style="font-size: 11px; color: rgba(255,255,255,0.8);">Menos de 3 minutos</div>
+                        </div>
+                        
+                        <div class="section-label">TIPO DE VEHÍCULO</div>
+                        <div style="display: flex; gap: 8px;">
+                            <div class="card-wire" style="flex: 1; text-align: center; padding: 12px;">
+                                <div style="font-size: 24px;">🚗</div>
+                                <div style="font-size: 11px;">Auto</div>
+                            </div>
+                            <div class="card-wire" style="flex: 1; text-align: center; padding: 12px;">
+                                <div style="font-size: 24px;">🏍️</div>
+                                <div style="font-size: 11px;">Moto</div>
+                            </div>
+                            <div class="card-wire" style="flex: 1; text-align: center; padding: 12px;">
+                                <div style="font-size: 24px;">🚛</div>
+                                <div style="font-size: 11px;">Camión</div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-label">RECIENTES</div>
+                        <div class="card-wire">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 11px; color: #666;">#GRUA-2024-089</span>
+                                <span style="font-size: 10px; background: #4caf50; color: #fff; padding: 2px 6px;">Completado</span>
+                            </div>
+                            <div style="font-size: 12px;">Remolque - Sabana Grande</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #f44336;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Emergency button prominente. Rojo/orange = urgencia. 1 tap = request.
+                </div>
+            </div>
+            
+            <!-- Screen 11: Grúas Request -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 11</span>
+                    <span class="screen-number">Request</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Solicitar grúa</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="card-wire" style="display: flex; align-items: center; gap: 10px; background: #e3f2fd; border-color: #2196f3;">
+                            <div style="width: 32px; height: 32px; background: #2196f3; border-radius: 50%;">📍</div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 12px; font-weight: bold;">Ubicación detectada</div>
+                                <div style="font-size: 10px; color: #666;">Av. Libertador, Caracas</div>
+                            </div>
+                            <span style="font-size: 10px; color: #2196f3;">Cambiar</span>
+                        </div>
+                        
+                        <div class="section-label">VEHÍCULO</div>
+                        <div style="display: flex; gap: 8px;">
+                            <div class="card-wire" style="flex: 1; text-align: center; border: 2px solid #000; padding: 12px;">
+                                <div style="font-size: 24px;">🚗</div>
+                                <div style="font-size: 11px;">Auto</div>
+                            </div>
+                            <div class="card-wire" style="flex: 1; text-align: center; padding: 12px;">
+                                <div style="font-size: 24px;">🏍️</div>
+                                <div style="font-size: 11px;">Moto</div>
+                            </div>
+                            <div class="card-wire" style="flex: 1; text-align: center; padding: 12px;">
+                                <div style="font-size: 24px;">🚛</div>
+                                <div style="font-size: 11px;">Camión</div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-label">SERVICIO</div>
+                        <div style="display: flex; gap: 8px; overflow-x: auto;">
+                            <div style="padding: 8px 12px; border: 2px solid #000; background: #000; color: #fff; border-radius: 16px; white-space: nowrap;">Remolque</div>
+                            <div style="padding: 8px 12px; border: 1px solid #666; border-radius: 16px; white-space: nowrap;">Llanta</div>
+                            <div style="padding: 8px 12px; border: 1px solid #666; border-radius: 16px; white-space: nowrap;">Sin combustible</div>
+                            <div style="padding: 8px 12px; border: 1px solid #666; border-radius: 16px; white-space: nowrap;">Otro</div>
+                        </div>
+                        
+                        <div class="section-label">DESCRIPCIÓN</div>
+                        <div style="border: 2px solid #666; min-height: 60px; font-size: 11px; color: #999; padding: 8px;">
+                            Describe el problema (opcional)...
+                        </div>
+                        
+                        <div class="section-label">FOTO</div>
+                        <div style="border: 2px dashed #666; padding: 16px; text-align: center; margin-bottom: 16px;">
+                            📷 Añadir foto
+                        </div>
+                        
+                        <div class="btn-wire btn-primary-wire" style="background: #f44336;">Buscar grúa</div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #f44336;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> GPS auto-detecta. Fotos opcionales ayudan al conductor. Mínimo input.
+                </div>
+            </div>
+            
+            <!-- Screen 12: Grúas Matching -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 12</span>
+                    <span class="screen-number">Matching</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Buscando grúa...</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="wireframe-box" style="height: 180px; margin-bottom: 12px; position: relative;">
+                            MAPA<br/>
+                            ● ← Ubicación usuario<br/>
+                            ━━━━━━━━━○ ← Grúa
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                <div style="width: 40px; height: 40px; background: #f44336; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px;">🚛</div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 8px 0;">
+                            <div style="animation: pulse 1.5s infinite;">● ● ●</div>
+                            <div style="font-size: 12px; color: #666;">Buscando grúa cercana...</div>
+                        </div>
+                        
+                        <div class="card-wire" style="display: flex; gap: 12px; align-items: center;">
+                            <div style="width: 48px; height: 48px; border-radius: 50%; background: #2196f3; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold;">JR</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold;">José Ramírez</div>
+                                <div style="font-size: 11px;">★ 4.8 • Grúas 24/7</div>
+                                <div style="font-size: 10px; color: #666;">Grúa Chevrolet XYZ-456</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-wire" style="text-align: center;">
+                            <div style="font-size: 10px; color: #666;">Tiempo de llegada</div>
+                            <div style="font-size: 32px; font-weight: bold; color: #f44336;">8 min</div>
+                            <div style="font-size: 10px; color: #666;">Distancia: 2.1 km</div>
+                        </div>
+                        
+                        <div class="btn-wire btn-primary-wire" style="background: #4caf50;">Grúa encontrada</div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #f44336;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Animación de búsqueda. Driver info visible. ETA countdown reduce ansiedad.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PAGE 6: Grúas Tracking + Vehicles -->
+    <div class="page">
+        <div class="header">
+            <h1>MÓDULO 2: GRÚAS + MÓDULO 3: VEHÍCULOS</h1>
+            <p>Pantalla 13-15: Grúas Tracking, Vehicles Home, Vehicle Detail</p>
+        </div>
+        
+        <div class="screens-grid">
+            <!-- Screen 13: Grúas Tracking -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 13</span>
+                    <span class="screen-number">Grúa Tracking</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Grúa en camino</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="wireframe-box" style="height: 120px; margin-bottom: 8px; position: relative;">
+                            MAPA EN VIVO
+                            <div style="position: absolute; top: 8px; left: 8px; background: #4caf50; color: #fff; padding: 4px 8px; border-radius: 12px; font-size: 10px;">● En camino</div>
+                            <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; background: #f0f0f0; padding: 8px; display: flex; justify-content: space-between;">
+                                <div><div style="font-size: 10px;">ETA</div><div style="font-size: 16px; font-weight: bold;">5 min</div></div>
+                                <div><div style="font-size: 10px;">Distancia</div><div style="font-size: 14px;">1.2 km</div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-wire" style="display: flex; gap: 12px; align-items: center;">
+                            <div style="width: 48px; height: 48px; border-radius: 50%; background: #2196f3; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold;">JR</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold;">José Ramírez</div>
+                                <div style="font-size: 11px;">★ 4.8 • 456 servicios</div>
+                            </div>
+                            <div style="width: 40px; height: 40px; background: #4caf50; border-radius: 50%; display: flex; align-items: center; justify-content: center;">📞</div>
+                        </div>
+                        
+                        <div class="section-label">DETALLES</div>
+                        <div class="card-wire">
+                            <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+                                <span style="color: #666;">Tipo</span><span>Remolque - Auto</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+                                <span style="color: #666;">Origen</span><span>Av. Libertador</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+                                <span style="color: #666;">Destino</span><span>Taller Chacao</span>
+                            </div>
+                        </div>
+                        
+                        <div class="btn-wire btn-primary-wire" style="background: #4caf50; margin-top: 12px;">Completado</div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #f44336;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Live ETA. Contact driver 1 tap. Complete flow clear.
+                </div>
+            </div>
+            
+            <!-- Screen 14: Vehicles Home -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 14</span>
+                    <span class="screen-number">Vehículos Home</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Vehículos</div>
+                        <div class="nav-icon">💬</div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="search-bar"></div>
+                        
+                        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                            <div style="padding: 6px 12px; border: 2px solid #000; background: #000; color: #fff;">Todos</div>
+                            <div style="padding: 6px 12px; border: 1px solid #666;">Nuevo</div>
+                            <div style="padding: 6px 12px; border: 1px solid #666;">Usado</div>
+                            <div style="padding: 6px 12px; border: 1px solid #666;">Certificados</div>
+                        </div>
+                        
+                        <div class="section-label">DESTACADOS</div>
+                        <div class="card-wire" style="margin-bottom: 8px;">
+                            <div style="display: flex; gap: 12px;">
+                                <div style="width: 100px; height: 70px; border: 1px dashed #666;"></div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 18px; font-weight: bold; color: #fbc02d;">$18,500</div>
+                                    <div style="font-size: 13px; font-weight: bold;">Toyota Corolla 2023</div>
+                                    <div style="font-size: 11px; color: #666;">2023 • 15,000 km • Caracas</div>
+                                    <div style="font-size: 10px; background: #4caf50; color: #fff; display: inline-block; padding: 2px 6px; margin-top: 4px;">Certificado</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-wire">
+                            <div style="display: flex; gap: 12px;">
+                                <div style="width: 100px; height: 70px; border: 1px dashed #666;"></div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 18px; font-weight: bold; color: #fbc02d;">$12,200</div>
+                                    <div style="font-size: 13px; font-weight: bold;">Honda Civic 2020</div>
+                                    <div style="font-size: 11px; color: #666;">2020 • 42,000 km • Valencia</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #fbc02d; padding: 12px; text-align: center; font-weight: bold; margin-top: 12px;">Subir mi vehículo</div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #4caf50;"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Search + filters. Featured = trust signal. "Subir" = seller acquisition.
+                </div>
+            </div>
+            
+            <!-- Screen 15: Vehicle Detail -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 15</span>
+                    <span class="screen-number">Detalle Auto</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Detalle</div>
+                        <div class="nav-icon">♡</div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="wireframe-box" style="height: 120px; margin-bottom: 8px;">
+                            GALERÍA<br/>
+                            <span style="font-size: 10px;">1/8 fotos</span>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <div style="font-size: 20px; font-weight: bold;">Honda Civic 2020</div>
+                                <div style="font-size: 11px; color: #666;">Caracas • 42,000 km</div>
+                            </div>
+                            <span style="font-size: 10px; background: #4caf50; color: #fff; padding: 4px 8px;">Certificado</span>
+                        </div>
+                        
+                        <div style="font-size: 28px; font-weight: bold; color: #fbc02d; margin: 8px 0;">$12,200</div>
+                        
+                        <div class="card-wire" style="background: #e8f5e9; border-color: #4caf50;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 16px;">✓</span>
+                                <div>
+                                    <div style="font-weight: bold; color: #4caf50;">Historial verificado</div>
+                                    <div style="font-size: 10px;">Sin accidentes • 1 dueño • Sin multas</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-label">ESPECIFICACIONES</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                            <div class="card-wire" style="padding: 8px;">
+                                <div style="font-size: 10px; color: #666;">Año</div>
+                                <div style="font-weight: bold;">2020</div>
+                            </div>
+                            <div class="card-wire" style="padding: 8px;">
+                                <div style="font-size: 10px; color: #666;">Kilometraje</div>
+                                <div style="font-weight: bold;">42,000 km</div>
+                            </div>
+                            <div class="card-wire" style="padding: 8px;">
+                                <div style="font-size: 10px; color: #666;">Transmisión</div>
+                                <div style="font-weight: bold;">Automático</div>
+                            </div>
+                            <div class="card-wire" style="padding: 8px;">
+                                <div style="font-size: 10px; color: #666;">Combustible</div>
+                                <div style="font-weight: bold;">Gasolina</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 8px; margin-top: 12px;">
+                            <div class="btn-wire" style="flex: 1;">Chatear</div>
+                            <div class="btn-wire btn-primary-wire" style="flex: 1;">Prueba</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #4caf50;"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Historial verificado = trust. Chat build relationship. Test drive CTA.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PAGE 7: Vehicles Chat + Rental -->
+    <div class="page">
+        <div class="header">
+            <h1>MÓDULO 3: VEHÍCULOS + MÓDULO 4: RENTAL</h1>
+            <p>Pantalla 16-18: Chat, Rental Home, Rental Results</p>
+        </div>
+        
+        <div class="screens-grid">
+            <!-- Screen 16: Chat -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 16</span>
+                    <span class="screen-number">Chat</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; font-size: 13px;">María González</div>
+                            <div style="font-size: 10px; color: #4caf50;">En línea</div>
+                        </div>
+                        <div class="nav-icon">👤</div>
+                    </div>
+                    
+                    <div class="content-area" style="padding-bottom: 50px;">
+                        <div style="text-align: center; margin-bottom: 12px;">
+                            <div style="display: inline-block; background: #e8f5e9; padding: 6px 12px; border-radius: 12px; font-size: 11px;">✓ Vendedor verificado</div>
+                        </div>
+                        
+                        <div style="background: #f0f0f0; padding: 8px 12px; border-radius: 12px; margin-bottom: 8px; max-width: 80%;">
+                            Hola Carlos! Gracias por tu interés en el Civic. El vehículo está en excelente estado.
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-left: 8px; margin-bottom: 12px;">10:32 AM</div>
+                        
+                        <div style="background: #000; color: #fff; padding: 8px 12px; border-radius: 12px; margin-left: auto; max-width: 80%;">
+                            Hola María! Me interesa. ¿Podría agendar una prueba de manejo?
+                        </div>
+                        <div style="font-size: 10px; color: #666; text-align: right; margin-right: 8px; margin-bottom: 12px;">10:34 AM</div>
+                        
+                        <div style="background: #f0f0f0; padding: 8px 12px; border-radius: 12px; margin-bottom: 8px; max-width: 80%;">
+                            Claro! Estoy disponible mañana a las 10am o 3pm.
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-left: 8px;">10:35 AM</div>
+                        
+                        <div style="border: 1px solid #666; padding: 8px; margin-top: 20px; display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 40px; height: 40px; border: 1px dashed #666;"></div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 11px; font-weight: bold;">Honda Civic 2020</div>
+                                <div style="font-size: 11px; color: #fbc02d;">$12,200</div>
+                            </div>
+                            <div style="background: #000; color: #fff; padding: 6px 12px;">Comprar</div>
+                        </div>
+                    </div>
+                    
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 50px; border-top: 1px solid #ccc; display: flex; align-items: center; padding: 0 8px; background: #fff;">
+                        <div style="flex: 1; border: 1px solid #ccc; padding: 8px; border-radius: 16px; font-size: 11px; color: #999;">Escribe un mensaje...</div>
+                        <div style="width: 40px; height: 40px; background: #000; margin-left: 8px; display: flex; align-items: center; justify-content: center; color: #fff;">→</div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Trust building via chat. Verified badge. Quick buy CTA en chat.
+                </div>
+            </div>
+            
+            <!-- Screen 17: Rental Home -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 17</span>
+                    <span class="screen-number">Rental Home</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Alquiler</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div style="background: linear-gradient(to bottom, #9c27b0, #673ab7); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 8px;"></div>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: bold; color: #fff;">Buscar alquiler</div>
+                                    <div style="font-size: 11px; color: rgba(255,255,255,0.8);">¿Qué vehículo necesitas?</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-label">CIUDADES</div>
+                        <div style="display: flex; gap: 8px; overflow-x: auto; margin-bottom: 12px;">
+                            <div style="padding: 8px 16px; background: #000; color: #fff; border-radius: 16px; white-space: nowrap;">Caracas</div>
+                            <div style="padding: 8px 16px; border: 1px solid #666; border-radius: 16px; white-space: nowrap;">Maracaibo</div>
+                            <div style="padding: 8px 16px; border: 1px solid #666; border-radius: 16px; white-space: nowrap;">Valencia</div>
+                        </div>
+                        
+                        <div class="section-label">CATEGORÍAS</div>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px;">
+                            <div class="module-tile-wire" style="padding: 12px;">
+                                <div style="font-size: 20px;">○</div>
+                                <div style="font-size: 10px;">Económico</div>
+                            </div>
+                            <div class="module-tile-wire" style="padding: 12px;">
+                                <div style="font-size: 20px;">🚗</div>
+                                <div style="font-size: 10px;">Sedán</div>
+                            </div>
+                            <div class="module-tile-wire" style="padding: 12px;">
+                                <div style="font-size: 20px;">🚙</div>
+                                <div style="font-size: 10px;">SUV</div>
+                            </div>
+                            <div class="module-tile-wire" style="padding: 12px;">
+                                <div style="font-size: 20px;">🛻</div>
+                                <div style="font-size: 10px;">Camioneta</div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-label">OFERTAS</div>
+                        <div class="card-wire" style="background: #f3e5f5; border-color: #9c27b0;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <div style="font-size: 10px; color: #9c27b0; font-weight: bold;">FIN DE SEMANA</div>
+                                    <div style="font-weight: bold;">20% desc en SUV</div>
+                                </div>
+                                <div style="background: #9c27b0; color: #fff; padding: 6px 12px;">Ver</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #9c27b0;"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> City selector prominent. Categories grid. Promo banner drives action.
+                </div>
+            </div>
+            
+            <!-- Screen 18: Rental Results -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 18</span>
+                    <span class="screen-number">Rental Results</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">SUV en Caracas</div>
+                        <div></div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="card-wire" style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                            <div style="font-size: 16px;">📍</div>
+                            <div>
+                                <div style="font-size: 12px; font-weight: bold;">Caracas</div>
+                                <div style="font-size: 10px; color: #666;">15-22 Oct 2024</div>
+                            </div>
+                        </div>
+                        
+                        <div style="font-size: 11px; color: #666; margin-bottom: 8px;">8 vehículos disponibles</div>
+                        
+                        <div class="card-wire" style="margin-bottom: 8px;">
+                            <div style="display: flex; gap: 12px;">
+                                <div style="width: 80px; height: 60px; border: 1px dashed #666;"></div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 10px; color: #9c27b0; font-weight: bold;">SUV</div>
+                                    <div style="font-weight: bold;">Toyota RAV4 2024</div>
+                                    <div style="font-size: 10px; color: #666;">Automático • 5 pasajeros</div>
+                                    <div style="font-size: 16px; font-weight: bold; color: #4caf50;">$45<span style="font-size: 11px; font-weight: normal;">/día</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-wire" style="margin-bottom: 8px;">
+                            <div style="display: flex; gap: 12px;">
+                                <div style="width: 80px; height: 60px; border: 1px dashed #666;"></div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 10px; color: #9c27b0; font-weight: bold;">SUV</div>
+                                    <div style="font-weight: bold;">Mazda CX-5 2023</div>
+                                    <div style="font-size: 10px; color: #666;">Automático • 5 pasajeros</div>
+                                    <div style="font-size: 16px; font-weight: bold; color: #4caf50;">$38<span style="font-size: 11px; font-weight: normal;">/día</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-wire">
+                            <div style="display: flex; gap: 12px;">
+                                <div style="width: 80px; height: 60px; border: 1px dashed #666;"></div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 10px; color: #9c27b0; font-weight: bold;">SUV</div>
+                                    <div style="font-weight: bold;">Hyundai Tucson 2023</div>
+                                    <div style="font-size: 10px; color: #666;">Automático • 5 pasajeros</div>
+                                    <div style="font-size: 16px; font-weight: bold; color: #4caf50;">$35<span style="font-size: 11px; font-weight: normal;">/día</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #9c27b0;"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Price prominent. Specs clear. Date/location sticky.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 8: Rental Detail + Super App Home -->
+    <div class="page">
+        <div class="header">
+            <h1>MÓDULO 4: RENTAL + SUPER APP</h1>
+            <p>Pantalla 19-21: Rental Booking, Super App Home, Profile</p>
+        </div>
+        
+        <div class="screens-grid">
+            <!-- Screen 19: Rental Booking -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 19</span>
+                    <span class="screen-number">Booking</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Reservar</div>
+                        <div class="nav-icon">♡</div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="wireframe-box" style="height: 100px; margin-bottom: 8px;">
+                            FOTO AUTO
+                        </div>
+                        
+                        <div style="font-size: 18px; font-weight: bold;">Toyota RAV4 2024</div>
+                        <div style="font-size: 11px; color: #666;">SUV • Automático • Caracas</div>
+                        <div style="font-size: 24px; font-weight: bold; color: #4caf50; margin: 8px 0;">$45<span style="font-size: 12px; font-weight: normal;">/día</span></div>
+                        
+                        <div class="section-label">FECHAS</div>
+                        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                            <div class="card-wire" style="flex: 1; padding: 8px;">
+                                <div style="font-size: 10px; color: #666;">Recoger</div>
+                                <div style="font-weight: bold;">15 Oct 2024</div>
+                                <div style="font-size: 11px; color: #9c27b0;">10:00 AM</div>
+                            </div>
+                            <div class="card-wire" style="flex: 1; padding: 8px;">
+                                <div style="font-size: 10px; color: #666;">Devolver</div>
+                                <div style="font-weight: bold;">22 Oct 2024</div>
+                                <div style="font-size: 11px; color: #9c27b0;">10:00 AM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-label">INCLUIDO</div>
+                        <div class="card-wire" style="font-size: 11px;">
+                            ✓ 100 km/día • ✓ Seguro básico • ✓ Cancelación gratis
+                        </div>
+                        
+                        <div class="section-label">EXTRAS</div>
+                        <div style="display: flex; gap: 8px; overflow-x: auto;">
+                            <div style="padding: 6px 10px; border: 1px solid #666; border-radius: 12px; white-space: nowrap; font-size: 10px;">Silla +$5</div>
+                            <div style="padding: 6px 10px; border: 1px solid #666; border-radius: 12px; white-space: nowrap; font-size: 10px;">GPS +$3</div>
+                            <div style="padding: 6px 10px; border: 1px solid #666; border-radius: 12px; white-space: nowrap; font-size: 10px;">Seguro full +$12</div>
+                        </div>
+                        
+                        <div class="card-wire" style="margin-top: 12px; background: #f0f0f0;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>7 días × $45</span><span>$315</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-weight: bold; border-top: 1px solid #000; padding-top: 8px; margin-top: 8px;">
+                                <span>Total</span><span style="font-size: 18px; color: #4caf50;">$315</span>
+                            </div>
+                        </div>
+                        
+                        <div class="btn-wire btn-primary-wire" style="background: #9c27b0; margin-top: 12px;">Reservar ahora</div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon" style="background: #9c27b0;"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Total price prominent. Dates clear. Extras opt-in.
+                </div>
+            </div>
+            
+            <!-- Screen 20: Super App Home -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 20</span>
+                    <span class="screen-number">Super App Home</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">☰</div>
+                        <div></div>
+                        <div class="nav-icon">🔔</div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div style="padding: 4px 12px;">
+                            <div style="font-size: 22px; font-weight: bold; margin-bottom: 4px;">Buenos días, Carlos</div>
+                            <div style="font-size: 12px; color: #666;">¿Qué necesitas hoy?</div>
+                        </div>
+                        
+                        <div style="background: linear-gradient(to bottom, #0066FF, #0099FF); margin: 12px; border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 36px; height: 36px; background: rgba(255,255,255,0.2); border-radius: 8px;"></div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold; color: #fff;">Buscar con IA</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.8);">Describe lo que necesitas...</div>
+                            </div>
+                            <div style="color: rgba(255,255,255,0.6);">→</div>
+                        </div>
+                        
+                        <div class="section-label">ACCIONES RÁPIDAS</div>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px;">
+                            <div style="text-align: center; padding: 12px; border: 1px solid #666; border-radius: 8px;">
+                                <div style="font-size: 20px;">🔧</div>
+                                <div style="font-size: 9px;">Buscar repuesto</div>
+                            </div>
+                            <div style="text-align: center; padding: 12px; border: 1px solid #666; border-radius: 8px;">
+                                <div style="font-size: 20px;">🚛</div>
+                                <div style="font-size: 9px;">Grúa</div>
+                            </div>
+                            <div style="text-align: center; padding: 12px; border: 1px solid #666; border-radius: 8px;">
+                                <div style="font-size: 20px;">🚗</div>
+                                <div style="font-size: 9px;">Comprar auto</div>
+                            </div>
+                            <div style="text-align: center; padding: 12px; border: 1px solid #666; border-radius: 8px;">
+                                <div style="font-size: 20px;">🔑</div>
+                                <div style="font-size: 9px;">Alquilar</div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-label">MÓDULOS</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+                            <div style="background: #0066FF; padding: 16px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 24px; margin-bottom: 4px;">🔧</div>
+                                <div style="font-size: 11px; font-weight: bold;">Repuestos Express</div>
+                                <div style="font-size: 9px; color: rgba(255,255,255,0.7);">Fase 1 • Activo</div>
+                            </div>
+                            <div style="background: #f44336; padding: 16px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 24px; margin-bottom: 4px;">🚛</div>
+                                <div style="font-size: 11px; font-weight: bold;">Grúas 24/7</div>
+                                <div style="font-size: 9px; color: rgba(255,255,255,0.7);">Fase 2</div>
+                            </div>
+                            <div style="background: #4caf50; padding: 16px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 24px; margin-bottom: 4px;">🚗</div>
+                                <div style="font-size: 11px; font-weight: bold;">Vehículos</div>
+                                <div style="font-size: 9px; color: rgba(255,255,255,0.7);">Fase 3</div>
+                            </div>
+                            <div style="background: #9c27b0; padding: 16px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 24px; margin-bottom: 4px;">🔑</div>
+                                <div style="font-size: 11px; font-weight: bold;">Rental</div>
+                                <div style="font-size: 9px; color: rgba(255,255,255,0.7);">Fase 4</div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-label">ÓRDENES ACTIVAS</div>
+                        <div class="card-wire">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 11px; color: #666;">#VROOM-2024-1287</span>
+                                <span style="font-size: 10px; background: #0066FF; color: #fff; padding: 2px 6px;">En camino</span>
+                            </div>
+                            <div style="font-size: 12px; font-weight: bold;">Pastillas de freno Honda Civic</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon" style="background: #0066FF;"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> 4 módulos clearly visible. AI search center. Active orders = engagement.
+                </div>
+            </div>
+            
+            <!-- Screen 21: Profile -->
+            <div class="screen-frame">
+                <div class="screen-header">
+                    <span>Pantalla 21</span>
+                    <span class="screen-number">Perfil</span>
+                </div>
+                <div class="screen-content">
+                    <div class="status-bar"><span>9:41</span><span>◎ ◎ ◎</span></div>
+                    <div class="nav-bar">
+                        <div class="nav-icon">←</div>
+                        <div class="nav-title">Perfil</div>
+                        <div class="nav-icon">⚙️</div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="card-wire" style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
+                            <div style="width: 56px; height: 56px; background: #0066FF; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; font-weight: bold;">C</div>
+                            <div>
+                                <div style="font-size: 16px; font-weight: bold;">Carlos Mendoza</div>
+                                <div style="font-size: 11px; color: #666;">carlos@email.com</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                            <div class="card-wire" style="flex: 1; text-align: center; padding: 12px;">
+                                <div style="font-size: 20px; font-weight: bold; color: #0066FF;">12</div>
+                                <div style="font-size: 10px; color: #666;">Pedidos</div>
+                            </div>
+                            <div class="card-wire" style="flex: 1; text-align: center; padding: 12px;">
+                                <div style="font-size: 20px; font-weight: bold; color: #4caf50;">4.8</div>
+                                <div style="font-size: 10px; color: #666;">Calificación</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-wire" style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 36px; height: 36px; background: #f0f0f0; border-radius: 8px;"></div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 13px; font-weight: bold;">Mis vehículos</div>
+                                <div style="font-size: 11px; color: #666;">Honda Civic 2019, Toyota Corolla 2022</div>
+                            </div>
+                            <span style="color: #666;">›</span>
+                        </div>
+                        
+                        <div class="card-wire" style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 36px; height: 36px; background: #f0f0f0; border-radius: 8px;">📋</div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 13px; font-weight: bold;">Historial de pedidos</div>
+                                <div style="font-size: 11px; color: #666;">Ver todas tus órdenes</div>
+                            </div>
+                            <span style="color: #666;">›</span>
+                        </div>
+                        
+                        <div class="card-wire" style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 36px; height: 36px; background: #f0f0f0; border-radius: 8px;">💳</div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 13px; font-weight: bold;">Métodos de pago</div>
+                                <div style="font-size: 11px; color: #666;">Pago Móvil, Zelle, USDT</div>
+                            </div>
+                            <span style="color: #666;">›</span>
+                        </div>
+                        
+                        <div class="card-wire" style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 36px; height: 36px; background: #f0f0f0; border-radius: 8px;">📍</div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 13px; font-weight: bold;">Direcciones</div>
+                                <div style="font-size: 11px; color: #666;">2 direcciones</div>
+                            </div>
+                            <span style="color: #666;">›</span>
+                        </div>
+                        
+                        <div class="btn-wire" style="margin-top: 16px; color: #c00;">Cerrar sesión</div>
+                    </div>
+                    
+                    <div class="tab-bar">
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                        <div class="tab-icon"></div>
+                    </div>
+                </div>
+                <div class="annotation">
+                    <strong>UX:</strong> Quick stats. My vehicles link to vehicles module. Payment methods Venezuela-specific.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PAGE 9: Navigation Flow Summary -->
+    <div class="page">
+        <div class="header">
+            <h1>RESUMEN: FLUJO DE NAVEGACIÓN</h1>
+            <p>Cómo los módulos se conectan entre sí</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+            <div>
+                <h2 style="font-size: 16px; margin-bottom: 16px;">REPUESTOS EXPRESS (Fase 1)</h2>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-steps">
+                    <div class="flow-step">Home</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">Search</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">Detail</div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-steps">
+                    <div class="flow-step">Cart</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">Checkout</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">Track</div>
+                </div>
+                <div class="flow-arrow">↻</div>
+                <div class="flow-steps" style="justify-content: center;">
+                    <div class="flow-step">Reorder</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">Rate</div>
+                </div>
+            </div>
+            
+            <div>
+                <h2 style="font-size: 16px; margin-bottom: 16px;">GRÚAS 24/7 (Fase 2)</h2>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-steps">
+                    <div class="flow-step" style="background: #f44336; color: #fff;">Home</div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-steps">
+                    <div class="flow-step">Request</div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-steps">
+                    <div class="flow-step">Matching</div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-steps">
+                    <div class="flow-step" style="background: #4caf50; color: #fff;">Tracking</div>
+                </div>
+                <div class="flow-arrow">↻</div>
+                <div class="flow-steps" style="justify-content: center;">
+                    <div class="flow-step">Rate + Pay</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px; border-top: 2px solid #000; padding-top: 20px;">
+            <h2 style="font-size: 16px; margin-bottom: 16px;">CROSS-MODULE CONNECTIONS</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                <div class="annotation">
+                    <strong>Buy car → Parts:</strong> After buying a car, prompt to add to "My Vehicles" and offer relevant parts.
+                </div>
+                <div class="annotation">
+                    <strong>Parts → Grúa:</strong> If user searches for a part related to damage/repair, suggest Grúas.
+                </div>
+                <div class="annotation">
+                    <strong>Rental → Sell:</strong> After rental, suggest listing their vehicle for sale.
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <h2 style="font-size: 16px; margin-bottom: 16px;">EXEC BOARD SELF-CHECK</h2>
+            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;">
+                <div class="card-wire" style="text-align: center; padding: 12px;">
+                    <div style="font-size: 20px; font-weight: bold; color: #0066FF;">✓</div>
+                    <div style="font-size: 10px; font-weight: bold;">MUSK</div>
+                    <div style="font-size: 9px; color: #666;">≤3 taps per action</div>
+                </div>
+                <div class="card-wire" style="text-align: center; padding: 12px;">
+                    <div style="font-size: 20px; font-weight: bold; color: #0066FF;">✓</div>
+                    <div style="font-size: 10px; font-weight: bold;">BEZOS</div>
+                    <div style="font-size: 9px; color: #666;">AI search reduces friction</div>
+                </div>
+                <div class="card-wire" style="text-align: center; padding: 12px;">
+                    <div style="font-size: 20px; font-weight: bold; color: #0066FF;">✓</div>
+                    <div style="font-size: 10px; font-weight: bold;">ZUCKERBERG</div>
+                    <div style="font-size: 9px; color: #666;">Cross-module utility</div>
+                </div>
+                <div class="card-wire" style="text-align: center; padding: 12px;">
+                    <div style="font-size: 20px; font-weight: bold; color: #0066FF;">✓</div>
+                    <div style="font-size: 10px; font-weight: bold;">IVE</div>
+                    <div style="font-size: 9px; color: #666;">Coherent design</div>
+                </div>
+                <div class="card-wire" style="text-align: center; padding: 12px;">
+                    <div style="font-size: 20px; font-weight: bold; color: #0066FF;">✓</div>
+                    <div style="font-size: 10px; font-weight: bold;">DROGA</div>
+                    <div style="font-size: 9px; color: #666;">Venezuelan authentic</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
