@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VROOM — Especificación Técnica MVP Phase 1: Repuestos Express</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --volt: #0066FF; --ignition: #FFD600; --bg: #0a0a0f; --surface: #0d1420; --border: rgba(0,102,255,.2); --text: #e2e8f0; --muted: #64748b; --success: #22c55e; --warning: #f59e0b; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+        .container { max-width:1100px; margin:0 auto; padding:40px 24px; }
+        header { text-align:center; margin-bottom:60px; padding:60px 0; border-bottom:1px solid var(--border); }
+        .badge { display:inline-block; padding:6px 16px; background:rgba(0,102,255,.15); border:1px solid rgba(0,102,255,.3); border-radius:100px; font-size:12px; font-weight:600; letter-spacing:.1em; color:var(--volt); text-transform:uppercase; margin-bottom:20px; }
+        h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(36px,5vw,64px); font-weight:800; background:linear-gradient(135deg,#fff 0%,var(--volt) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:12px; }
+        .subtitle { font-size:18px; color:var(--muted); margin-bottom:24px; }
+        .meta { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; font-size:13px; color:var(--muted); }
+        .meta span { display:flex; align-items:center; gap:6px; }
+        h2 { font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:#fff; margin:48px 0 16px; padding-bottom:12px; border-bottom:2px solid var(--volt); display:flex; align-items:center; gap:10px; }
+        h3 { font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:600; color:var(--volt); margin:32px 0 12px; }
+        p { color:var(--text); margin-bottom:16px; font-size:15px; }
+        .lead { font-size:17px; color:#94a3b8; line-height:1.8; margin-bottom:24px; }
+        ul, ol { padding-left:24px; margin-bottom:16px; }
+        li { margin-bottom:8px; font-size:15px; color:var(--text); }
+        li strong { color:var(--ignition); }
+        .card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:28px; margin-bottom:24px; }
+        .card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin:24px 0; }
+        .mini-card { background:rgba(0,102,255,.06); border:1px solid rgba(0,102,255,.2); border-radius:12px; padding:20px; }
+        .mini-card h4 { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:#fff; margin-bottom:8px; }
+        .mini-card p { font-size:13px; color:#94a3b8; margin:0; }
+        code { font-family:'Courier New',monospace; background:rgba(0,102,255,.1); border:1px solid rgba(0,102,255,.2); padding:2px 8px; border-radius:4px; font-size:13px; color:var(--volt); }
+        pre { background:#000; border:1px solid var(--border); border-radius:12px; padding:20px; overflow-x:auto; margin:16px 0; font-size:12px; line-height:1.6; }
+        pre code { background:none; border:none; padding:0; color:#e2e8f0; font-size:12px; }
+        .endpoint { display:flex; align-items:center; gap:12px; margin:12px 0; }
+        .method { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px; padding:4px 12px; border-radius:6px; min-width:80px; text-align:center; }
+        .method.get { background:rgba(34,197,94,.15); color:#22c55e; }
+        .method.post { background:rgba(0,102,255,.15); color:var(--volt); }
+        .method.put { background:rgba(245,158,11,.15); color:var(--warning); }
+        .method.delete { background:rgba(239,68,68,.15); color:#ef4444; }
+        .method.ws { background:rgba(168,85,247,.15); color:#a855f7; }
+        .path { font-family:'Courier New',monospace; font-size:14px; color:#fff; }
+        .tag { display:inline-block; padding:2px 10px; border-radius:4px; font-size:11px; font-weight:600; text-transform:uppercase; }
+        .tag.mvp { background:rgba(0,102,255,.2); color:var(--volt); }
+        .tag.stable { background:rgba(34,197,94,.2); color:#22c55e; }
+        .tag.future { background:rgba(245,158,11,.15); color:var(--warning); }
+        .tag.internal { background:rgba(168,85,247,.15); color:#a855f7; }
+        .schema { overflow-x:auto; margin:16px 0; }
+        table { width:100%; border-collapse:collapse; font-size:13px; }
+        th { text-align:left; padding:10px 14px; background:rgba(0,102,255,.1); border-bottom:1px solid var(--border); color:#fff; font-weight:600; font-family:'Space Grotesk',sans-serif; }
+        td { padding:10px 14px; border-bottom:1px solid rgba(0,102,255,.08); vertical-align:top; }
+        tr:last-child td { border:none; }
+        .key { color:var(--volt); font-family:'Courier New',monospace; }
+        .type { color:#a855f7; font-family:'Courier New',monospace; font-size:12px; }
+        .comment { color:var(--muted); font-style:italic; }
+        .arch-svg { width:100%; max-width:900px; margin:24px auto; display:block; }
+        .timeline { position:relative; padding-left:32px; }
+        .timeline::before { content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(180deg,var(--volt),var(--ignition)); }
+        .week { position:relative; margin-bottom:32px; }
+        .week::before { content:''; position:absolute; left:-28px; top:8px; width:12px; height:12px; border-radius:50%; background:var(--volt); border:2px solid var(--bg); }
+        .week h4 { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:#fff; margin-bottom:8px; }
+        .week p { font-size:14px; color:#94a3b8; margin:0; }
+        .cost { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin:20px 0; }
+        .cost-item { background:rgba(0,102,255,.06); border:1px solid rgba(0,102,255,.15); border-radius:12px; padding:16px; text-align:center; }
+        .cost-item .amount { font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:800; color:var(--volt); }
+        .cost-item .label { font-size:12px; color:var(--muted); margin-top:4px; }
+        .risk-card { background:var(--surface); border-left:3px solid var(--warning); border-radius:0 12px 12px 0; padding:16px 20px; margin:12px 0; }
+        .risk-card .risk-name { font-weight:700; color:#fff; margin-bottom:6px; }
+        .risk-card .mitigation { font-size:13px; color:#94a3b8; }
+        .phase-badge { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:100px; font-size:12px; font-weight:600; }
+        .phase-badge.p1 { background:rgba(0,102,255,.2); color:var(--volt); }
+        .phase-badge.p2 { background:rgba(255,214,0,.2); color:var(--ignition); }
+        .status-flow { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:16px 0; font-size:13px; }
+        .status-flow .step { padding:6px 14px; background:rgba(0,102,255,.1); border:1px solid rgba(0,102,255,.2); border-radius:100px; color:#fff; }
+        .status-flow .arrow { color:var(--muted); }
+        .copy-block { background:rgba(0,0,0,.4); border:1px solid var(--border); border-radius:12px; padding:16px 20px; margin:16px 0; font-size:13px; }
+        .copy-block .label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; margin-bottom:8px; }
+        .highlight { color:var(--ignition); font-weight:600; }
+        .section-note { background:rgba(0,102,255,.08); border:1px solid rgba(0,102,255,.2); border-radius:8px; padding:12px 16px; font-size:13px; color:#94a3b8; margin:16px 0; }
+        footer { margin-top:80px; padding-top:40px; border-top:1px solid var(--border); text-align:center; color:var(--muted); font-size:13px; }
+        @media(max-width:640px) { .container { padding:20px 16px; } h1 { font-size:32px; } h2 { font-size:22px; } pre { font-size:11px; } }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+    <div class="badge">Stage 6 — Development MVP</div>
+    <h1>VROOM Repuestos Express</h1>
+    <p class="subtitle">Especificación Técnica — Phase 1 MVP</p>
+    <div class="meta">
+        <span>📅 Versión 1.0 — Octubre 2026</span>
+        <span>🏗️ Node.js + Fastify + PostgreSQL + Redis + Socket.io</span>
+        <span>📱 React Native (Expo)</span>
+        <span>⚡ Pago Móvil (BS) únicamente</span>
+    </div>
+</header>
+
+<section>
+<h2>1. Resumen Ejecutivo</h2>
+<p class="lead">Repuestos Express es el módulo MVP de VROOM — la primera plataforma de repuestos automotrices en Venezuela con búsqueda por lenguaje natural, entrega en 15 minutos y pago vía Pago Móvil. No es un marketplace genérico: es un sistema de confianza donde cada repuesto está verificado, cada conductor es rastreado, y cada transacción es transparente.</p>
+
+<div class="card-grid">
+    <div class="mini-card">
+        <h4>🎯 Meta Phase 1</h4>
+        <p>500 transacciones/mes · NPS &gt; 50 · Break-even $12K MRR (Mes 8-10)</p>
+    </div>
+    <div class="mini-card">
+        <h4>🏙️ Cobertura</h4>
+        <p>Caracas + Maracaibo · 50 proveedores · 2 ciudades iniciales</p>
+    </div>
+    <div class="mini-card">
+        <h4>💳 Pago</h4>
+        <p>Pago Móvil BS (Banesco, Venezuela, Bicentenario)</p>
+    </div>
+    <div class="mini-card">
+        <h4>⏱️ Entrega</h4>
+        <p>Exprés 15-30 min · Rastreo en tiempo real · GPS</p>
+    </div>
+</div>
+</section>
+
+<section>
+<h2>2. Arquitectura General</h2>
+
+<svg class="arch-svg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background grid -->
+  <defs>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(0,102,255,0.06)" stroke-width="1"/></pattern>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0066FF"/><stop offset="100%" stop-color="#0052CC"/></linearGradient>
+    <linearGradient id="yellowGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFD600"/><stop offset="100%" stop-color="#FFA000"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="900" height="520" fill="#0a0a0f"/><rect width="900" height="520" fill="url(#grid)"/>
+
+  <!-- Cloud/External -->
+  <rect x="20" y="20" width="860" height="60" rx="12" fill="none" stroke="rgba(0,102,255,0.15)" stroke-dasharray="4 4"/>
+  <text x="450" y="48" text-anchor="middle" fill="#64748b" font-family="Space Grotesk" font-size="11" letter-spacing="3">INTERNET / VENEZUELA</text>
+
+  <!-- Google Fonts CDN -->
+  <rect x="20" y="90" width="200" height="44" rx="8" fill="rgba(0,102,255,0.08)" stroke="rgba(0,102,255,0.2)"/>
+  <text x="120" y="117" text-anchor="middle" fill="#64748b" font-family="Space Grotesk" font-size="11">Google Fonts CDN</text>
+
+  <!-- Cloudflare CDN -->
+  <rect x="680" y="90" width="200" height="44" rx="8" fill="rgba(255,214,0,0.08)" stroke="rgba(255,214,0,0.2)"/>
+  <text x="780" y="117" text-anchor="middle" fill="#64748b" font-family="Space Grotesk" font-size="11">Cloudflare CDN</text>
+
+  <!-- FRONTEND -->
+  <rect x="20" y="160" width="260" height="170" rx="16" fill="rgba(0,102,255,0.06)" stroke="rgba(0,102,255,0.25)"/>
+  <rect x="20" y="160" width="260" height="36" rx="16" fill="url(#blueGrad)"/>
+  <rect x="20" y="180" width="260" height="16" fill="url(#blueGrad)"/>
+  <text x="150" y="182" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-size="13" font-weight="700">FRONTEND</text>
+
+  <rect x="40" y="208" width="220" height="34" rx="8" fill="rgba(0,102,255,0.12)"/>
+  <text x="150" y="230" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-size="11">📱 React Native (Expo)</text>
+  <text x="150" y="244" text-anchor="middle" fill="#64748b" font-family="Inter" font-size="9">Customer App iOS/Android</text>
+
+  <rect x="40" y="252" width="220" height="34" rx="8" fill="rgba(0,102,255,0.08)"/>
+  <text x="150" y="274" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-size="11">🖥️ React Web</text>
+  <text x="150" y="288" text-anchor="middle" fill="#64748b" font-family="Inter" font-size="9">Supplier Portal + Admin</text>
+
+  <rect x="40" y="296" width="220" height="26" rx="8" fill="rgba(0,102,255,0.06)"/>
+  <text x="150" y="313" text-anchor="middle" fill="#64748b" font-family="Space Grotesk" font-size="10">Driver App</text>
+
+  <!-- BACKEND -->
+  <rect x="320" y="160" width="260" height="170" rx="16" fill="rgba(0,102,255,0.08)" stroke="rgba(0,102,255,0.3)"/>
+  <rect x="320" y="160" width="260" height="36" rx="16" fill="url(#blueGrad)"/>
+  <rect x="320" y="180" width="260" height="16" fill="url(#blueGrad)"/>
+  <text x="450" y="182" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-size="13" font-weight="700">BACKEND</text>
+
+  <rect x="340" y="208" width="220" height="34" rx="8" fill="rgba(0,102,255,0.15)"/>
+  <text x="450" y="224" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-size="11">⚡ Fastify + TypeScript</text>
+  <text x="450" y="238" text-anchor="middle" fill="#64748b" font-family="Inter" font-size="9">Node.js REST API</text>
+
+  <rect x="340" y="252" width="100" height="34" rx="8" fill="rgba(168,85,247,0.15)"/>
+  <text x="390" y="274" text-anchor="middle" fill="#a855f7" font-family="Space Grotesk" font-size="10">Socket.io</text>
+  <text x="390" y="286" text-anchor="middle" fill="#64748b" font-family="Inter" font-size="8">Real-time</text>
+
+  <rect x="450" y="252" width="110" height="34" rx="8" fill="rgba(255,214,0,0.1)"/>
+  <text x="505" y="268" text-anchor="middle" fill="#FFD600" font-family="Space Grotesk" font-size="9">Redis</text>
+  <text x="505" y="280" text-anchor="middle" fill="#64748b" font-family="Inter" font-size="8">Cache + Pub/Sub</text>
+
+  <rect x="340" y="296" width="220" height="26" rx="8" fill="rgba(0,102,255,0.08)"/>
+  <text x="450" y="313" text-anchor="middle" fill="#64748b" font-family="Space Grotesk" font-size="10">JWT Auth + Rate Limiting</text>
+
+  <!-- DATABASE -->
+  <rect x="620" y="160" width="260" height="80" rx="16" fill="rgba(0,102,255,0.06)" stroke="rgba(0,102,255,0.2)"/>
+  <rect x="620" y="160" width="260" height="36" rx="16" fill="rgba(0,102,255,0.15)"/>
+  <rect x="620" y="180" width="260" height="16" fill="rgba(0,102,255,0.15)"/>
+  <text x="750" y="182" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-size="13" font-weight="700">DATOS</text>
+
+  <rect x="640" y="206" width="100" height="28" rx="6" fill="rgba(34,197,94,0.15)"/>
+  <text x="690" y="223" text-anchor="middle" fill="#22c55e" font-family="Space Grotesk" font-size="10">PostgreSQL</text>
+
+  <rect x="750" y="206" width="110" height="28" rx="6" fill="rgba(255,214,0,0.1)"/>
+  <text x="805" y="223" text-anchor="middle" fill="#FFD600" font-family="Space Grotesk" font-size="10">pgvector</text>
+
+  <!-- EXTERNAL -->
+  <rect x="20" y="360" width="860" height="140" rx="16" fill="rgba(0,102,255,0.04)" stroke="rgba(0,102,255,0.1)" stroke-dasharray="4 4"/>
+  <text x="450" y="380" text-anchor="middle" fill="#64748b" font-family="Space Grotesk" font-size="11" letter-spacing="2">SERVICIOS EXTERNOS</text>
+
+  <rect x="40" y="395" width="155" height="48" rx="10" fill="rgba(0,102,255,0.1)" stroke="rgba(0,102,255,0.2)"/>
+  <text x="117" y="415" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-size="10">🏦 Pago Móvil</text>
+  <text x="117" y="430" text-anchor="middle" fill="#64748b" font-family="Inter" font-size="9">Banesco / Venezuela / Bicentenario</text>
+
+  <rect x="210" y="395" width="155" height="48" rx="10" fill="rgba(0,102,255,0.1)" stroke="rgba(0,102,255,0.2)"/>
+  <text x="287" y="415" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-size="10">🗺️ OSRM</text>
+  <text x="287" y="430" text-anchor="middle" fill="#64748b" font-family="Inter" font-size="9">Routing + Maps (gratis)</text>
+
+  <rect x="380" y="395" width="155" height="48" rx="10" fill="rgba(0,102,255,0.1)" stroke="rgba(0,102,255,0.2)"/>
+  <text x="457" y="415" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-size="10">📍 OpenStreetMap</text>
+  <text x="457" y="430" text-anchor="middle" fill="#64748b" font-family="Inter" font-size="9">Tiles + Geocoding</text>
+
+  <rect x="550" y="395" width="155" height="48" rx="10" fill="rgba(0,102,255,0.1)" stroke="rgba(0,102,255,0.2)"/>
+  <text x="627" y="415" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-size="10">📲 Twilio / Africa's Talking</text>
+  <text x="627" y="430" text-anchor="middle" fill="#64748b" font-family="Inter" font-size="9">OTP SMS / WhatsApp</text>
+
+  <rect x="720" y="395" width="155" height="48" rx="10" fill="rgba(0,102,255,0.1)" stroke="rgba(0,102,255,0.2)"/>
+  <text x="797" y="415" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-size="10">📦 Railway</text>
+  <text x="797" y="430" text-anchor="middle" fill="#64748b" font-family="Inter" font-size="9">Hosting Backend + DB</text>
+
+  <!-- Connecting lines -->
+  <line x1="150" y1="330" x2="150" y2="360" stroke="rgba(0,102,255,0.3)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="300" y1="245" x2="320" y2="245" stroke="rgba(0,102,255,0.4)" stroke-width="1.5"/>
+  <line x1="450" y1="245" x2="620" y2="200" stroke="rgba(0,102,255,0.3)" stroke-width="1.5"/>
+  <line x1="150" y1="140" x2="150" y2="90" stroke="rgba(0,102,255,0.2)" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="780" y1="140" x2="780" y2="90" stroke="rgba(255,214,0,0.2)" stroke-width="1" stroke-dasharray="3 3"/>
+</svg>
+
+<div class="card">
+<h3>Módulos del Sistema</h3>
+<div class="card-grid">
+    <div class="mini-card">
+        <h4>📱 App Cliente</h4>
+        <p>Búsqueda IA, carrito, seguimiento en vivo, historial, calificaciones. React Native (Expo). iOS + Android.</p>
+    </div>
+    <div class="mini-card">
+        <h4>🖥️ Portal Proveedor</h4>
+        <p>CRUD de productos, gestión de stock, órdenes entrantes, métricas de venta. React Web (Responsive).</p>
+    </div>
+    <div class="mini-card">
+        <h4>🏍️ App Conductor</h4>
+        <p>Órdenes activas, navegación GPS, actualización de estado, recepción de pagos. React Native Lite.</p>
+    </div>
+    <div class="mini-card">
+        <h4>⚙️ Admin Dashboard</h4>
+        <p>Gestión de usuarios, proveedores, conductores, monitoreo de métricas, resolución de disputas.</p>
+    </div>
+</div>
+</div>
+</section>
+
+<section>
+<h2>3. Stack Tecnológico</h2>
+
+<table>
+    <thead>
+        <tr><th>Tecnología</th><th>Uso</th><th>Por qué</th></tr>
+    </thead>
+    <tbody>
+        <tr><td class="key">Fastify + TypeScript</td><td class="type">Backend API</td><td>5x más rápido que Express. Tipado nativo. Validación de schemas con JSON Schema.</td></tr>
+        <tr><td class="key">PostgreSQL</td><td class="type">Base de datos</td><td>Datos relacionales + JSONB para flexibilidad. Extensiones pg_trgm (búsqueda difusa) y pgvector (futuro vectorial).</td></tr>
+        <tr><td class="key">Redis</td><td class="type">Cache + Sessions</td><td>JWT blacklist, rate limiting, pub/sub para Socket.io, cache de consultas frecuentes.</td></tr>
+        <tr><td class="key">Socket.io</td><td class="type">Tiempo real</td><td>Rastreo de conductor en vivo, notificaciones push, actualizaciones de estado de orden.</td></tr>
+        <tr><td class="key">React Native (Expo)</td><td class="type">Mobile Apps</td><td>iOS + Android con un solo codebase. Notificaciones push nativas.</td></tr>
+        <tr><td class="key">React + Vite</td><td class="type">Web Apps</td><td>Portal proveedor + Admin dashboard. SSR no necesario para MVP.</td></tr>
+        <tr><td class="key">Leaflet + OSRM</td><td class="type">Mapas</td><td>OpenStreetMap (gratis, funciona en Venezuela). OSRM para enrutamiento. Sin Google Maps API.</td></tr>
+        <tr><td class="key">Railway</td><td class="type">Hosting</td><td>PostgreSQL + Node.js + Redis en un solo plan. Escala con uso real. Ideal para MVP.</td></tr>
+        <tr><td class="key">Cloudflare</td><td class="type">CDN + SSL</td><td>CDN gratis, SSL automático, protección DDoS. Workers para edge logic si se necesita.</td></tr>
+        <tr><td class="key">Twilio / Africa's Talking</td><td class="type">OTP</td><td>OTP vía SMS o WhatsApp. Africa's Talking más barato para Venezuela.</td></tr>
+        <tr><td class="key">Docker + Docker Compose</td><td class="type">Contenedores</td><td>Todo el stack containerizado para deploy local y CI/CD.</td></tr>
+    </tbody>
+</table>
+
+<div class="section-note">⚠️ <strong>No usamos Google Maps</strong> — requiere tarjeta internacional que es inaccesible en Venezuela. OpenStreetMap + OSRM es completamente gratis y funciona offline-aware.</div>
+</section>
+
+<section>
+<h2>4. Modelo de Datos</h2>
+
+<h3>4.1 Schema Principal</h3>
+
+<pre><code>-- ============================================================
+-- VROOM REPUESTOS EXPRESS — DB SCHEMA MVP Phase 1
+-- PostgreSQL 15+
+-- ============================================================
+
+CREATE EXTENSION IF NOT EXISTS pg_trgm; -- para búsqueda difusa
+
+-- USUARIOS (clientes, admins)
+CREATE TABLE users (
+    id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    phone       VARCHAR(20) UNIQUE NOT NULL,         -- +58 412 XXX XXXX
+    name        VARCHAR(100) NOT NULL,
+    role        VARCHAR(20) DEFAULT 'customer',     -- customer | admin
+    cédula      VARCHAR(15),
+    created_at  TIMESTAMPTZ DEFAULT NOW(),
+    updated_at  TIMESTAMPTZ DEFAULT NOW(),
+    last_login  TIMESTAMPTZ,
+    active      BOOLEAN DEFAULT TRUE
+);
+CREATE INDEX idx_users_phone ON users(phone);
+CREATE INDEX idx_users_role ON users(role);
+
+-- PROVEEDORES DE REPUESTOS
+CREATE TABLE suppliers (
+    id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id     UUID REFERENCES users(id),          -- usuario admin del proveedor
+    name        VARCHAR(200) NOT NULL,
+    rif         VARCHAR(20) UNIQUE NOT NULL,
+    address     TEXT NOT NULL,
+    city        VARCHAR(50) NOT NULL,               -- 'Caracas' | 'Maracaibo'
+    lat         DECIMAL(10, 8),
+    lng         DECIMAL(11, 8),
+    phone       VARCHAR(20),
+    rating      DECIMAL(3, 2) DEFAULT 0,            -- 0.00 - 5.00
+    total_sales INT DEFAULT 0,
+    verified    BOOLEAN DEFAULT FALSE,
+    active      BOOLEAN DEFAULT TRUE,
+    created_at  TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_suppliers_city ON suppliers(city);
+CREATE INDEX idx_suppliers_rating ON suppliers(rating DESC);
+CREATE INDEX idx_suppliers_location ON suppliers(lat, lng);
+
+-- CATEGORÍAS DE PRODUCTOS (jerárquicas)
+CREATE TABLE product_categories (
+    id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name        VARCHAR(100) NOT NULL,              -- 'Pastillas de Freno'
+    slug        VARCHAR(100) UNIQUE NOT NULL,
+    parent_id   UUID REFERENCES product_categories(id),
+    icon        VARCHAR(50),                        -- emoji o SVG name
+    sort_order  INT DEFAULT 0
+);
+CREATE INDEX idx_categories_parent ON product_categories(parent_id);
+
+-- PRODUCTOS
+CREATE TABLE products (
+    id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    supplier_id     UUID NOT NULL REFERENCES suppliers(id) ON DELETE CASCADE,
+    category_id     UUID REFERENCES product_categories(id),
+    name            VARCHAR(300) NOT NULL,
+    description     TEXT,
+    brand           VARCHAR(100),                   -- 'Brembo', 'Bosch', 'Generic'
+    part_number     VARCHAR(100),
+    price_usd       DECIMAL(10, 2) NOT NULL,
+    price_bs        BIGINT,                          -- calculado por tipo de cambio del día
+    compatibility   JSONB DEFAULT '{}',              -- { "vehicles": ["Civic 2017-2021", "Corolla 2015-2020"] }
+    stock           INT DEFAULT 0,
+    min_stock       INT DEFAULT 5,
+    image_url       TEXT,
+    search_vector   TSVECTOR,                        -- búsqueda full-text en español
+    active          BOOLEAN DEFAULT TRUE,
+    created_at      TIMESTAMPTZ DEFAULT NOW(),
+    updated_at      TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_products_supplier ON products(supplier_id);
+CREATE INDEX idx_products_category ON products(category_id);
+CREATE INDEX idx_products_search ON products USING GIN(search_vector);
+CREATE INDEX idx_products_search_trgm ON products USING GIN(name gin_trgm_ops);
+CREATE INDEX idx_products_price ON products(price_usd);
+
+-- ÓRDENES
+CREATE TABLE orders (
+    id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id             UUID NOT NULL REFERENCES users(id),
+    supplier_id         UUID NOT NULL REFERENCES suppliers(id),
+    status              VARCHAR(30) DEFAULT 'pending',  -- pending|confirmed|preparing|picked_up|en_route|delivered|cancelled|refunded
+    payment_status      VARCHAR(20) DEFAULT 'pending',  -- pending|paid|held|released|refunded
+    payment_method      VARCHAR(20),                    -- 'pago_movil'
+    payment_reference   VARCHAR(100),                   -- ref Pago Móvil (últimos 4 dígitos)
+    payment_phone       VARCHAR(20),                    -- teléfono Pago Móvil del cliente
+    payment_bank        VARCHAR(30),                    -- 'Banesco', 'Venezuela', 'Bicentenario'
+    subtotal_usd        DECIMAL(10, 2) NOT NULL,
+    delivery_fee_usd    DECIMAL(10, 2) DEFAULT 0,
+    total_usd           DECIMAL(10, 2) NOT NULL,
+    delivery_address    TEXT NOT NULL,
+    delivery_lat        DECIMAL(10, 8),
+    delivery_lng        DECIMAL(11, 8),
+    delivery_city       VARCHAR(50) DEFAULT 'Caracas',
+    notes               TEXT,
+    estimated_minutes   INT DEFAULT 30,
+    created_at          TIMESTAMPTZ DEFAULT NOW(),
+    confirmed_at        TIMESTAMPTZ,
+    delivered_at        TIMESTAMPTZ
+);
+CREATE INDEX idx_orders_user ON orders(user_id);
+CREATE INDEX idx_orders_supplier ON orders(supplier_id);
+CREATE INDEX idx_orders_status ON orders(status);
+CREATE INDEX idx_orders_created ON orders(created_at DESC);
+
+-- ITEMS DE ORDEN
+CREATE TABLE order_items (
+    id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    order_id    UUID NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+    product_id  UUID NOT NULL REFERENCES products(id),
+    quantity    INT NOT NULL DEFAULT 1,
+    price_usd   DECIMAL(10, 2) NOT NULL,          -- precio al momento de la orden
+    notes       TEXT
+);
+CREATE INDEX idx_order_items_order ON order_items(order_id);
+
+-- CONDUCTORES
+CREATE TABLE drivers (
+    id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id     UUID REFERENCES users(id),
+    name        VARCHAR(100) NOT NULL,
+    phone       VARCHAR(20) NOT NULL,
+    vehicle     VARCHAR(100),                     -- 'Yamaha FZ25', 'Honda XR150'
+    plate       VARCHAR(20),
+    lat         DECIMAL(10, 8),
+    lng         DECIMAL(11, 8),
+    heading     INT,                              -- degrees 0-360
+    active      BOOLEAN DEFAULT TRUE,             -- online/offline
+    busy        BOOLEAN DEFAULT FALSE,            -- en entrega
+    current_order_id UUID REFERENCES orders(id),
+    created_at  TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_drivers_active ON drivers(active) WHERE active = TRUE;
+CREATE INDEX idx_drivers_location ON drivers(lat, lng);
+
+-- ENTREGAS ( tracking )
+CREATE TABLE deliveries (
+    id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    order_id        UUID UNIQUE NOT NULL REFERENCES orders(id),
+    driver_id       UUID REFERENCES drivers(id),
+    status          VARCHAR(30) DEFAULT 'assigned',  -- assigned|picked_up|en_route|delivered
+    eta_minutes     INT,
+    eta_seconds     INT,
+    distance_meters INT,
+    picked_up_at    TIMESTAMPTZ,
+    delivered_at    TIMESTAMPTZ,
+    route_geometry  TEXT,                         -- polyline encoded del OSRM
+    created_at      TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_deliveries_order ON deliveries(order_id);
+
+-- LOCALIZACIÓN DEL CONDUCTOR (history + live)
+CREATE TABLE driver_locations (
+    id          BIGSERIAL PRIMARY KEY,
+    driver_id   UUID NOT NULL REFERENCES drivers(id),
+    lat         DECIMAL(10, 8) NOT NULL,
+    lng         DECIMAL(11, 8) NOT NULL,
+    heading     INT,
+    speed_kmh   INT,
+    accuracy_m  INT,
+    recorded_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_driver_locations_driver ON driver_locations(driver_id, recorded_at DESC);
+CREATE INDEX idx_driver_locations_recent ON driver_locations(driver_id, recorded_at DESC) WHERE recorded_at > NOW() - INTERVAL '1 hour';
+
+-- RESEÑAS
+CREATE TABLE reviews (
+    id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    order_id    UUID UNIQUE NOT NULL REFERENCES orders(id),
+    user_id     UUID NOT NULL REFERENCES users(id),
+    supplier_id UUID REFERENCES suppliers(id),
+    rating      INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    comment     TEXT,
+    delivery_rating INT CHECK (delivery_rating >= 1 AND delivery_rating <= 5),
+    delivery_comment TEXT,
+    created_at  TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_reviews_supplier ON reviews(supplier_id);
+CREATE INDEX idx_reviews_user ON reviews(user_id);
+
+-- TRANSACCIONES DE PAGO
+CREATE TABLE payment_transactions (
+    id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    order_id        UUID NOT NULL REFERENCES orders(id),
+    method          VARCHAR(20) DEFAULT 'pago_movil',
+    amount_bs       BIGINT NOT NULL,              -- monto en BS
+    amount_usd      DECIMAL(10, 2) NOT NULL,
+    exchange_rate   DECIMAL(10, 4),               -- BCV rate del momento
+    bank_code       VARCHAR(20),                  -- '0146' Banesco, etc.
+    phone_from      VARCHAR(20),                  -- teléfono emisor
+    phone_to        VARCHAR(20),                  -- teléfono receptor
+    reference       VARCHAR(100),                 -- referencia Pago Móvil
+    status          VARCHAR(20) DEFAULT 'pending', -- pending|verified|failed|refunded
+    verified_by     UUID REFERENCES users(id),    -- admin que verificó
+    verified_at     TIMESTAMPTZ,
+    notes           TEXT,
+    created_at      TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_payments_order ON payment_transactions(order_id);
+CREATE INDEX idx_payments_reference ON payment_transactions(reference);
+
+-- AUDIT LOG (todas las acciones importantes)
+CREATE TABLE audit_log (
+    id          BIGSERIAL PRIMARY KEY,
+    user_id     UUID REFERENCES users(id),
+    action      VARCHAR(100) NOT NULL,
+    entity_type VARCHAR(50),
+    entity_id   UUID,
+    metadata    JSONB DEFAULT '{}',
+    ip_address  INET,
+    created_at  TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_audit_user ON audit_log(user_id, created_at DESC);
+CREATE INDEX idx_audit_action ON audit_log(action, created_at DESC);
+</code></pre>
+
+<h3>4.2 Funciones de Búsqueda IA (pg_trgm)</h3>
+
+<pre><code>-- Crear search_vector para productos
+CREATE OR REPLACE FUNCTION products_search_trigger()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.search_vector :=
+        setweight(to_tsvector('spanish', COALESCE(NEW.name, '')), 'A') ||
+        setweight(to_tsvector('spanish', COALESCE(NEW.brand, '')), 'B') ||
+        setweight(to_tsvector('spanish', COALESCE(NEW.description, '')), 'C') ||
+        setweight(to_tsvector('spanish',
+            COALESCE(NEW.compatibility->>'vehicles', '')), 'B');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER products_search_update
+    BEFORE INSERT OR UPDATE ON products
+    FOR EACH ROW EXECUTE FUNCTION products_search_trigger();
+
+-- Búsqueda: "pastillas de freno civic 2019"
+-- SELECT * FROM products WHERE search_vector @@ to_tsquery('spanish', 'pastillas <-> freno');
+-- Búsqueda difusa para typos:
+-- SELECT * FROM products ORDER BY name <-> 'pastilhas de freo' LIMIT 10;
+</code></pre>
+</section>
+
+<section>
+<h2>5. API REST</h2>
+
+<h3>5.1 Autenticación</h3>
+
+<div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/auth/send-otp</span>
+    <span class="tag internal">internal</span>
+</div>
+<p>Envía código OTP al teléfono del usuario. Máximo 5 intentos por hora por teléfono.</p>
+<pre><code>{
+  "phone": "+584121234567"
+}
+// Response 200:
+{
+  "message": "OTP enviado",
+  "expires_in": 300,
+  "attempts_remaining": 4
+}
+</code></pre>
+
+<div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/auth/verify-otp</span>
+</div>
+<pre><code>{
+  "phone": "+584121234567",
+  "code": "482916",
+  "fcm_token": "dQw4w9WgXcQ..."  // Firebase Cloud Messaging (opcional)
+}
+// Response 200:
+{
+  "access_token": "eyJhbG...",
+  "refresh_token": "eyJhbG...",
+  "expires_in": 86400,
+  "user": {
+    "id": "uuid",
+    "phone": "+584121234567",
+    "name": "Carlos M.",
+    "role": "customer"
+  }
+}
+</code></pre>
+
+<div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/auth/refresh</span>
+</div>
+<pre><code>{
+  "refresh_token": "eyJhbG..."
+}
+</code></pre>
+
+<h3>5.2 Productos y Búsqueda</h3>
+
+<div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="path">/products/search</span>
+    <span class="tag mvp">mvp</span>
+</div>
+<p>Búsqueda principal con IA. Parsea lenguaje natural, busca por vehículo, categoría o texto libre.</p>
+<pre><code>// GET /products/search?q=pastillas+de+freno+civic+2019&city=Caracas&limit=20&offset=0
+// Response 200:
+{
+  "results": [
+    {
+      "id": "uuid",
+      "name": "Pastillas de Freno Delanteras",
+      "brand": "Brembo",
+      "price_usd": 24.99,
+      "price_bs": 175000,
+      "supplier": {
+        "id": "uuid",
+        "name": "AutoPartes Caracas",
+        "rating": 4.8,
+        "distance_km": 1.2
+      },
+      "delivery_minutes": 18,
+      "stock": 12,
+      "compatibility": ["Honda Civic 2017-2021"],
+      "image_url": "https://..."
+    }
+  ],
+  "total": 47,
+  "query_parsed": {
+    "part": "pastillas de freno",
+    "vehicle": "Civic",
+    "year": "2019",
+    "position": "delanteras"
+  },
+  "suggestion": null   // "Quisiste decir...??" (si hay typos)
+}
+</code></pre>
+
+<div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="path">/products/:id</span>
+</div>
+<pre><code>// GET /products/{id}?city=Caracas
+{
+  "id": "uuid",
+  "name": "Pastillas de Freno Delanteras Brembo Sport",
+  "brand": "Brembo",
+  "part_number": "BP-1234-CIV",
+  "price_usd": 24.99,
+  "stock": 12,
+  "description": "Pastillas cerámicas de alta performance...",
+  "compatibility": ["Honda Civic 2017-2021", "Honda Civic 2015-2016"],
+  "supplier": {
+    "id": "uuid",
+    "name": "AutoPartes Caracas",
+    "address": "Av. Libertador, Caracas",
+    "rating": 4.8,
+    "total_sales": 342
+  },
+  "delivery_estimate": {
+    "min_minutes": 15,
+    "max_minutes": 30,
+    "price_usd": 1.50
+  }
+}
+</code></pre>
+
+<div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="path">/products/categories</span>
+</div>
+<pre><code>// GET /products/categories?parent=true
+{
+  "categories": [
+    {
+      "id": "uuid",
+      "name": "Frenos",
+      "icon": "🛑",
+      "children": [
+        { "id": "uuid", "name": "Pastillas de Freno", "count": 124 },
+        { "id": "uuid", "name": "Discos de Freno", "count": 89 },
+        { "id": "uuid", "name": "Liquido de Frenos", "count": 34 }
+      ]
+    },
+    { "id": "uuid", "name": "Motor", "icon": "⚙️" },
+    { "id": "uuid", "name": "Suspensión", "icon": "🔧" },
+    { "id": "uuid", "name": "Electricidad", "icon": "⚡" }
+  ]
+}
+</code></pre>
+
+<h3>5.3 Carrito y Órdenes</h3>
+
+<div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/cart/items</span>
+</div>
+<pre><code>{
+  "product_id": "uuid",
+  "quantity": 1
+}
+// Response 201: carrito actualizado
+{
+  "cart_id": "uuid",
+  "items": [
+    { "product_id": "uuid", "name": "Pastillas Brembo", "quantity": 1, "price_usd": 24.99 }
+  ],
+  "subtotal_usd": 24.99,
+  "estimated_delivery_minutes": 20
+}
+</code></pre>
+
+<div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/orders</span>
+</div>
+<pre><code>{
+  "cart_id": "uuid",
+  "delivery_address": "Av. Francisco de Miranda, Caracas",
+  "delivery_lat": 10.4806,
+  "delivery_lng": -66.9036,
+  "notes": "Edificio blanco, piso 3, apartamento 3A"
+}
+// Response 201:
+{
+  "order_id": "uuid",
+  "status": "pending",
+  "total_usd": 26.49,
+  "payment": {
+    "method": "pago_movil",
+    "amount_bs": 185430,
+    "phone": "+584121234567",
+    "bank": "Banesco",
+    "reference": "generada por VROOM",
+    "expires_in": 1800
+  }
+}
+</code></pre>
+
+<div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="path">/orders/:id</span>
+</div>
+<pre><code>{
+  "id": "uuid",
+  "status": "en_route",
+  "items": [...],
+  "total_usd": 26.49,
+  "payment_status": "held",
+  "delivery": {
+    "driver_name": "Luis M.",
+    "driver_phone": "+584141234567",
+    "driver_lat": 10.4810,
+    "driver_lng": -66.9030,
+    "eta_minutes": 8,
+    "distance_meters": 450
+  },
+  "timeline": [
+    { "status": "pending", "at": "10:32" },
+    { "status": "confirmed", "at": "10:34" },
+    { "status": "picked_up", "at": "10:42" },
+    { "status": "en_route", "at": "10:45" }
+  ]
+}
+</code></pre>
+
+<h3>5.4 Pagos — Pago Móvil</h3>
+
+<div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/payments/initiate</span>
+</div>
+<pre><code>{
+  "order_id": "uuid",
+  "method": "pago_movil",
+  "bank_code": "0146"   // Banesco
+}
+// Response 200:
+{
+  "payment_id": "uuid",
+  "instructions": {
+    "phone_to": "+584121000123",
+    "bank": "Banesco",
+    "amount_bs": 185430,
+    "reference": "VROOM-ABC123",
+    "expires_at": "2026-10-14T12:00:00Z"
+  }
+}
+</code></pre>
+
+<div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/payments/confirm</span>
+</div>
+<pre><code>{
+  "payment_id": "uuid",
+  "reference": "ABC12345",    // últimos 8 dígitos que el cliente ve en su banco
+  "amount_bs": 185430
+}
+// Response 200:
+{
+  "payment_id": "uuid",
+  "status": "verified",
+  "order_status": "confirmed",
+  "message": "Pago verificado. Tu pedido está siendo preparado."
+}
+// Response 400 (si no coincide):
+{
+  "error": "payment_mismatch",
+  "message": "La referencia o el monto no coinciden. Verifica e intenta de nuevo."
+}
+</code></pre>
+
+<div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/payments/verify-callback</span>
+    <span class="tag internal">internal</span>
+</div>
+<p>Webhook que los bancos pueden llamar para confirmar Pago Móvil automáticamente.</p>
+
+<h3>5.5 Rastreo en Tiempo Real</h3>
+
+<div class="endpoint">
+    <span class="method ws">WS</span>
+    <span class="path">/orders/:id/tracking</span>
+    <span class="tag mvp">mvp</span>
+</div>
+<p>WebSocket para updates de ubicación en tiempo real. Escucha eventos:</p>
+<pre><code>// Cliente se conecta: WS /orders/{id}/tracking?token={jwt}
+// Eventos que recibe:
+{ "event": "driver_location", "lat": 10.4810, "lng": -66.9030, "eta_minutes": 8 }
+{ "event": "status_change", "status": "en_route", "at": "10:45" }
+{ "event": "nearby", "distance_meters": 200 }  // driver dentro de 200m
+{ "event": "delivered", "at": "10:53" }
+</code></pre>
+
+<h3>5.6 Reseñas</h3>
+
+<div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/orders/:id/review</span>
+</div>
+<pre><code>{
+  "rating": 5,
+  "comment": "Excelente atención y llegó antes de lo esperado",
+  "delivery_rating": 5,
+  "delivery_comment": "Muy amable y rapido"
+}
+// Response 201:
+{
+  "message": "Reseña guardada. ¡Gracias!",
+  "new_supplier_rating": 4.85
+}
+</code></pre>
+
+<h3>5.7 Admin</h3>
+
+<div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="path">/admin/orders</span>
+    <span class="tag internal">admin</span>
+</div>
+<pre><code>// GET /admin/orders?status=pending&city=Caracas&page=1&limit=50
+{
+  "orders": [...],
+  "pagination": { "page": 1, "limit": 50, "total": 234, "pages": 5 }
+}
+</code></pre>
+<div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/admin/suppliers</span>
+    <span class="tag internal">admin</span>
+</div>
+<div class="endpoint">
+    <span class="method put">PUT</span>
+    <span class="path">/admin/orders/:id/status</span>
+    <span class="tag internal">admin</span>
+</div>
+<div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/admin/payments/:id/verify</span>
+    <span class="tag internal">admin</span>
+</div>
+</section>
+
+<section>
+<h2>6. IA para Búsqueda — Phase 1</h2>
+
+<div class="card">
+<h3>6.1 Parser de Lenguaje Natural</h3>
+<p class="lead">No usamos ML pesado en Phase 1. usamos reglas + PostgreSQL full-text + fuzzy matching. Esto es suficiente para arrancar con 50 proveedores y genera resultados relevantes de inmediato.</p>
+
+<pre><code>// Ejemplo: "pastillas de freno civic 2019"
+INPUT: "pastillas de freno civic 2019"
+
+// Tokenización + stemming (spanish)
+tokens = ["pastilla", "freno", "civic", "2019"]
+
+// Mapeo de patrones:
+patterns = {
+  /\d{4}/ → year: "2019",
+  /civic|corolla|sentra|spark|onix/i → vehicle: "Honda Civic",
+  /pastilla.*freno|freno.*pastilla/i → part: "pastillas de freno",
+  /delantera|trasera|front|rear/i → position: "delanteras",
+  /original|oem|genuine/i → type: "OEM"
+}
+
+// Resultado:
+{
+  "vehicle": "Honda Civic",
+  "year": 2019,
+  "part": "pastillas de freno",
+  "position": "delanteras",
+  "query_tokens": ["pastilla", "freno", "civic"],
+  "confidence": 0.92
+}
+</code></pre>
+
+<h3>6.2 Pipeline de Búsqueda</h3>
+<ol>
+    <li><strong>Parsear query</strong> — extraer vehículo, año, pieza, categoría del texto libre</li>
+    <li><strong>Búsqueda full-text</strong> — ts_headline con Spanish dictionary en search_vector</li>
+    <li><strong>Fuzzy matching</strong> — pg_trgm para typos ("pastilhas" → "pastillas")</li>
+    <li><strong>Filtro geográfico</strong> — solo proveedores en la ciudad del usuario</li>
+    <li><strong>Rankeo</strong> — proximity_score × (1 / distance_km) × stock_availability × supplier_rating</li>
+    <li><strong>"¿Quisiste decir?"</strong> — si no hay resultados, sugerir con trigram distance</li>
+</ol>
+
+<pre><code>-- Query SQL real
+SELECT p.*, s.name as supplier_name, s.rating as supplier_rating,
+       s.lat, s.lng,
+       ts_headline('spanish', p.name, query, 'StartSel=&lt;mark&gt;, StopSel=&lt;/mark&gt;') as name_highlight
+FROM products p
+JOIN suppliers s ON s.id = p.supplier_id
+CROSS JOIN plainto_tsquery('spanish', 'pastillas freno civic') query
+WHERE p.search_vector @@ query
+  AND s.city = 'Caracas'
+  AND p.stock > 0
+  AND s.active = TRUE
+  AND s.verified = TRUE
+ORDER BY p.stock > 0 DESC,
+         s.rating DESC,
+         s.lat <-> point(10.4806, -66.9036)
+LIMIT 20;
+</code></pre>
+
+<div class="section-note">
+💡 <strong>Phase 2 upgrade:</strong> Cuando tengamos +10K productos y +1K búsquedas/día, agregamos pgvector para embeddings semánticos. El schema ya tiene la columna — solo instalamos la extensión y entrenamos embeddings con sentence-transformers.
+</div>
+</div>
+</section>
+
+<section>
+<h2>7. Sistema de Pagos — Solo Pago Móvil</h2>
+
+<div class="card">
+<h3>7.1 Flujo de Pago Móvil</h3>
+
+<div class="status-flow">
+    <span class="step">1. Orden creada</span>
+    <span class="arrow">→</span>
+    <span class="step">2. VROOM genera referencia única</span>
+    <span class="arrow">→</span>
+    <span class="step">3. Cliente transfiere por su banco</span>
+    <span class="arrow">→</span>
+    <span class="step">4. VROOM verifica referencia</span>
+    <span class="arrow">→</span>
+    <span class="step">5. Pago en escrow</span>
+    <span class="arrow">→</span>
+    <span class="step">6. Orden confirmada</span>
+    <span class="arrow">→</span>
+    <span class="step">7. Entrega completada → liberar a proveedor</span>
+</div>
+
+<h3>7.2 Detalle del Flujo</h3>
+
+<ol>
+    <li><strong>Crear orden</strong> → estado <code>pending</code>, <code>payment_status: pending</code></li>
+    <li><strong>POST /payments/initiate</strong> → genera referencia "VROOM-ABC123" de 8 caracteres + monto en BS (BCV rate del día + 2%)</li>
+    <li><strong>Cliente transfiere</strong> desde su app del banco (Banesco, Venezuela, Bicentenario, etc.) al teléfono Pago Móvil de VROOM con la referencia</li>
+    <li><strong>Cliente reporta</strong> → POST /payments/confirm con últimos 8 dígitos de la referencia</li>
+    <li><strong>VROOM verifica:</strong>
+        <ul>
+            <li>Monto mínimo ($0.50 USD)</li>
+            <li>Monto máximo ($500 USD)</li>
+            <li>Referencia no usada antes</li>
+            <li>Banco emisor no bloqueado</li>
+        </ul>
+    </li>
+    <li><strong>Si pasa</strong> → <code>payment_status: held</code>, estado orden <code>confirmed</code></li>
+    <li><strong>Si falla 3 veces</strong> → orden cancelada, referencia expirada</li>
+    <li><strong>Entrega completada</strong> → <code>payment_status: released</code> → VROOM retiene 15% como fee</li>
+    <li><strong>Si entrega falla</strong> → <code>payment_status: refunded</code> → cliente recibe el monto</li>
+</ol>
+
+<h3>7.3 Bancos Soportados (Bancos Venezolanos)</h3>
+<table>
+    <thead><tr><th>Banco</th><th>Código</th><th>Pago Móvil</th><th>API</th></tr></thead>
+    <tbody>
+        <tr><td>Banesco</td><td>0134</td><td>✅</td><td>Callback (si disponible)</td></tr>
+        <tr><td>Banco de Venezuela</td><td>0102</td><td>✅</td><td>Manual / Callback</td></tr>
+        <tr><td>Bicentenario</td><td>0175</td><td>✅</td><td>Manual / Callback</td></tr>
+        <tr><td>BOD</td><td>0116</td><td>✅</td><td>Manual / Callback</td></tr>
+        <tr><td>Provincial</td><td>0108</td><td>✅</td><td>Manual</td></tr>
+    </tbody>
+</table>
+
+<h3>7.4 Configuración Monetaria</h3>
+<pre><code>// Monedas y conversiones en config.json
+{
+  "payments": {
+    "currency": "USD",
+    "bs_conversion": {
+      "provider": "bcv",           // Venezuela Central Bank API
+      "fallback_rate": 50.00,      // 50 BS/USD si API falla
+      "vroom_margin": 0.02         // 2% sobre BCV para proteger de fluctuaciones
+    },
+    "pago_movil": {
+      "default_phone": "+584121000123",  // teléfono VROOM Pago Móvil
+      "min_amount_usd": 0.50,
+      "max_amount_usd": 500.00,
+      "reference_prefix": "VRM",
+      "reference_length": 8,
+      "expiry_minutes": 30
+    },
+    "fee": {
+      "vroom_percent": 15,         // 15% VROOM, 85% al proveedor
+      "payment_processing": 0      // Pago Móvil no tiene fee adicional
+    }
+  }
+}
+</code></pre>
+
+<div class="risk-card">
+    <div class="risk-name">⚠️ Riesgo: Banco bloquea cuentas Pago Móvil</div>
+    <div class="mitigation">Mantener 2-3 cuentas de Pago Móvil de diferentes personas naturales asociadas a VROOM C.A. Rotar cuentas si una es bloqueada. En Phase 2: agregar pagomóvil.com.ve (agregador) que maneja múltiples bancos.</div>
+</div>
+
+<div class="risk-card">
+    <div class="risk-name">⚠️ Riesgo: Fluctuación del tipo de cambio BCV</div>
+    <div class="mitigation">Bloquear el tipo de cambio al momento de crear la orden. El cliente paga en BS según el rate del momento + 2% buffer. Si BCV fluctúa +5% durante la orden, VROOM absorbe (es el costo del servicio).</div>
+</div>
+</div>
+</section>
+
+<section>
+<h2>8. GPS y Rastreo en Vivo</h2>
+
+<div class="card">
+<h3>8.1 Ubicación del Conductor</h3>
+<pre><code>// El conductor envía ubicación cada 10 segundos (battery-efficient)
+POST /drivers/{id}/location
+{
+  "lat": 10.4806,
+  "lng": -66.9036,
+  "heading": 45,       // grados
+  "speed_kmh": 35,
+  "accuracy_m": 10
+}
+</code></pre>
+
+<h3>8.2 Ruteo con OSRM</h3>
+<pre><code>// Calcular ETA y distancia
+GET https://router.project-osrm.org/route/v1/driving/{driver_lng},{driver_lat};{dest_lng},{dest_lat}?overview=full
+
+// Response:
+{
+  "routes": [{
+    "distance": 1250,      // metros
+    "duration": 180,       // segundos
+    "geometry": "abc..."   // polyline para mostrar en mapa
+  }]
+}
+</code></pre>
+
+<h3>8.3 Estados de Orden con GPS</h3>
+
+<table>
+    <thead><tr><th>Estado</th><th>Driver Action</th><th>Cliente ve</th></tr></thead>
+    <tbody>
+        <tr><td><code>confirmed</code></td><td>Recibió la orden</td><td>"Tu pedido está siendo preparado"</td></tr>
+        <tr><td><code>preparing</code></td><td>Empaca los repuestos</td><td>"Preparando tu pedido"</td></tr>
+        <tr><td><code>picked_up</code></td><td>Driver retira en tienda</td><td>"Driver en camino a ti"</td></tr>
+        <tr><td><code>en_route</code></td><td>Driver entregado en camino</td><td>📍 Mapa en vivo + ETA actualizada</td></tr>
+        <tr><td><code>delivered</code></td><td>Completado</td><td>"¡Pedido entregado!" → Solicitar reseña</td></tr>
+    </tbody>
+</table>
+
+<h3>8.4 Geofencing</h3>
+<pre><code>// Cuando driver está dentro de 200m del destino, notificar cliente
+if (distance(driver, destination) < 200) {
+  emit('order.nearby', { order_id, distance_meters: distance })
+  // → Cliente recibe push: "Tu pedido está llegando en 2 minutos"
+}
+</code></pre>
+
+<h3>8.5 Mapa en Cliente (Leaflet)</h3>
+<pre><code>// Cliente ve: mapa oscuro con marca VROOM del driver + pin del destino
+// No requiere Google Maps API — usa OpenStreetMap tiles
+const map = L.map('map', {
+  center: [dest_lat, dest_lng],
+  zoom: 15,
+  zoomControl: true
+})
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap',
+  maxZoom: 19
+}).addTo(map)
+
+// Driver marker (azul VROOM) — se actualiza cada 5s via WebSocket
+const driverMarker = L.marker([lat, lng], { icon: vroomIcon }).addTo(map)
+
+// Driver trail (últimas 5 posiciones)
+const trail = L.polyline(positions, { color: '#0066FF', weight: 3, opacity: 0.5 }).addTo(map)
+</code></pre>
+</div>
+</section>
+
+<section>
+<h2>9. Autenticación</h2>
+
+<div class="card">
+<h3>9.1 Flujo OTP</h3>
+
+<ol>
+    <li>Usuario ingresa número de teléfono (+58 412 XXX XXXX)</li>
+    <li>POST /auth/send-otp → código de 6 dígitos generado (crypto random)</li>
+    <li>Código enviado por SMS (Twilio) o WhatsApp ( Africa's Talking)</li>
+    <li>Código expira en 5 minutos. Máximo 5 códigos por hora por teléfono</li>
+    <li>POST /auth/verify-otp → JWT access_token (24h) + refresh_token (30d)</li>
+    <li>Refresh token rotation: cada uso genera nuevo refresh token</li>
+    <li>Si 10 intentos fallidos → cuenta bloqueada 30 minutos</li>
+</ol>
+
+<h3>9.2 JWT Strategy</h3>
+<pre><code>// Access Token (24h)
+{
+  "sub": "user_uuid",
+  "phone": "+584121234567",
+  "role": "customer",
+  "iat": 1699900000,
+  "exp": 1699986400
+}
+
+// Stored in: LocalStorage (web) / AsyncStorage (React Native)
+// Sent as: Authorization: Bearer {token}
+
+// Redis: guardar jti (JWT ID) para poder invalidar tokens
+// SET token:{jti} {user_id} EX 86400
+// On logout: DEL token:{jti}
+</code></pre>
+
+<h3>9.3 Rate Limiting</h3>
+<table>
+    <thead><tr><th>Endpoint</th><th>Límite</th><th>Ventana</th></tr></thead>
+    <tbody>
+        <tr><td>/auth/send-otp</td><td>5 requests</td><td>1 hora / IP + teléfono</td></tr>
+        <tr><td>/auth/verify-otp</td><td>10 requests</td><td>1 hora / teléfono</td></tr>
+        <tr><td>/orders</td><td>20 requests</td><td>1 hora / usuario</td></tr>
+        <tr><td>/products/search</td><td>60 requests</td><td>1 minuto / IP</td></tr>
+        <tr><td>/drivers/:id/location</td><td>10 requests</td><td>1 minuto / conductor</td></tr>
+    </tbody>
+</table>
+
+<div class="section-note">💡 El teléfono como ID primario funciona perfecto en Venezuela — WhatsApp ya entrenó a todos a compartir número de teléfono para transacciones.</div>
+</div>
+</section>
+
+<section>
+<h2>10. Estructura del Monorepo</h2>
+
+<pre><code>vroom-repuestos/
+├── vroom-api/              ⚡ Fastify Backend
+│   ├── src/
+│   │   ├── plugins/        # fastify plugins (auth, db, redis, cors)
+│   │   ├── routes/         # route definitions
+│   │   │   ├── auth.ts
+│   │   │   ├── products.ts
+│   │   │   ├── orders.ts
+│   │   │   ├── payments.ts
+│   │   │   ├── tracking.ts
+│   │   │   ├── drivers.ts
+│   │   │   └── admin.ts
+│   │   ├── services/       # business logic
+│   │   │   ├── search.service.ts   # IA parser + pg_trgm
+│   │   │   ├── payment.service.ts  # Pago Móvil logic
+│   │   │   ├── routing.service.ts  # OSRM wrapper
+│   │   │   └── matching.service.ts # driver-supplier matching
+│   │   ├── db/
+│   │   │   ├── migrations/  # Drizzle or Prisma migrations
+│   │   │   └── schema.ts    # DB schema definitions
+│   │   ├── socket/          # Socket.io handlers
+│   │   └── utils/
+│   ├── tests/
+│   └── package.json
+│
+├── vroom-app/              📱 React Native (Expo)
+│   ├── app/               # Expo Router (file-based routing)
+│   │   ├── (tabs)/        # Tab navigator
+│   │   │   ├── index.tsx  # Home + Search
+│   │   │   ├── cart.tsx
+│   │   │   ├── orders.tsx
+│   │   │   └── profile.tsx
+│   │   └── order/[id].tsx # Stack screens
+│   ├── components/
+│   ├── hooks/             # useAuth, useCart, useOrder, useLocation
+│   ├── stores/            # Zustand stores
+│   ├── api/               # API client (fetch wrapper)
+│   └── package.json
+│
+├── vroom-admin/           ⚙️ Admin Dashboard (React Web)
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   └── api/
+│   └── package.json
+│
+├── vroom-supplier/        🏪 Supplier Portal (React Web)
+│   ├── src/
+│   └── package.json
+│
+├── vroom-shared/          🔗 Shared types + schemas
+│   ├── types/             # TypeScript interfaces (User, Order, Product...)
+│   ├── constants/         # payment banks, order statuses, etc.
+│   ├── validation/        # Zod schemas (shared between API and app)
+│   └── utils/
+│
+├── vroom-infra/           🚀 Infrastructure
+│   ├── Dockerfile
+│   ├── docker-compose.yml  # postgres + redis + api local
+│   ├── railway.json        # Railway config
+│   └── .env.example
+│
+└── package.json           # Root: turbo or nx monorepo config
+</code></pre>
+</section>
+
+<section>
+<h2>11. Costos MVP — Phase 1</h2>
+
+<div class="cost">
+    <div class="cost-item">
+        <div class="amount">$5</div>
+        <div class="label">Railway Starter (API)</div>
+    </div>
+    <div class="cost-item">
+        <div class="amount">$5</div>
+        <div class="label">Railway PostgreSQL</div>
+    </div>
+    <div class="cost-item">
+        <div class="amount">$5</div>
+        <div class="label">Railway Redis</div>
+    </div>
+    <div class="cost-item">
+        <div class="amount">$1</div>
+        <div class="label">Dominio .ve/.app</div>
+    </div>
+    <div class="cost-item">
+        <div class="amount">$10</div>
+        <div class="label">Twilio SMS OTP</div>
+    </div>
+    <div class="cost-item">
+        <div class="amount">$0</div>
+        <div class="label">Cloudflare CDN</div>
+    </div>
+    <div class="cost-item">
+        <div class="amount">$0</div>
+        <div class="label">OSRM + OSM</div>
+    </div>
+</div>
+
+<p style="text-align:center; font-size:20px; font-weight:700; color:var(--ignition); font-family:'Space Grotesk',sans-serif;">
+    Total MVP: ~$26/mes hasta tener ingresos
+</p>
+
+<div class="section-note">📈 Al llegar a 500 tx/mes con fee del 15%, VROOM genera ~$1,875/mes (si ticket promedio $25) — cubriendo costos con margen amplio desde el día 1.</div>
+</section>
+
+<section>
+<h2>12. Roadmap de Desarrollo — 12 Semanas</h2>
+
+<div class="timeline">
+    <div class="week">
+        <h4>Semanas 1-2 — Fundamentos</h4>
+        <p>DB schema + migrations · Auth OTP completo · CRUD suppliers + products · Seed data (50 productos reales de Caracas) · Docker Compose local</p>
+    </div>
+    <div class="week">
+        <h4>Semanas 3-4 — Búsqueda + Carrito</h4>
+        <p>Parser IA (lenguaje natural) · Búsqueda con pg_trgm · Carrito persistente · Checkout flow · Validación de productos/stock</p>
+    </div>
+    <div class="week">
+        <h4>Semanas 5-6 — Pagos + Órdenes</h4>
+        <p>Pago Móvil (initiate + confirm) · Sistema de escrow · Estados de orden · Panel admin básico · Notificaciones SMS</p>
+    </div>
+    <div class="week">
+        <h4>Semanas 7-8 — GPS + Rastreo</h4>
+        <p>Driver app básica (envío de ubicación) · OSRM routing · ETA calculation · WebSocket tracking · Geofencing · Mapa con Leaflet</p>
+    </div>
+    <div class="week">
+        <h4>Semanas 9-10 — Reseñas + Polish</h4>
+        <p>Sistema de reseñas (1-5 estrellas) · Cálculo de rating proveedores · Onboarding flow · Errores + edge cases · Testing interno</p>
+    </div>
+    <div class="week">
+        <h4>Semanas 11-12 — Beta + Deploy</h4>
+        <p>Deploy a Railway (staging) · 10 beta users en Caracas · Feedback + fixes · Deploy producción · Primera venta real 🎉</p>
+    </div>
+</div>
+</section>
+
+<section>
+<h2>13. Riesgos y Mitigaciones</h2>
+
+<div class="risk-card">
+    <div class="risk-name">🏦 Pago Móvil — banco bloquea cuentas</div>
+    <div class="mitigation">Mantener 2-3 cuentas rotativas de Pago Móvil. Phase 2: integrarse con aggregador pagomóvil.com.ve que maneja múltiples bancos desde una API.</div>
+</div>
+
+<div class="risk-card">
+    <div class="risk-name">🌐 Internet inestable en Venezuela</div>
+    <div class="mitigation">Carrito guardado en localStorage. Cola de órdenes offline. Retry automático con exponential backoff. Optimistic UI para acciones no-críticas.</div>
+</div>
+
+<div class="risk-card">
+    <div class="risk-name">👥 Adopción de proveedores</div>
+    <div class="mitigation">Onboarding white-glove: nosotros llamamos al proveedor, configuramos su cuenta, cargamos sus productos. Soporte por WhatsApp directo.</div>
+</div>
+
+<div class="risk-card">
+    <div class="risk-name">🏍️ Conductores no confiables</div>
+    <div class="mitigation">Verificación de identidad obligatoria. Rating mínimo 4.0 para activar. Bonos por SLA (llegar a tiempo). Pérdida de acceso si rating baja de 3.5.</div>
+</div>
+
+<div class="risk-card">
+    <div class="risk-name">📦 Productos incorrectos</div>
+    <div class="mitigation">Foto del producto en el pedido. Driver toma foto al entregar. Reembolso automático si cliente reporta error dentro de 2 horas.</div>
+</div>
+
+<div class="risk-card">
+    <div class="risk-name">💱 Tipo de cambio BCV</div>
+    <div class="mitigation">Rate bloqueado al momento de crear la orden. Buffer del 2% sobre BCV. Si BCV sube +10% durante la orden, absorber con reserva.</div>
+</div>
+
+</section>
+
+<footer>
+    <p>🔵 VROOM — El Futuro Automotriz de Venezuela</p>
+    <p style="margin-top:8px">Especificación Técnica MVP Phase 1 · Repuestos Express · Versión 1.0 · Octubre 2026</p>
+</footer>
+
+</div>
+</body>
+</html>
