@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920,height=1080">
+<title>World of VROOM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:linear-gradient(180deg,#050510 0%,#0a0a1a 100%);position:relative}
+.bg-glow{position:absolute;width:100%;height:100%;background:radial-gradient(ellipse at 70% 50%,rgba(0,102,255,0.08) 0%,transparent 60%),radial-gradient(ellipse at 30% 80%,rgba(255,214,0,0.05) 0%,transparent 50%)}
+.statement{position:absolute;left:80px;top:50%;transform:translateY(-50%);z-index:10;max-width:700px}
+.not{font-family:'Space Grotesk',sans-serif;font-size:36px;color:rgba(255,255,255,0.5);font-weight:300;margin-bottom:20px;letter-spacing:2px}
+.title{font-family:'Space Grotesk',sans-serif;font-size:80px;font-weight:700;color:#fff;line-height:1.1;margin-bottom:40px;text-shadow:0 4px 40px rgba(0,102,255,0.4)}
+.title .accent{color:#0066FF}
+.title .yellow{color:#FFD600}
+.sub{font-size:22px;color:rgba(255,255,255,0.6);line-height:1.6;font-weight:300;max-width:500px}
+.illustration{position:absolute;right:0;top:0;width:900px;height:1080px;overflow:hidden}
+.city-bg{position:absolute;bottom:0;right:0;width:100%;height:70%}
+.building{position:absolute;bottom:0;background:linear-gradient(180deg,#0d1117 0%,#151520 100%);border:1px solid rgba(0,102,255,0.2)}
+.building-1{right:50px;width:120px;height:400px}
+.building-2{right:180px;width:100px;height:550px}
+.building-3{right:290px;width:140px;height:350px}
+.building-4{right:440px;width:90px;height:480px}
+.building-5{right:540px;width:110px;height:420px}
+.building-6{right:660px;width:80px;height:500px}
+.window-grid{position:absolute;top:20px;left:10px;right:10px;bottom:20px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(8,1fr);gap:8px}
+.window{background:rgba(0,102,255,0.15);border-radius:2px}
+.window.lit{background:rgba(255,214,0,0.3);box-shadow:0 0 10px rgba(255,214,0,0.2)}
+.car-scene{position:absolute;bottom:200px;right:100px;width:350px;height:150px}
+.car-mini{width:100%;height:100%}
+.phone-mock{position:absolute;bottom:280px;right:350px;width:120px;height:200px;background:#0a0a1a;border:3px solid #1a1a2e;border-radius:12px;padding:8px;transform:rotate(-5deg)}
+.phone-screen{width:100%;height:100%;background:linear-gradient(180deg,#0d1117 0%,#151520 100%);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.phone-logo{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#0066FF}
+.delivery-circle{position:absolute;bottom:150px;right:200px;width:80px;height:80px;background:radial-gradient(circle,#0066FF 0%,transparent 70%);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:0.8}50%{transform:scale(1.2);opacity:0.4}}
+.road{position:absolute;bottom:0;left:400px;right:0;height:180px;background:linear-gradient(180deg,transparent 0%,#0a0a1a 20%,#0f0f1a 100%)}
+.road-line{position:absolute;bottom:80px;height:4px;background:#FFD600;opacity:0.6}
+.road-line:nth-child(1){left:500px;width:60px}
+.road-line:nth-child(2){left:600px;width:60px}
+.road-line:nth-child(3){left:700px;width:60px}
+.icon-cluster{position:absolute;top:100px;right:100px;display:flex;flex-direction:column;gap:20px}
+.icon-item{width:60px;height:60px;background:rgba(0,102,255,0.2);border:1px solid rgba(0,102,255,0.4);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<div class="statement">
+<div class="not">NOT AN APP.</div>
+<div class="title">An Automotive<br><span class="accent">Universe.</span></div>
+<div class="sub">Every service. Every need. Every moment of the driving life — unified in one seamless experience.</div>
+</div>
+
+<div class="illustration">
+<div class="city-bg">
+<div class="building building-1"><div class="window-grid"><div class="window lit"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div></div></div>
+<div class="building building-2"><div class="window-grid"><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div></div></div>
+<div class="building building-3"><div class="window-grid"><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div></div></div>
+<div class="building building-4"><div class="window-grid"><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div></div></div>
+<div class="building building-5"><div class="window-grid"><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div></div></div>
+<div class="building building-6"><div class="window-grid"><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div></div></div>
+</div>
+
+<div class="road">
+<div class="road-line"></div><div class="road-line"></div><div class="road-line"></div>
+</div>
+
+<svg class="car-mini" viewBox="0 0 350 150" style="position:absolute;bottom:200px;right:80px">
+<path d="M30 100 Q40 90 70 85 L120 75 Q140 60 180 55 L250 55 Q270 55 290 65 L320 80 Q330 85 335 95 L335 105 Q335 115 320 115 L60 115 Q45 115 40 105 Z" fill="#1a1a2e" stroke="#0066FF" stroke-width="1" stroke-opacity="0.5"/>
+<path d="M130 78 Q160 62 200 58 L250 56 Q265 55 275 60 L300 72 Q310 78 315 80 L135 80 Q132 79 130 78 Z" fill="rgba(0,102,255,0.3)"/>
+<circle cx="90" cy="115" r="22" fill="#0a0a1a" stroke="#333"/>
+<circle cx="90" cy="115" r="12" fill="#0066FF" opacity="0.6"/>
+<circle cx="280" cy="115" r="22" fill="#0a0a1a" stroke="#333"/>
+<circle cx="280" cy="115" r="12" fill="#0066FF" opacity="0.6"/>
+<path d="M310 85 L340 90 L340 98 L308 95 Z" fill="#FFD600" opacity="0.9"/>
+</svg>
+
+<div class="phone-mock">
+<div class="phone-screen">
+<div class="phone-logo">VROOM</div>
+</div>
+</div>
+
+<div class="delivery-circle"></div>
+
+<div class="icon-cluster">
+<div class="icon-item">🔧</div>
+<div class="icon-item">🚗</div>
+<div class="icon-item">⚡</div>
+</div>
+</div>
+</body>
+</html>
