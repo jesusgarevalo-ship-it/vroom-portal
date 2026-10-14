@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920,height=1080">
+<title>Advertising Campaign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:linear-gradient(180deg,#050510 0%,#0a0a1a 100%);position:relative}
+.header{position:absolute;top:40px;left:80px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:rgba(255,255,255,0.4);letter-spacing:4px;text-transform:uppercase}
+.title{position:absolute;top:50px;left:80px;font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;color:#fff}
+.title .accent{color:#0066FF}
+.campaigns{display:flex;position:absolute;left:80px;right:80px;top:130px;bottom:80px;gap:30px}
+/* Campaign 1: Billboard */
+.campaign{background:#0D1117;border:1px solid rgba(255,255,255,0.1);border-radius:20px;flex:1;overflow:hidden;position:relative}
+.campaign-label{position:absolute;top:20px;left:20px;font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:2px;z-index:10}
+.billboard-campaign{background:linear-gradient(180deg,#0066FF 0%,#0044CC 100%)}
+.billboard-frame{width:100%;height:100%;padding:40px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative}
+/* Motion lines animation */
+.motion-lines{position:absolute;inset:0;overflow:hidden;opacity:0.3}
+.motion-line{position:absolute;height:3px;background:linear-gradient(90deg,transparent,#fff,transparent);animation:motion 1.5s linear infinite}
+@keyframes motion{from{transform:translateX(-100%)}to{transform:translateX(200%)}}
+.billboard-main{font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:700;color:#fff;text-align:center;line-height:1.1;margin-bottom:20px;text-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.billboard-sub{font-size:18px;color:rgba(255,255,255,0.8);text-align:center}
+.billboard-cta{position:absolute;bottom:30px;font-family:'Space Grotesk',sans-serif;font-size:16px;color:#FFD600;font-weight:600}
+.billboard-structure{position:absolute;top:0;left:0;right:0;height:30px;background:#333}
+/* Campaign 2: Digital */
+.digital-campaign{background:linear-gradient(180deg,#0D1117 0%,#151525 100%)}
+.digital-frame{width:100%;height:100%;padding:40px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.digital-header{display:flex;align-items:center;gap:15px;margin-bottom:30px}
+.digital-logo{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:#0066FF}
+.digital-steps{display:flex;justify-content:center;gap:20px;margin-bottom:30px}
+.step{background:rgba(0,102,255,0.2);border:2px solid #0066FF;border-radius:12px;padding:20px 30px;text-align:center;position:relative}
+.step-num{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#0066FF;color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:10px}
+.step-text{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;color:#fff;margin-top:5px}
+.step-arrow{position:absolute;right:-25px;top:50%;transform:translateY(-50%);font-size:24px;color:#FFD600}
+.digital-cta{text-align:center;font-family:'Space Grotesk',sans-serif;font-size:22px;color:#FFD600;font-weight:600}
+.digital-motifs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.motif{position:absolute;border:2px solid rgba(0,102,255,0.2);border-radius:50%;animation:rotate 20s linear infinite}
+@keyframes rotate{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.motif-1{width:400px;height:400px;top:-100px;right:-100px}
+.motif-2{width:300px;height:300px;bottom:-50px;left:-50px;animation-direction:reverse}
+/* Campaign 3: Transit */
+.transit-campaign{background:linear-gradient(180deg,#0D1117 0%,#1a1a2e 100%)}
+.transit-frame{width:100%;height:100%;display:flex;flex-direction:column}
+.transit-top{height:60%;background:linear-gradient(180deg,#FFD600 0%,#FFB300 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.transit-main{font-family:'Space Grotesk',sans-serif;font-size:38px;font-weight:700;color:#0D1117;text-align:center;line-height:1.2;padding:30px}
+.transit-lines{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-around;padding:20px 0;pointer-events:none}
+.transit-line{height:4px;background:rgba(0,0,0,0.1)}
+.transit-bottom{height:40%;padding:30px;display:flex;flex-direction:column;justify-content:center}
+.transit-logo{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;color:#0066FF;margin-bottom:15px}
+.transit-sub{font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:20px}
+.transit-cta{display:inline-block;background:#0066FF;color:#fff;padding:10px 25px;border-radius:8px;font-size:14px;font-weight:500;align-self:flex-start}
+.transit-shelter{position:absolute;bottom:0;left:0;right:0;height:20px;background:#333;box-shadow:0 -5px 20px rgba(0,0,0,0.3)}
+</style>
+</head>
+<body>
+<div class="header">ADVERTISING CAMPAIGN</div>
+<div class="title">"TODO LO QUE MUEVE TU CARRO" — <span class="accent">Campaign executions</span></div>
+
+<div class="campaigns">
+<!-- Campaign 1: Billboard -->
+<div class="campaign billboard-campaign">
+<div class="campaign-label">Billboard</div>
+<div class="billboard-structure"></div>
+<div class="motion-lines">
+<div class="motion-line" style="top:25%;animation-delay:0s"></div>
+<div class="motion-line" style="top:45%;animation-delay:0.3s"></div>
+<div class="motion-line" style="top:65%;animation-delay:0.6s"></div>
+</div>
+<div class="billboard-frame">
+<div class="billboard-main">¿TU CARRO<br>NECESITA<br>ALGO?</div>
+<div class="billboard-sub">VROOM — La app que lo resuelve todo</div>
+<div class="billboard-cta">vroom.app ↓</div>
+</div>
+</div>
+
+<!-- Campaign 2: Digital -->
+<div class="campaign digital-campaign">
+<div class="campaign-label">Digital</div>
+<div class="digital-motifs">
+<div class="motif motif-1"></div>
+<div class="motif motif-2"></div>
+</div>
+<div class="digital-frame">
+<div class="digital-header">
+<div class="digital-logo">VROOM</div>
+</div>
+<div class="digital-steps">
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-text">ENCUÉNTRALO</div>
+<div class="step-arrow">→</div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-text">PÍDELO</div>
+<div class="step-arrow">→</div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-text">SÍGUELO</div>
+</div>
+</div>
+<div class="digital-cta">⚡ Entrega en 15 minutos</div>
+</div>
+</div>
+
+<!-- Campaign 3: Transit -->
+<div class="campaign transit-campaign">
+<div class="campaign-label">Transit Shelter</div>
+<div class="transit-frame">
+<div class="transit-top">
+<div class="transit-lines">
+<div class="transit-line"></div><div class="transit-line"></div><div class="transit-line"></div>
+<div class="transit-line"></div><div class="transit-line"></div><div class="transit-line"></div>
+<div class="transit-line"></div><div class="transit-line"></div>
+</div>
+<div class="transit-main">TODO LO QUE<br>MUEVE TU CARRO</div>
+</div>
+<div class="transit-bottom">
+<div class="transit-logo">VROOM</div>
+<div class="transit-sub">Repuestos, grúas, talleres, rental... todo en una sola app</div>
+<div class="transit-cta">Descarga Gratis</div>
+</div>
+<div class="transit-shelter"></div>
+</div>
+</div>
+</div>
+</body>
+</html>
