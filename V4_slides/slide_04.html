@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920,height=1080">
+<title>VROOM Brand System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:#0D1117;position:relative}
+.grid{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:4px;padding:4px;background:#000}
+.q{position:relative;overflow:hidden}
+.q1{background:linear-gradient(135deg,#0066FF 0%,#0044CC 100%)}
+.q2{background:linear-gradient(135deg,#FFD600 0%,#FFB300 100%)}
+.q3{background:linear-gradient(180deg,#F1F3F5 0%,#E1E5E8 100%)}
+.q4{background:#0D1117;border:1px solid rgba(255,255,255,0.1)}
+.color-label{position:absolute;font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:6px;text-transform:uppercase;padding:40px}
+.q1 .color-label{color:#fff;font-size:16px;bottom:40px;left:40px}
+.q2 .color-label{color:#0D1117;font-size:16px;bottom:40px;left:40px}
+.q3 .color-label{color:#0D1117;font-size:16px;bottom:40px;left:40px}
+.color-hex{position:absolute;font-family:'Space Grotesk',sans-serif;font-weight:500;padding:40px;font-size:36px}
+.q1 .color-hex{color:rgba(255,255,255,0.8);top:40px;left:40px}
+.q2 .color-hex{color:rgba(0,0,0,0.4);top:40px;left:40px}
+.q3 .color-hex{color:rgba(0,0,0,0.3);top:40px;left:40px}
+.color-name{position:absolute;font-family:'Inter',sans-serif;font-size:14px;padding:40px;text-transform:uppercase;letter-spacing:3px}
+.q1 .color-name{color:rgba(255,255,255,0.6);top:100px;left:40px}
+.q2 .color-name{color:rgba(0,0,0,0.4);top:100px;left:40px}
+.q3 .color-name{color:rgba(0,0,0,0.4);top:100px;left:40px}
+/* Typography samples */
+.q4 .sample-label{position:absolute;top:40px;left:40px;font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:3px}
+.q4 .headline-sample{position:absolute;top:80px;left:40px;font-family:'Space Grotesk',sans-serif;font-size:64px;font-weight:700;color:#fff;line-height:1}
+.q4 .headline-sample .accent{color:#0066FF}
+.q4 .headline-sample .yellow{color:#FFD600}
+.q4 .body-sample{position:absolute;top:200px;left:40px;font-size:18px;color:rgba(255,255,255,0.6);line-height:1.6;max-width:700px}
+/* Graphic language */
+.q4 .graphic-label{position:absolute;top:40px;right:40px;font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:3px;text-align:right}
+.speed-bars{position:absolute;bottom:60px;right:40px;display:flex;align-items:flex-end;gap:8px}
+.speed-bar{width:40px;background:#0066FF;opacity:0.7;border-radius:4px}
+.speed-bar:nth-child(1){height:60px}
+.speed-bar:nth-child(2){height:80px}
+.speed-bar:nth-child(3){height:100px;background:#FFD600}
+.speed-bar:nth-child(4){height:70px}
+.speed-bar:nth-child(5){height:50px}
+.corner-shape{position:absolute;top:250px;right:40px;width:80px;height:80px;border:3px solid #0066FF;transform:rotate(45deg);opacity:0.3}
+/* Photo direction */
+.photo-label{position:absolute;bottom:40px;left:40px;font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:3px}
+.photo-desc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:80%}
+.photo-desc h3{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;color:#fff;margin-bottom:20px}
+.photo-desc p{font-size:16px;color:rgba(255,255,255,0.6);line-height:1.6}
+.dark-scene{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,102,255,0.2) 100%)}
+.headlight{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;height:30%;background:radial-gradient(ellipse at 50% 100%,rgba(255,214,0,0.3) 0%,transparent 70%)}
+/* Brand patterns */
+.yellow-dots{position:absolute;inset:0;background-image:radial-gradient(circle,#FFD600 2px,transparent 2px);background-size:30px 30px;opacity:0.1}
+</style>
+</head>
+<body>
+<div class="grid">
+<div class="q q1">
+<div class="color-hex">#0066FF</div>
+<div class="color-name">Volt Blue</div>
+<div class="color-label">Primary Brand Color</div>
+<div class="yellow-dots"></div>
+</div>
+<div class="q q2">
+<div class="color-hex">#FFD600</div>
+<div class="color-name">Ignition Yellow</div>
+<div class="color-label">Accent Color</div>
+</div>
+<div class="q q3">
+<div class="color-hex">#F1F3F5</div>
+<div class="color-name">Cloud White</div>
+<div class="color-label">Light Background</div>
+</div>
+<div class="q q4">
+<div class="sample-label">Typography</div>
+<div class="headline-sample">VROOM <span class="accent">FAST</span> <span class="yellow">FORWARD</span></div>
+<div class="body-sample">Space Grotesk for headlines. Bold, geometric, modern. Inter for body text. Clean, readable, professional. The typography system that defines the brand voice.</div>
+<div class="graphic-label">Graphic Language</div>
+<div class="speed-bars">
+<div class="speed-bar"></div>
+<div class="speed-bar"></div>
+<div class="speed-bar"></div>
+<div class="speed-bar"></div>
+<div class="speed-bar"></div>
+</div>
+<div class="corner-shape"></div>
+</div>
+</div>
+
+<!-- Overlay for Q1 photo direction -->
+<div style="position:absolute;left:4px;top:4px;width:calc(50% - 6px);height:calc(50% - 6px);pointer-events:none">
+<div class="dark-scene"></div>
+<div class="headlight"></div>
+<div class="photo-desc">
+<h3>Photography Direction</h3>
+<p>Dark, cinematic, automotive. Venezuelan urban warmth meets premium global aesthetics.</p>
+</div>
+<div class="photo-label">Visual Identity</div>
+</div>
+</body>
+</html>
