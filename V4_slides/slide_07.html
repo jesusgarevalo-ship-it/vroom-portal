@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920,height=1080">
+<title>Mobile App Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:linear-gradient(180deg,#050510 0%,#0a0a1a 100%);position:relative}
+.header{position:absolute;top:50px;left:80px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:rgba(255,255,255,0.4);letter-spacing:4px;text-transform:uppercase}
+.title{position:absolute;top:60px;left:80px;font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;color:#fff;margin-top:30px}
+.title .accent{color:#0066FF}
+.phones{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-45%);gap:50px}
+.phone{width:280px;height:580px}
+.phone-frame{width:100%;height:100%;background:#0a0a1a;border:6px solid #1a1a2e;border-radius:38px;padding:10px;box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 80px rgba(0,102,255,0.08)}
+.phone-screen{width:100%;height:100%;background:#0D1117;border-radius:30px;overflow:hidden;display:flex;flex-direction:column}
+.phone-notch{height:24px;background:#0a0a1a;display:flex;align-items:center;justify-content:center}
+.notch-dot{width:60px;height:14px;background:#000;border-radius:7px}
+.app-header{background:#0066FF;padding:15px}
+.app-logo{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#fff}
+/* Screen 1: Home */
+.search-bar{background:rgba(255,255,255,0.1);margin:12px;padding:12px 15px;border-radius:10px;display:flex;align-items:center;gap:8px}
+.search-icon{color:rgba(255,255,255,0.4)}
+.search-text{color:rgba(255,255,255,0.4);font-size:13px}
+.categories-row{display:flex;gap:8px;padding:0 12px;margin-bottom:10px}
+.cat{background:rgba(0,102,255,0.2);padding:8px 14px;border-radius:15px;font-size:11px;color:#fff;border:1px solid rgba(0,102,255,0.3)}
+.cat.active{background:#0066FF;border-color:#0066FF}
+.quick-actions{background:rgba(255,255,255,0.03);margin:0 12px;padding:15px;border-radius:12px}
+.quick-title{font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.action-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.action{background:rgba(0,102,255,0.1);padding:12px;border-radius:10px;text-align:center}
+.action-icon{font-size:24px;margin-bottom:5px}
+.action-label{font-size:9px;color:rgba(255,255,255,0.7)}
+.featured{background:linear-gradient(135deg,rgba(0,102,255,0.2),rgba(255,214,0,0.1));margin:12px;padding:15px;border-radius:12px;border:1px solid rgba(0,102,255,0.3)}
+.featured-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:8px}
+.featured-sub{font-size:11px;color:rgba(255,255,255,0.5)}
+/* Screen 2: Results */
+.results-header{background:#0066FF;padding:15px;display:flex;justify-content:space-between;align-items:center}
+.results-title{font-size:14px;color:#fff;font-weight:500}
+.filter-btn{background:rgba(255,255,255,0.2);padding:6px 12px;border-radius:8px;font-size:11px;color:#fff}
+.result-item{background:rgba(255,255,255,0.05);margin:8px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08)}
+.result-top{display:flex;justify-content:space-between;margin-bottom:8px}
+.result-name{font-size:13px;color:#fff;font-weight:500}
+.result-price{font-family:'Space Grotesk',sans-serif;font-size:14px;color:#FFD600;font-weight:600}
+.result-bottom{display:flex;justify-content:space-between;align-items:center}
+.result-meta{font-size:10px;color:rgba(255,255,255,0.5)}
+.result-eta{font-size:10px;color:#0066FF;font-weight:500}
+/* Screen 3: Tracking */
+.map-area{flex:1;background:linear-gradient(180deg,#0a1525 0%,#0D1117 100%);position:relative;overflow:hidden}
+.map-roads{position:absolute;inset:0}
+.road-h{position:absolute;height:3px;background:rgba(0,102,255,0.3)}
+.road-v{position:absolute;width:3px;background:rgba(0,102,255,0.3)}
+.road-h:nth-child(1){top:30%;left:0;right:0}
+.road-h:nth-child(2){top:60%;left:0;right:0}
+.road-v:nth-child(3){left:40%;top:0;bottom:0}
+.road-v:nth-child(4){left:70%;top:0;bottom:0}
+.route{position:absolute;top:45%;left:15%;width:50%;height:4px;background:#FFD600;box-shadow:0 0 10px #FFD600}
+.delivery-marker{position:absolute;top:42%;left:15%;width:16px;height:16px;background:#FFD600;border-radius:50%;box-shadow:0 0 20px #FFD600}
+@keyframes pulse-marker{0%,100%{transform:scale(1);box-shadow:0 0 20px #FFD600}50%{transform:scale(1.2);box-shadow:0 0 30px #FFD600}}
+.delivery-marker{animation:pulse-marker 1.5s ease-in-out infinite}
+.destination{position:absolute;top:42%;left:60%;width:12px;height:12px;background:#0066FF;border:2px solid #fff;border-radius:50%}
+.tracking-card{position:absolute;bottom:0;left:0;right:0;background:#0D1117;border-radius:15px 15px 0 0;padding:15px;border-top:1px solid rgba(255,255,255,0.1)}
+.track-header{display:flex;justify-content:space-between;margin-bottom:10px}
+.track-title{font-size:13px;color:#fff;font-weight:600}
+.track-status{font-size:11px;color:#FFD600;font-weight:500}
+.rider-info{display:flex;align-items:center;gap:10px;padding:10px;background:rgba(255,255,255,0.05);border-radius:10px}
+.rider-avatar{width:36px;height:36px;background:#0066FF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.rider-details{flex:1}
+.rider-name{font-size:12px;color:#fff;font-weight:500}
+.rider-eta{font-size:10px;color:rgba(255,255,255,0.5)}
+.call-btn{background:#FFD600;padding:8px 15px;border-radius:8px;font-size:11px;font-weight:600;color:#0D1117}
+.screen-label{text-align:center;margin-top:25px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:rgba(255,255,255,0.5);letter-spacing:2px;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">MOBILE EXPERIENCE</div>
+<div class="title">One app. <span class="accent">Every automotive need.</span></div>
+
+<div class="phones">
+<!-- Screen 1: Home -->
+<div class="phone">
+<div class="phone-frame">
+<div class="phone-screen">
+<div class="phone-notch"><div class="notch-dot"></div></div>
+<div class="app-header"><span class="app-logo">VROOM</span></div>
+<div class="search-bar">
+<span class="search-icon">🔍</span>
+<span class="search-text">Buscar repuestos, servicios...</span>
+</div>
+<div class="categories-row">
+<div class="cat active">Repuestos</div>
+<div class="cat">Talleres</div>
+<div class="cat">Grúas</div>
+</div>
+<div class="quick-actions">
+<div class="quick-title">Acciones Rápidas</div>
+<div class="action-grid">
+<div class="action"><div class="action-icon">🔍</div><div class="action-label">Buscar</div></div>
+<div class="action"><div class="action-icon">🚗</div><div class="action-label">Mi Auto</div></div>
+<div class="action"><div class="action-icon">📍</div><div class="action-label">Rastrear</div></div>
+<div class="action"><div class="action-icon">💬</div><div class="action-label">Ayuda</div></div>
+</div>
+</div>
+<div class="featured">
+<div class="featured-title">⚡ Entrega Express</div>
+<div class="featured-sub">Llega en 15 minutos o menos</div>
+</div>
+</div>
+</div>
+</div>
+<p class="screen-label">Inicio</p>
+</div>
+
+<!-- Screen 2: Results -->
+<div class="phone">
+<div class="phone-frame">
+<div class="phone-screen">
+<div class="phone-notch"><div class="notch-dot"></div></div>
+<div class="results-header">
+<span class="results-title">Pastillas de Freno</span>
+<span class="filter-btn">Filtros ▼</span>
+</div>
+<div class="result-item">
+<div class="result-top">
+<span class="result-name">Brembo Premium</span>
+<span class="result-price">$34.99</span>
+</div>
+<div class="result-bottom">
+<span class="result-meta">⭐ 4.9 • Honda Civic</span>
+<span class="result-eta">⚡ 12 min</span>
+</div>
+</div>
+<div class="result-item">
+<div class="result-top">
+<span class="result-name">Genéricas</span>
+<span class="result-price">$18.99</span>
+</div>
+<div class="result-bottom">
+<span class="result-meta">⭐ 4.2 • Universal</span>
+<span class="result-eta">⚡ 8 min</span>
+</div>
+</div>
+<div class="result-item">
+<div class="result-top">
+<span class="result-name">Bosch Quality+</span>
+<span class="result-price">$28.50</span>
+</div>
+<div class="result-bottom">
+<span class="result-meta">⭐ 4.7 • Civic 2015-21</span>
+<span class="result-eta">⚡ 15 min</span>
+</div>
+</div>
+<div class="map-area">
+<div class="map-roads">
+<div class="road-h"></div><div class="road-h"></div>
+<div class="road-v"></div><div class="road-v"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class="screen-label">Resultados</p>
+</div>
+
+<!-- Screen 3: Tracking -->
+<div class="phone">
+<div class="phone-frame">
+<div class="phone-screen">
+<div class="phone-notch"><div class="notch-dot"></div></div>
+<div class="app-header"><span class="app-logo">VROOM</span></div>
+<div class="map-area">
+<div class="map-roads">
+<div class="road-h"></div><div class="road-h"></div>
+<div class="road-v"></div><div class="road-v"></div>
+</div>
+<div class="route"></div>
+<div class="delivery-marker"></div>
+<div class="destination"></div>
+</div>
+<div class="tracking-card">
+<div class="track-header">
+<span class="track-title">Entrega en progreso</span>
+<span class="track-status">● 8 min restantes</span>
+</div>
+<div class="rider-info">
+<div class="rider-avatar">🏍️</div>
+<div class="rider-details">
+<div class="rider-name">Carlos M.</div>
+<div class="rider-eta">ETA: 8:42 PM</div>
+</div>
+<div class="call-btn">Llamar</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class="screen-label">Seguimiento</p>
+</div>
+</div>
+</body>
+</html>
