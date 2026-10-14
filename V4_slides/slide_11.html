@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920,height=1080">
+<title>Brand Applications</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:linear-gradient(180deg,#050510 0%,#0a0a1a 100%);position:relative}
+.header{position:absolute;top:40px;left:80px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:rgba(255,255,255,0.4);letter-spacing:4px;text-transform:uppercase}
+.grid{display:grid;position:absolute;left:80px;right:80px;top:120px;bottom:80px;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:20px}
+.item{position:relative;border-radius:16px;overflow:hidden;transition:transform 0.3s}
+.item-label{position:absolute;bottom:15px;left:15px;font-size:12px;color:rgba(255,255,255,0.6);font-weight:500;z-index:10;background:rgba(0,0,0,0.5);padding:6px 12px;border-radius:6px;backdrop-filter:blur(10px)}
+/* Phone home screen */
+.item-1{background:linear-gradient(135deg,#1a1a2e 0%,#0D1117 100%);border:1px solid rgba(255,255,255,0.1)}
+.phone-home{width:100%;height:100%;padding:40px;display:flex;flex-direction:column}
+.app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;flex:1}
+.app-icon{background:linear-gradient(135deg,#0066FF,#FFD600);border-radius:16px;width:60px;height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.app-icon.small{width:45px;height:45px;border-radius:12px}
+.icon-placeholder{width:30px;height:30px;background:rgba(255,255,255,0.2);border-radius:8px}
+.app-label{font-size:9px;color:rgba(255,255,255,0.6);text-align:center}
+/* Car door badge */
+.item-2{background:linear-gradient(135deg,#2a2a3e 0%,#1a1a2e 100%);border:1px solid rgba(255,255,255,0.1)}
+.car-door{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center}
+.car-panel{width:80%;height:60%;background:linear-gradient(180deg,#3a3a4e 0%,#2a2a3e 50%,#1a1a2e 100%);border-radius:20px;border:1px solid rgba(255,255,255,0.1);position:relative}
+.car-badge{position:absolute;right:30px;top:50%;transform:translateY(-50%);width:100px;height:50px;background:linear-gradient(135deg,#0066FF,#0044CC);border-radius:25px;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 20px rgba(0,102,255,0.4)}
+.badge-text{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#fff;letter-spacing:3px}
+.door-handle{position:absolute;left:40px;top:50%;transform:translateY(-50%);width:60px;height:12px;background:#1a1a2e;border-radius:6px}
+/* Uniform/Jacket */
+.item-3{background:linear-gradient(135deg,#1a1a2e 0%,#0D1117 100%);border:1px solid rgba(255,255,255,0.1)}
+.uniform{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.jacket{width:150px;height:200px;position:relative}
+.jacket-body{width:100%;height:100%;background:#0066FF;border-radius:10px;position:relative}
+.jacket-collar{position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:30px;background:#0055DD;border-radius:0 0 30px 30px}
+.jacket-badge{position:absolute;top:60px;left:15px;width:50px;height:50px;background:#FFD600;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:8px;font-weight:700;color:#0D1117}
+.jacket-logo{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;color:#fff;position:absolute;bottom:15px;left:50%;transform:translateX(-50%);letter-spacing:2px}
+/* Tow truck */
+.item-4{background:linear-gradient(135deg,#0D1117 0%,#050510 100%);border:1px solid rgba(255,255,255,0.1)}
+.truck{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.truck-svg{width:90%;height:80%}
+/* Instagram post */
+.item-5{background:linear-gradient(135deg,#FF6B6B 0%,#4ECDC4 50%,#45B7D1 100%);border:1px solid rgba(255,255,255,0.1)}
+.ig-post{width:100%;height:100%;padding:30px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.5) 100%)}
+.ig-logo{font-size:28px;margin-bottom:15px}
+.ig-main{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.2}
+.ig-sub{font-size:14px;color:rgba(255,255,255,0.8)}
+.ig-handle{font-size:14px;color:#FFD600;font-weight:600;margin-top:15px}
+/* Business card */
+.item-6{background:linear-gradient(135deg,#1a1a2e 0%,#0D1117 100%);border:1px solid rgba(255,255,255,0.1)}
+.card{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.business-card{width:280px;height:160px;background:linear-gradient(135deg,#0066FF,#0044CC);border-radius:12px;padding:25px;position:relative;box-shadow:0 10px 30px rgba(0,0,0,0.3)}
+.card-logo{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:20px}
+.card-logo-mark{display:inline-block;width:24px;height:24px;background:#FFD600;border-radius:5px;margin-right:10px;vertical-align:middle;display:flex;align-items:center;justify-content:center}
+.card-details{position:absolute;bottom:25px;left:25px;right:25px}
+.card-name{font-size:14px;color:#fff;font-weight:600;margin-bottom:5px}
+.card-title{font-size:10px;color:rgba(255,255,255,0.7);margin-bottom:8px}
+.card-contact{font-size:9px;color:rgba(255,255,255,0.5)}
+.card-vroom{position:absolute;top:25px;right:25px;font-size:9px;color:rgba(255,255,255,0.5)}
+</style>
+</head>
+<body>
+<div class="header">BRAND APPLICATIONS</div>
+
+<div class="grid">
+<!-- 1. iPhone home screen -->
+<div class="item item-1">
+<div class="phone-home">
+<div class="app-grid">
+<div><div class="app-icon"></div><div class="app-label">VROOM</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Maps</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Camera</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Photos</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Music</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Weather</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Wallet</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Settings</div></div>
+</div>
+</div>
+<div class="item-label">iPhone Home Screen</div>
+</div>
+
+<!-- 2. Car door badge -->
+<div class="item item-2">
+<div class="car-door">
+<div class="car-panel">
+<div class="door-handle"></div>
+<div class="car-badge">
+<span class="badge-text">VROOM</span>
+</div>
+</div>
+</div>
+<div class="item-label">Vehicle Badge</div>
+</div>
+
+<!-- 3. Delivery uniform -->
+<div class="item item-3">
+<div class="uniform">
+<div class="jacket">
+<div class="jacket-body">
+<div class="jacket-collar"></div>
+<div class="jacket-badge">VROOM</div>
+<div class="jacket-logo">VROOM</div>
+</div>
+</div>
+</div>
+<div class="item-label">Delivery Uniform</div>
+</div>
+
+<!-- 4. Tow truck -->
+<div class="item item-4">
+<div class="truck">
+<svg class="truck-svg" viewBox="0 0 400 200">
+<rect x="50" y="100" width="300" height="80" rx="10" fill="#FFD600"/>
+<rect x="200" y="60" width="150" height="80" rx="10" fill="#0066FF"/>
+<path d="M200 60 L230 30 L320 30 L350 60" fill="#0066FF"/>
+<rect x="230" y="35" width="80" height="25" fill="rgba(255,255,255,0.3)" rx="3"/>
+<circle cx="100" cy="180" r="30" fill="#1a1a2e" stroke="#333"/>
+<circle cx="100" cy="180" r="18" fill="#0066FF" opacity="0.6"/>
+<circle cx="300" cy="180" r="30" fill="#1a1a2e" stroke="#333"/>
+<circle cx="300" cy="180" r="18" fill="#0066FF" opacity="0.6"/>
+<rect x="120" y="80" width="60" height="40" fill="rgba(255,255,255,0.2)" rx="5"/>
+<text x="200" y="140" text-anchor="middle" fill="#0D1117" font-family="'Space Grotesk'" font-size="20" font-weight="700">VROOM</text>
+</svg>
+</div>
+<div class="item-label">Service Vehicle</div>
+</div>
+
+<!-- 5. Instagram post -->
+<div class="item item-5">
+<div class="ig-post">
+<div class="ig-logo">📱</div>
+<div class="ig-main">Todo lo que tu carro necesita<br>en 15 minutos</div>
+<div class="ig-sub">Descarga VROOM ahora</div>
+<div class="ig-handle">@vroom.ve</div>
+</div>
+<div class="item-label">Social Media</div>
+</div>
+
+<!-- 6. Business card -->
+<div class="item item-6">
+<div class="card">
+<div class="business-card">
+<div class="card-logo">
+<div class="card-logo-mark">
+<svg viewBox="0 0 24 24" width="16" height="16">
+<path d="M6 18 L12 6 L18 18" stroke="#0D1117" stroke-width="2" fill="none"/>
+</svg>
+</div>
+VROOM
+</div>
+<div class="card-vroom">vroom.app</div>
+<div class="card-details">
+<div class="card-name">María González</div>
+<div class="card-title">CEO & Founder</div>
+<div class="card-contact">maria@vroom.app • +58 412 123 4567</div>
+</div>
+</div>
+</div>
+<div class="item-label">Corporate Identity</div>
+</div>
+</div>
+</body>
+</html>
