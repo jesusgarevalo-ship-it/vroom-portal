@@ -322,7 +322,45 @@
 
     @media (max-width: 768px) {
       .phases { grid-template-columns: repeat(2, 1fr); }
-      .status-bar { gap: 20px; }
+      .status-bar { gap: 16px; padding: 16px; }
+      .status-item { min-width: 80px; }
+      .status-value { font-size: 16px; }
+      .status-label { font-size: 10px; }
+      .card-grid { grid-template-columns: 1fr; gap: 16px; }
+      .card { padding: 24px; }
+      .card h3 { font-size: 18px; }
+      .card p { font-size: 13px; }
+      .timeline { padding: 24px 16px; }
+      .timeline h2 { font-size: 18px; }
+      .phase { padding: 16px 8px; }
+      .phase h4 { font-size: 12px; }
+      .phase p { font-size: 11px; }
+      header { padding: 32px 0 0; }
+      h1 { font-size: 28px; }
+      .subtitle { font-size: 15px; }
+      .tagline { font-size: 12px; }
+      .v4-badge { font-size: 10px; padding: 5px 12px; }
+      .logo-text { font-size: 26px; letter-spacing: 3px; }
+      .logo-icon { width: 40px; height: 40px; }
+      .section-title { font-size: 11px; letter-spacing: 2px; }
+    }
+
+    @media (max-width: 480px) {
+      .status-bar { flex-wrap: wrap; gap: 12px; justify-content: center; }
+      .status-item { min-width: 70px; }
+      .content { padding: 0 16px; }
+      .phases { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .phase { padding: 14px 8px; }
+      h1 { font-size: 24px; line-height: 1.2; }
+      .subtitle { font-size: 14px; }
+      .footer-text { font-size: 12px; }
+    }
+
+    @media (min-width: 1400px) {
+      .content { max-width: 1200px; }
+      h1 { font-size: 60px; }
+      .card h3 { font-size: 22px; }
+      .card p { font-size: 15px; }
     }
   </style>
 </head>
