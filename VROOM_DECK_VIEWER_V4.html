@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VROOM — Brand Vision Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920,height=1080">
+<title>VROOM - Venezuela's Automotive Future</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:linear-gradient(135deg,#050510 0%,#0a0a1a 50%,#0d1020 100%);position:relative}
+.glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(0,102,255,0.15) 0%,transparent 70%);top:-200px;right:-100px}
+.glow2{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,0,0.08) 0%,transparent 70%);bottom:-100px;left:200px}
+.speed-lines{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;opacity:0.3}
+.speed-line{position:absolute;height:2px;background:linear-gradient(90deg,transparent,rgba(0,102,255,0.8),transparent);animation:speed 2s linear infinite}
+@keyframes speed{from{transform:translateX(-100%)}to{transform:translateX(2500px)}}
+.speed-line:nth-child(1){top:20%;width:400px;animation-delay:0s}
+.speed-line:nth-child(2){top:35%;width:600px;animation-delay:0.3s}
+.speed-line:nth-child(3){top:50%;width:500px;animation-delay:0.7s}
+.speed-line:nth-child(4){top:65%;width:350px;animation-delay:1.1s}
+.car-container{position:absolute;right:-50px;top:50%;transform:translateY(-50%);width:1100px;height:400px}
+.car-svg{width:100%;height:100%}
+.content{position:absolute;left:80px;top:50%;transform:translateY(-50%);z-index:10}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;letter-spacing:8px;color:#fff;margin-bottom:60px;display:flex;align-items:center;gap:20px}
+.logo-mark{width:60px;height:60px;position:relative}
+.logo-mark svg{width:100%;height:100%}
+.vroom-text{background:linear-gradient(90deg,#0066FF,#00AAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tagline{font-family:'Space Grotesk',sans-serif;font-size:72px;font-weight:700;color:#fff;line-height:1.1;margin-bottom:30px;max-width:600px;text-shadow:0 4px 30px rgba(0,102,255,0.3)}
+.sub-line{font-size:24px;color:rgba(255,255,255,0.7);font-weight:300;letter-spacing:1px;margin-bottom:50px}
+.year{font-family:'Space Grotesk',sans-serif;font-size:18px;color:rgba(255,255,255,0.5);letter-spacing:4px;font-weight:500}
+.corner{position:absolute;width:100px;height:100px;border:2px solid rgba(0,102,255,0.3)}
+.corner-tl{top:30px;left:30px;border-right:none;border-bottom:none}
+.corner-tr{top:30px;right:30px;border-left:none;border-bottom:none}
+.corner-bl{bottom:30px;left:30px;border-right:none;border-top:none}
+.corner-br{bottom:30px;right:30px;border-left:none;border-top:none}
+</style>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      background: #050510; 
+      color: white; 
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+    }
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 50px;
+      background: rgba(5,5,16,0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 20px;
+      z-index: 100;
+    }
+    .nav-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #0066FF;
+    }
+    .nav-info {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+    .slide-container {
+      position: relative;
+      height: 100vh;
+      padding-top: 50px;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+      height: calc(100vh - 50px);
+    }
+    .slide.active { display: block; }
+    .slide iframe, .slide-content {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .slide-content { overflow: auto; }
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      z-index: 100;
+    }
+    .btn {
+      background: rgba(0,102,255,0.2);
+      border: 1px solid rgba(0,102,255,0.5);
+      color: white;
+      padding: 10px 24px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .btn:hover { background: rgba(0,102,255,0.4); }
+    .btn:disabled { opacity: 0.3; cursor: default; }
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .dot.active { background: #0066FF; width: 24px; border-radius: 4px; }
+    .dot:hover { background: rgba(0,102,255,0.5); }
+    .menu-btns {
+      position: fixed;
+      top: 50px;
+      left: 0;
+      right: 0;
+      background: rgba(5,5,16,0.98);
+      padding: 15px 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 99;
+    }
+    .menu-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+      padding: 6px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+    .menu-btn:hover, .menu-btn.active {
+      background: rgba(0,102,255,0.3);
+      border-color: #0066FF;
+      color: white;
+    }
+    
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:linear-gradient(135deg,#050510 0%,#0a0a1a 50%,#0d1020 100%);position:relative}
+.glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(0,102,255,0.15) 0%,transparent 70%);top:-200px;right:-100px}
+.glow2{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,0,0.08) 0%,transparent 70%);bottom:-100px;left:200px}
+.speed-lines{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;opacity:0.3}
+.speed-line{position:absolute;height:2px;background:linear-gradient(90deg,transparent,rgba(0,102,255,0.8),transparent);animation:speed 2s linear infinite}
+@keyframes speed{from{transform:translateX(-100%)}to{transform:translateX(2500px)}}
+.speed-line:nth-child(1){top:20%;width:400px;animation-delay:0s}
+.speed-line:nth-child(2){top:35%;width:600px;animation-delay:0.3s}
+.speed-line:nth-child(3){top:50%;width:500px;animation-delay:0.7s}
+.speed-line:nth-child(4){top:65%;width:350px;animation-delay:1.1s}
+.car-container{position:absolute;right:-50px;top:50%;transform:translateY(-50%);width:1100px;height:400px}
+.car-svg{width:100%;height:100%}
+.content{position:absolute;left:80px;top:50%;transform:translateY(-50%);z-index:10}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;letter-spacing:8px;color:#fff;margin-bottom:60px;display:flex;align-items:center;gap:20px}
+.logo-mark{width:60px;height:60px;position:relative}
+.logo-mark svg{width:100%;height:100%}
+.vroom-text{background:linear-gradient(90deg,#0066FF,#00AAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tagline{font-family:'Space Grotesk',sans-serif;font-size:72px;font-weight:700;color:#fff;line-height:1.1;margin-bottom:30px;max-width:600px;text-shadow:0 4px 30px rgba(0,102,255,0.3)}
+.sub-line{font-size:24px;color:rgba(255,255,255,0.7);font-weight:300;letter-spacing:1px;margin-bottom:50px}
+.year{font-family:'Space Grotesk',sans-serif;font-size:18px;color:rgba(255,255,255,0.5);letter-spacing:4px;font-weight:500}
+.corner{position:absolute;width:100px;height:100px;border:2px solid rgba(0,102,255,0.3)}
+.corner-tl{top:30px;left:30px;border-right:none;border-bottom:none}
+.corner-tr{top:30px;right:30px;border-left:none;border-bottom:none}
+.corner-bl{bottom:30px;left:30px;border-right:none;border-top:none}
+.corner-br{bottom:30px;right:30px;border-left:none;border-top:none}
+
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-brand">VROOM</div>
+    <div class="nav-info">Vision Deck V4 — 2026</div>
+  </div>
+  <div class="menu-btns">
+    <button class="menu-btn" onclick="showViewer('deck')">Brand Deck V4</button>
+    <button class="menu-btn" onclick="showViewer('ux')">UX Prototype</button>
+    <button class="menu-btn" onclick="showViewer('wire')">Wireframes</button>
+  </div>
+  <div class="slide-container" id="slideContainer">
+    <div class="slide active" data-slide="1"><div class="slide-content">
+<div class="glow"></div>
+<div class="glow2"></div>
+<div class="speed-lines">
+<div class="speed-line"></div><div class="speed-line"></div><div class="speed-line"></div><div class="speed-line"></div>
+</div>
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+
+<div class="content">
+<div class="logo">
+<div class="logo-mark">
+<svg viewBox="0 0 60 60" fill="none">
+<path d="M10 50 L30 10 L50 50" stroke="#0066FF" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M18 35 L30 18 L42 35" fill="#FFD600" opacity="0.9"/>
+<path d="M5 55 L30 5 L55 55" stroke="url(#logoGrad)" stroke-width="2" fill="none" opacity="0.3"/>
+<defs>
+<linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#0066FF"/>
+<stop offset="100%" stop-color="#FFD600"/>
+</linearGradient>
+</defs>
+</svg>
+</div>
+<span class="vroom-text">VROOM</span>
+</div>
+<div class="tagline">Venezuela's<br>Automotive Future</div>
+<div class="sub-line">Everything your car needs. In minutes.</div>
+<div class="year">VISION 2026 — 2030</div>
+</div>
+
+<div class="car-container">
+<svg class="car-svg" viewBox="0 0 1100 400" preserveAspectRatio="xMidYMid meet">
+<defs>
+<linearGradient id="carBody" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#1a1a2e"/>
+<stop offset="50%" stop-color="#0f0f1a"/>
+<stop offset="100%" stop-color="#050510"/>
+</linearGradient>
+<linearGradient id="carHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#0066FF" stop-opacity="0.3"/>
+<stop offset="50%" stop-color="#0066FF" stop-opacity="0.6"/>
+<stop offset="100%" stop-color="#0066FF" stop-opacity="0.3"/>
+</linearGradient>
+<linearGradient id="windowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#0066FF" stop-opacity="0.4"/>
+<stop offset="100%" stop-color="#0a0a1a" stop-opacity="0.9"/>
+</linearGradient>
+<filter id="glow">
+<feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+<feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<!-- Ground shadow -->
+<ellipse cx="550" cy="380" rx="450" ry="20" fill="#0066FF" opacity="0.1"/>
+<!-- Car body - sleek sports car profile -->
+<path d="M80 280 Q100 260 150 250 L280 230 Q320 200 380 180 L480 160 Q520 155 560 155 L680 155 Q720 155 760 170 L850 200 Q900 220 920 250 L950 270 Q970 280 980 290 L980 310 Q980 330 950 330 L150 330 Q120 330 100 310 L80 290 Z" fill="url(#carBody)" stroke="#0066FF" stroke-width="1" stroke-opacity="0.5"/>
+<!-- Window -->
+<path d="M320 225 Q360 195 420 175 L500 160 Q530 155 560 155 L640 155 Q680 155 700 165 L780 195 Q810 210 820 225 L340 225 Q330 225 320 225 Z" fill="url(#windowGrad)"/>
+<!-- Headlight -->
+<path d="M920 260 L970 270 L970 285 L920 280 Z" fill="#FFD600" filter="url(#glow)" opacity="0.9"/>
+<!-- Taillight -->
+<path d="M100 295 L140 290 L140 300 L100 305 Z" fill="#FF3333" filter="url(#glow)" opacity="0.8"/>
+<!-- Wheels -->
+<circle cx="220" cy="330" r="55" fill="#0a0a1a" stroke="#333" stroke-width="3"/>
+<circle cx="220" cy="330" r="40" fill="#1a1a2e" stroke="#0066FF" stroke-width="2" stroke-opacity="0.5"/>
+<circle cx="220" cy="330" r="15" fill="#0066FF" opacity="0.8"/>
+<circle cx="820" cy="330" r="55" fill="#0a0a1a" stroke="#333" stroke-width="3"/>
+<circle cx="820" cy="330" r="40" fill="#1a1a2e" stroke="#0066FF" stroke-width="2" stroke-opacity="0.5"/>
+<circle cx="820" cy="330" r="15" fill="#0066FF" opacity="0.8"/>
+<!-- Highlight line -->
+<path d="M150 250 Q300 235 500 210 L800 190 Q900 185 950 200" stroke="url(#carHighlight)" stroke-width="2" fill="none"/>
+<!-- Brand mark on car -->
+<circle cx="550" cy="250" r="20" fill="#0066FF" opacity="0.3"/>
+<path d="M540 260 L550 245 L560 260" stroke="#FFD600" stroke-width="2" fill="none"/>
+</svg>
+</div>
+</div></div><div class="slide" data-slide="2"><div class="slide-content">
+<div class="bg-glow"></div>
+
+<div class="statement">
+<div class="not">NOT AN APP.</div>
+<div class="title">An Automotive<br><span class="accent">Universe.</span></div>
+<div class="sub">Every service. Every need. Every moment of the driving life — unified in one seamless experience.</div>
+</div>
+
+<div class="illustration">
+<div class="city-bg">
+<div class="building building-1"><div class="window-grid"><div class="window lit"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div></div></div>
+<div class="building building-2"><div class="window-grid"><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div></div></div>
+<div class="building building-3"><div class="window-grid"><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div></div></div>
+<div class="building building-4"><div class="window-grid"><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div></div></div>
+<div class="building building-5"><div class="window-grid"><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div></div></div>
+<div class="building building-6"><div class="window-grid"><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div><div class="window"></div><div class="window"></div><div class="window lit"></div><div class="window"></div></div></div>
+</div>
+
+<div class="road">
+<div class="road-line"></div><div class="road-line"></div><div class="road-line"></div>
+</div>
+
+<svg class="car-mini" viewBox="0 0 350 150" style="position:absolute;bottom:200px;right:80px">
+<path d="M30 100 Q40 90 70 85 L120 75 Q140 60 180 55 L250 55 Q270 55 290 65 L320 80 Q330 85 335 95 L335 105 Q335 115 320 115 L60 115 Q45 115 40 105 Z" fill="#1a1a2e" stroke="#0066FF" stroke-width="1" stroke-opacity="0.5"/>
+<path d="M130 78 Q160 62 200 58 L250 56 Q265 55 275 60 L300 72 Q310 78 315 80 L135 80 Q132 79 130 78 Z" fill="rgba(0,102,255,0.3)"/>
+<circle cx="90" cy="115" r="22" fill="#0a0a1a" stroke="#333"/>
+<circle cx="90" cy="115" r="12" fill="#0066FF" opacity="0.6"/>
+<circle cx="280" cy="115" r="22" fill="#0a0a1a" stroke="#333"/>
+<circle cx="280" cy="115" r="12" fill="#0066FF" opacity="0.6"/>
+<path d="M310 85 L340 90 L340 98 L308 95 Z" fill="#FFD600" opacity="0.9"/>
+</svg>
+
+<div class="phone-mock">
+<div class="phone-screen">
+<div class="phone-logo">VROOM</div>
+</div>
+</div>
+
+<div class="delivery-circle"></div>
+
+<div class="icon-cluster">
+<div class="icon-item">🔧</div>
+<div class="icon-item">🚗</div>
+<div class="icon-item">⚡</div>
+</div>
+</div>
+</div></div><div class="slide" data-slide="3"><div class="slide-content">
+<div class="header">BRAND IDENTITY</div>
+
+<div class="glow-ring"></div>
+<div class="glow-ring glow-ring-2"></div>
+
+<div class="rationale">
+<h2>The VROOM Mark</h2>
+<p>A stylized "V" formed by two speed lanes converging — like a road rushing toward you. The negative space creates a forward-pointing arrow, symbolizing motion, progress, and velocity.</p>
+</div>
+
+<div class="design-note">
+<h3>Design Rationale</h3>
+<p>The symbol works at 16px (app icon) and 10 meters (billboard). VOLT BLUE primary, IGNITION YELLOW accent. Clean, ownable, unmistakably automotive.</p>
+</div>
+
+<div class="center-symbol">
+<svg class="main-symbol" viewBox="0 0 300 300" width="400" height="400">
+<defs>
+<linearGradient id="symGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#0066FF"/>
+<stop offset="50%" stop-color="#0088FF"/>
+<stop offset="100%" stop-color="#FFD600"/>
+</linearGradient>
+<filter id="symGlow">
+<feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+<feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<!-- Outer ring -->
+<circle cx="150" cy="150" r="140" fill="none" stroke="rgba(0,102,255,0.1)" stroke-width="1"/>
+<circle cx="150" cy="150" r="120" fill="none" stroke="rgba(0,102,255,0.15)" stroke-width="1"/>
+<!-- Speed lanes converging -->
+<path d="M150 40 L80 220 L150 180 Z" fill="url(#symGrad)" opacity="0.9" filter="url(#symGlow)"/>
+<path d="M150 40 L220 220 L150 180 Z" fill="url(#symGrad)" opacity="0.9" filter="url(#symGlow)"/>
+<!-- Center arrow -->
+<path d="M150 60 L150 190 M130 160 L150 190 L170 160" stroke="#FFD600" stroke-width="4" fill="none" stroke-linecap="round"/>
+<!-- Corner accents -->
+<path d="M40 40 L60 40 M40 40 L40 60" stroke="#0066FF" stroke-width="2" opacity="0.5"/>
+<path d="M260 40 L240 40 M260 40 L260 60" stroke="#0066FF" stroke-width="2" opacity="0.5"/>
+<path d="M40 260 L60 260 M40 260 L40 240" stroke="#0066FF" stroke-width="2" opacity="0.5"/>
+<path d="M260 260 L240 260 M260 260 L260 240" stroke="#FFD600" stroke-width="2" opacity="0.5"/>
+</svg>
+<div class="vroom-wordmark">VROOM</div>
+</div>
+
+<div class="context-row">
+<div class="context-item">
+<div class="context-label">App Icon</div>
+<div class="app-icon">
+<svg viewBox="0 0 60 60" width="50" height="50">
+<path d="M30 10 L20 40 L30 32 L40 40 Z" fill="#FFD600"/>
+<path d="M30 15 L30 38" stroke="#fff" stroke-width="2"/>
+</svg>
+</div>
+</div>
+<div class="context-item">
+<div class="context-label">On Car</div>
+<div class="badge-car">
+<span class="badge-text">VROOM</span>
+</div>
+</div>
+<div class="context-item">
+<div class="context-label">Mobile App</div>
+<div class="phone-thumb">
+<svg viewBox="0 0 40 70" width="40" height="70">
+<rect x="10" y="15" width="20" height="40" rx="3" fill="#1a1a2e"/>
+<path d="M18 28 L20 22 L22 28 Z" fill="#FFD600"/>
+</svg>
+</div>
+</div>
+<div class="context-item">
+<div class="context-label">Billboard Scale</div>
+<div class="billboard">
+<span class="billboard-text">VROOM</span>
+</div>
+</div>
+</div>
+</div></div><div class="slide" data-slide="4"><div class="slide-content">
+<div class="grid">
+<div class="q q1">
+<div class="color-hex">#0066FF</div>
+<div class="color-name">Volt Blue</div>
+<div class="color-label">Primary Brand Color</div>
+<div class="yellow-dots"></div>
+</div>
+<div class="q q2">
+<div class="color-hex">#FFD600</div>
+<div class="color-name">Ignition Yellow</div>
+<div class="color-label">Accent Color</div>
+</div>
+<div class="q q3">
+<div class="color-hex">#F1F3F5</div>
+<div class="color-name">Cloud White</div>
+<div class="color-label">Light Background</div>
+</div>
+<div class="q q4">
+<div class="sample-label">Typography</div>
+<div class="headline-sample">VROOM <span class="accent">FAST</span> <span class="yellow">FORWARD</span></div>
+<div class="body-sample">Space Grotesk for headlines. Bold, geometric, modern. Inter for body text. Clean, readable, professional. The typography system that defines the brand voice.</div>
+<div class="graphic-label">Graphic Language</div>
+<div class="speed-bars">
+<div class="speed-bar"></div>
+<div class="speed-bar"></div>
+<div class="speed-bar"></div>
+<div class="speed-bar"></div>
+<div class="speed-bar"></div>
+</div>
+<div class="corner-shape"></div>
+</div>
+</div>
+
+<!-- Overlay for Q1 photo direction -->
+<div style="position:absolute;left:4px;top:4px;width:calc(50% - 6px);height:calc(50% - 6px);pointer-events:none">
+<div class="dark-scene"></div>
+<div class="headlight"></div>
+<div class="photo-desc">
+<h3>Photography Direction</h3>
+<p>Dark, cinematic, automotive. Venezuelan urban warmth meets premium global aesthetics.</p>
+</div>
+<div class="photo-label">Visual Identity</div>
+</div>
+</div></div><div class="slide" data-slide="5"><div class="slide-content">
+<div class="scene">
+<div class="sky"></div>
+
+<div class="city-silhouette">
+<div class="building building-1"></div>
+<div class="building building-2"></div>
+<div class="building building-3"></div>
+<div class="building building-4"></div>
+<div class="building building-5"></div>
+<div class="building building-6"></div>
+<div class="building building-7"></div>
+<div class="building building-8"></div>
+<div class="building building-9"></div>
+</div>
+
+<div class="city-lights">
+<div class="light" style="left:8%;top:70%;animation-delay:0.1s"></div>
+<div class="light blue" style="left:15%;top:60%;animation-delay:0.5s"></div>
+<div class="light" style="left:22%;top:75%;animation-delay:1.2s"></div>
+<div class="light red" style="left:35%;top:65%;animation-delay:0.3s"></div>
+<div class="light blue" style="left:45%;top:55%;animation-delay:0.8s"></div>
+<div class="light" style="left:58%;top:70%;animation-delay:1.5s"></div>
+<div class="light" style="left:72%;top:60%;animation-delay:0.2s"></div>
+<div class="light blue" style="left:85%;top:68%;animation-delay:0.9s"></div>
+<div class="light red" style="left:95%;top:72%;animation-delay:1.1s"></div>
+</div>
+
+<div class="road">
+<div class="road-line"></div><div class="road-line"></div><div class="road-line"></div>
+<div class="road-line"></div><div class="road-line"></div><div class="road-line"></div>
+<div class="road-line"></div><div class="road-line"></div><div class="road-line"></div>
+</div>
+
+<div class="ground-glow"></div>
+
+<svg class="car-svg" viewBox="0 0 500 200" style="position:absolute;bottom:160px;left:380px">
+<path d="M40 150 Q60 130 100 120 L180 100 Q220 70 280 65 L350 65 Q380 65 400 80 L450 100 Q470 110 480 130 L480 145 Q480 160 450 160 L80 160 Q50 160 40 150 Z" fill="#030308" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+<path d="M190 105 Q230 75 290 70 L350 66 Q370 65 380 75 L420 95 Q430 100 435 105 L200 105 Z" fill="rgba(0,102,255,0.15)"/>
+<circle cx="130" cy="160" r="30" fill="#050510" stroke="#1a1a2e"/>
+<circle cx="130" cy="160" r="18" fill="#0a0a1a"/>
+<circle cx="400" cy="160" r="30" fill="#050510" stroke="#1a1a2e"/>
+<circle cx="400" cy="160" r="18" fill="#0a0a1a"/>
+</svg>
+
+<div class="hazard">
+<div class="hazard-light"></div>
+<div class="hazard-light"></div>
+</div>
+
+<div class="vignette"></div>
+
+<div class="overlay">
+<div class="main-text">
+<h1>In Venezuela, every driver<br>has a <span>story</span>.</h1>
+<p>Most of them end the same way — stuck, frustrated, alone.</p>
+</div>
+</div>
+
+<div class="problem problem-1">❌ Wrong parts delivered</div>
+<div class="problem problem-2">❌ Shops already closed</div>
+<div class="problem problem-3">❌ Payment failed</div>
+</div>
+</div></div><div class="slide" data-slide="6"><div class="slide-content">
+<div class="bg-circle"></div>
+<div class="bg-circle-2"></div>
+
+<div class="left-side">
+<div class="headline"><span class="accent">15 minutes.</span><br>The right part.<br>At your door.</div>
+<div class="subtext">Search for any part by vehicle, category, or photo. AI-powered matching. Real-time tracking. Cash or digital payment.</div>
+<div class="delivery-tags">
+<span class="tag highlight">⚡ 15 min Express</span>
+<span class="tag">🚗 Same Day</span>
+<span class="tag">📦 Scheduled</span>
+</div>
+</div>
+
+<div class="phone">
+<div class="phone-frame">
+<div class="phone-screen">
+<div class="phone-notch"><div class="notch-dot"></div></div>
+<div class="app-header">
+<div class="app-logo">VROOM</div>
+<div class="app-location"><span class="app-location-icon">📍</span> Caracas</div>
+</div>
+<div class="search-bar">
+<span class="search-icon">🔍</span>
+<span class="search-placeholder">Civic 2019, brake pads front...</span>
+</div>
+<div class="categories">
+<div class="category active">Repuestos</div>
+<div class="category">Talleres</div>
+<div class="category">Grúas</div>
+<div class="category">Rental</div>
+</div>
+<div class="result-card">
+<div class="result-header">
+<div class="part-name">Pastillas de Freno Delanteras<br><span style="font-size:12px;color:rgba(255,255,255,0.5)">Honda Civic 2017-2021</span></div>
+<div class="part-price">$24.99</div>
+</div>
+<div class="part-meta">
+<span class="rating">⭐ 4.8 (234)</span>
+<span class="eta">⚡ Llega en 12 min</span>
+</div>
+</div>
+<div class="map-preview">
+<div class="map-title">Seguimiento en Vivo</div>
+<div class="map-content">
+<div class="map-line"></div>
+<div class="delivery-dot"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="delivery-scene">
+<svg viewBox="0 0 400 200" width="100%" height="100%">
+<rect x="50" y="160" width="300" height="4" fill="rgba(255,214,0,0.3)" rx="2"/>
+<circle cx="100" cy="164" r="8" fill="#FFD600" opacity="0.5"/>
+<circle cx="200" cy="164" r="8" fill="#FFD600" opacity="0.5"/>
+<circle cx="300" cy="164" r="8" fill="#FFD600" opacity="0.5"/>
+<path d="M280 100 Q285 80 300 70 L340 65 Q350 64 355 70 L360 80 Q365 100 350 120 L280 130 Q270 135 275 145 L280 155 Q285 160 290 155 L295 145 L295 120 L310 100 Z" fill="#0066FF"/>
+<circle cx="285" cy="145" r="15" fill="#1a1a2e" stroke="#333"/>
+<circle cx="285" cy="145" r="8" fill="#0066FF" opacity="0.6"/>
+<circle cx="330" cy="145" r="15" fill="#1a1a2e" stroke="#333"/>
+<circle cx="330" cy="145" r="8" fill="#0066FF" opacity="0.6"/>
+<rect x="340" y="70" width="25" height="40" fill="#FFD600" rx="5"/>
+<text x="352" y="95" text-anchor="middle" fill="#0D1117" font-size="16">📦</text>
+</svg>
+</div>
+</div></div><div class="slide" data-slide="7"><div class="slide-content">
+<div class="header">MOBILE EXPERIENCE</div>
+<div class="title">One app. <span class="accent">Every automotive need.</span></div>
+
+<div class="phones">
+<!-- Screen 1: Home -->
+<div class="phone">
+<div class="phone-frame">
+<div class="phone-screen">
+<div class="phone-notch"><div class="notch-dot"></div></div>
+<div class="app-header"><span class="app-logo">VROOM</span></div>
+<div class="search-bar">
+<span class="search-icon">🔍</span>
+<span class="search-text">Buscar repuestos, servicios...</span>
+</div>
+<div class="categories-row">
+<div class="cat active">Repuestos</div>
+<div class="cat">Talleres</div>
+<div class="cat">Grúas</div>
+</div>
+<div class="quick-actions">
+<div class="quick-title">Acciones Rápidas</div>
+<div class="action-grid">
+<div class="action"><div class="action-icon">🔍</div><div class="action-label">Buscar</div></div>
+<div class="action"><div class="action-icon">🚗</div><div class="action-label">Mi Auto</div></div>
+<div class="action"><div class="action-icon">📍</div><div class="action-label">Rastrear</div></div>
+<div class="action"><div class="action-icon">💬</div><div class="action-label">Ayuda</div></div>
+</div>
+</div>
+<div class="featured">
+<div class="featured-title">⚡ Entrega Express</div>
+<div class="featured-sub">Llega en 15 minutos o menos</div>
+</div>
+</div>
+</div>
+</div>
+<p class="screen-label">Inicio</p>
+</div>
+
+<!-- Screen 2: Results -->
+<div class="phone">
+<div class="phone-frame">
+<div class="phone-screen">
+<div class="phone-notch"><div class="notch-dot"></div></div>
+<div class="results-header">
+<span class="results-title">Pastillas de Freno</span>
+<span class="filter-btn">Filtros ▼</span>
+</div>
+<div class="result-item">
+<div class="result-top">
+<span class="result-name">Brembo Premium</span>
+<span class="result-price">$34.99</span>
+</div>
+<div class="result-bottom">
+<span class="result-meta">⭐ 4.9 • Honda Civic</span>
+<span class="result-eta">⚡ 12 min</span>
+</div>
+</div>
+<div class="result-item">
+<div class="result-top">
+<span class="result-name">Genéricas</span>
+<span class="result-price">$18.99</span>
+</div>
+<div class="result-bottom">
+<span class="result-meta">⭐ 4.2 • Universal</span>
+<span class="result-eta">⚡ 8 min</span>
+</div>
+</div>
+<div class="result-item">
+<div class="result-top">
+<span class="result-name">Bosch Quality+</span>
+<span class="result-price">$28.50</span>
+</div>
+<div class="result-bottom">
+<span class="result-meta">⭐ 4.7 • Civic 2015-21</span>
+<span class="result-eta">⚡ 15 min</span>
+</div>
+</div>
+<div class="map-area">
+<div class="map-roads">
+<div class="road-h"></div><div class="road-h"></div>
+<div class="road-v"></div><div class="road-v"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class="screen-label">Resultados</p>
+</div>
+
+<!-- Screen 3: Tracking -->
+<div class="phone">
+<div class="phone-frame">
+<div class="phone-screen">
+<div class="phone-notch"><div class="notch-dot"></div></div>
+<div class="app-header"><span class="app-logo">VROOM</span></div>
+<div class="map-area">
+<div class="map-roads">
+<div class="road-h"></div><div class="road-h"></div>
+<div class="road-v"></div><div class="road-v"></div>
+</div>
+<div class="route"></div>
+<div class="delivery-marker"></div>
+<div class="destination"></div>
+</div>
+<div class="tracking-card">
+<div class="track-header">
+<span class="track-title">Entrega en progreso</span>
+<span class="track-status">● 8 min restantes</span>
+</div>
+<div class="rider-info">
+<div class="rider-avatar">🏍️</div>
+<div class="rider-details">
+<div class="rider-name">Carlos M.</div>
+<div class="rider-eta">ETA: 8:42 PM</div>
+</div>
+<div class="call-btn">Llamar</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class="screen-label">Seguimiento</p>
+</div>
+</div>
+</div></div><div class="slide" data-slide="8"><div class="slide-content">
+<div class="glow-1"></div>
+<div class="glow-2"></div>
+
+<div class="neural-bg">
+<div class="neural-node" style="top:20%;left:10%;animation-delay:0s"></div>
+<div class="neural-node" style="top:30%;left:85%;animation-delay:0.3s"></div>
+<div class="neural-node" style="top:70%;left:15%;animation-delay:0.6s"></div>
+<div class="neural-node" style="top:80%;left:90%;animation-delay:0.9s"></div>
+<div class="neural-node" style="top:50%;left:5%;animation-delay:1.2s"></div>
+<div class="neural-node" style="top:40%;left:92%;animation-delay:1.5s"></div>
+<div class="neural-node" style="top:60%;left:95%;animation-delay:0.4s"></div>
+<div class="neural-node" style="top:25%;left:8%;animation-delay:0.7s"></div>
+</div>
+
+<div class="container">
+<div class="header">
+<h1>AI that understands what you need.<br><span class="accent">Not what you typed.</span></h1>
+<p>Natural language search across millions of parts and services</p>
+</div>
+
+<div class="chat">
+<div class="user-msg">
+<div class="user-label">You</div>
+<div class="user-text">"Civic 2019, <strong>brake pads front</strong>, need it today"</div>
+</div>
+
+<div class="ai-thinking">
+<div class="thinking-dots">
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
+<span class="thinking-text">VROOM AI analyzing your request...</span>
+</div>
+
+<div class="ai-response">
+<div class="ai-header">
+<div class="ai-avatar">⚡</div>
+<div>
+<div class="ai-label">VROOM AI</div>
+<div class="ai-sublabel">Found 3 perfect matches</div>
+</div>
+</div>
+<div class="ai-intro">Based on your Honda Civic 2019, I found exact-fit brake pads for the front wheels. The first option is our top-rated choice with same-day delivery.</div>
+<div class="result-cards">
+<div class="ai-card recommended">
+<span class="recommended-badge">★ TOP MATCH</span>
+<div class="card-name">Pastillas Brembo Sport</div>
+<div class="card-brand">Honda Civic 2017-2021</div>
+<div class="card-footer">
+<div class="card-price">$34.99</div>
+<div class="card-meta">⭐ 4.9 (892)</div>
+</div>
+<div class="card-eta">⚡ Llega en 12 min</div>
+</div>
+<div class="ai-card">
+<div class="card-name">Bosch QuietCast</div>
+<div class="card-brand">Honda Civic 2015-2022</div>
+<div class="card-footer">
+<div class="card-price">$28.50</div>
+<div class="card-meta">⭐ 4.7 (456)</div>
+</div>
+<div class="card-eta">⚡ Llega en 15 min</div>
+</div>
+<div class="ai-card">
+<div class="card-name">Wagner ThermoQuiet</div>
+<div class="card-brand">Universal Fit</div>
+<div class="card-footer">
+<div class="card-price">$22.99</div>
+<div class="card-meta">⭐ 4.5 (312)</div>
+</div>
+<div class="card-eta">⚡ Llega en 18 min</div>
+</div>
+</div>
+</div>
+
+<div class="input-bar">
+<span class="input-icon">💬</span>
+<span class="input-text">Ask VROOM AI anything about your car...</span>
+<div class="input-send">→</div>
+</div>
+</div>
+</div>
+</div></div><div class="slide" data-slide="9"><div class="slide-content">
+<div class="glow"></div>
+<div class="header">WEBSITE EXPERIENCE</div>
+
+<div class="title">
+<h1>One platform.<br><span class="accent">Every automotive need.</span></h1>
+<p>vroom.app</p>
+</div>
+
+<div class="laptop">
+<div class="laptop-top">
+<div class="laptop-screen">
+<div class="browser-bar">
+<div class="browser-dots">
+<div class="dot red"></div>
+<div class="dot yellow"></div>
+<div class="dot green"></div>
+</div>
+<div class="browser-url">vroom.app</div>
+</div>
+<div class="website">
+<div class="hero">
+<div class="site-logo">
+<div class="logo-mark">
+<svg viewBox="0 0 30 30" width="20" height="20">
+<path d="M8 22 L15 6 L22 22" stroke="#FFD600" stroke-width="2" fill="none"/>
+<path d="M12 16 L15 10 L18 16" fill="#FFD600"/>
+</svg>
+</div>
+VROOM
+</div>
+<div class="nav">
+<div class="nav-item active">Inicio</div>
+<div class="nav-item">Vehículos</div>
+<div class="nav-item">Repuestos</div>
+<div class="nav-item">Grúas</div>
+<div class="nav-item">Rental</div>
+<div class="nav-item">Mi Cuenta</div>
+</div>
+</div>
+<div class="search-section">
+<div class="main-search">
+<span class="search-icon">🔍</span>
+<span class="search-placeholder">Buscar repuestos, talleres, grúas, vehículos...</span>
+<button class="search-btn">Buscar</button>
+</div>
+</div>
+<div class="modules">
+<div class="module">
+<div class="module-icon">🔧</div>
+<div class="module-name">Repuestos</div>
+<div class="module-desc">+50,000 piezas</div>
+<div class="module-badge">EXPRESS</div>
+</div>
+<div class="module">
+<div class="module-icon">🚗</div>
+<div class="module-name">Vehículos</div>
+<div class="module-desc">Autos nuevos y usados</div>
+</div>
+<div class="module">
+<div class="module-icon">🏪</div>
+<div class="module-name">Talleres</div>
+<div class="module-desc">+200 talleres</div>
+<div class="module-badge">CERCA</div>
+</div>
+<div class="module">
+<div class="module-icon">🚜</div>
+<div class="module-name">Grúas</div>
+<div class="module-desc">24/7 disponible</div>
+<div class="module-badge">URGENTE</div>
+</div>
+<div class="module">
+<div class="module-icon">📦</div>
+<div class="module-name">Rental</div>
+<div class="module-desc">Renta por día</div>
+</div>
+<div class="module">
+<div class="module-icon">💳</div>
+<div class="module-name">Financiamiento</div>
+<div class="module-desc">Crédito rápido</div>
+</div>
+<div class="module">
+<div class="module-icon">🛡️</div>
+<div class="module-name">Seguros</div>
+<div class="module-desc">Cotiza en segundos</div>
+</div>
+<div class="module">
+<div class="module-icon">📍</div>
+<div class="module-name">Combustible</div>
+<div class="module-desc">Delivery a tu auto</div>
+</div>
+</div>
+<div class="map-section">
+<div class="map-content">
+<div class="road-h"></div>
+<div class="road-h"></div>
+<div class="road-v"></div>
+<div class="road-v"></div>
+</div>
+<div class="map-title">Cobertura Caracas</div>
+<div class="map-label">📍 +500 conductores activos</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="laptop-base"></div>
+</div>
+</div></div><div class="slide" data-slide="10"><div class="slide-content">
+<div class="scene">
+<div class="sky">
+<div class="star" style="top:5%;left:10%"></div>
+<div class="star" style="top:12%;left:25%"></div>
+<div class="star" style="top:8%;left:45%"></div>
+<div class="star" style="top:15%;left:65%"></div>
+<div class="star" style="top:6%;left:80%"></div>
+<div class="star" style="top:18%;left:90%"></div>
+<div class="star" style="top:10%;left:5%"></div>
+<div class="star" style="top:20%;left:35%"></div>
+</div>
+
+<div class="buildings">
+<div class="building b1"></div>
+<div class="building b2"></div>
+<div class="building b3"></div>
+<div class="building b4"></div>
+<div class="building b5"></div>
+<div class="building b6"></div>
+<div class="building b7"></div>
+<div class="building b8"></div>
+<div class="building b9"></div>
+<div class="building b10"></div>
+</div>
+
+<div class="light-pole pole1"></div>
+<div class="light-glow glow1"></div>
+<div class="light-pole pole2"></div>
+<div class="light-glow glow2"></div>
+<div class="light-pole pole3"></div>
+<div class="light-glow glow3"></div>
+
+<div class="street">
+<div class="sidewalk"></div>
+<div class="road-markings">
+<div class="marking"></div><div class="marking"></div><div class="marking"></div>
+<div class="marking"></div><div class="marking"></div><div class="marking"></div>
+<div class="marking"></div><div class="marking"></div><div class="marking"></div>
+<div class="marking"></div>
+</div>
+</div>
+
+<svg class="moto-svg" viewBox="0 0 150 80" style="position:absolute;bottom:155px;left:500px">
+<path d="M30 50 Q35 40 50 35 L90 30 Q100 28 105 35 L110 45 Q115 55 105 60 L50 65 Q35 65 30 55 Z" fill="#0066FF"/>
+<circle cx="45" cy="62" r="14" fill="#1a1a2e" stroke="#333"/>
+<circle cx="45" cy="62" r="8" fill="#0066FF" opacity="0.6"/>
+<circle cx="100" cy="62" r="14" fill="#1a1a2e" stroke="#333"/>
+<circle cx="100" cy="62" r="8" fill="#0066FF" opacity="0.6"/>
+<rect x="85" y="30" width="25" height="20" fill="#FFD600" rx="3"/>
+<circle cx="55" cy="42" r="5" fill="#FFD600" opacity="0.8"/>
+</svg>
+
+<div class="billboard">
+<div class="billboard-glow"></div>
+<div class="billboard-inner">
+<div class="billboard-logo">VROOM</div>
+<div class="billboard-tag">Todo lo que mueve tu carro</div>
+<div class="billboard-cta">vroom.app</div>
+</div>
+</div>
+
+<div class="digital-screen">
+<div class="screen-logo">VROOM</div>
+<div class="screen-text">15 MIN<br>EXPRESS</div>
+</div>
+
+<div class="pedestrian">
+<div class="ped-phone">
+<div class="ped-screen">
+<div class="ped-logo">VROOM</div>
+</div>
+</div>
+<div class="ped-figure">
+<div class="ped-head"></div>
+</div>
+</div>
+
+<div class="vignette"></div>
+
+<div class="overlay">
+<div class="main-text">
+<h1>VROOM is<br><span>already here.</span></h1>
+<p>Caracas, 2026. The automotive future is now.</p>
+</div>
+</div>
+</div>
+</div></div><div class="slide" data-slide="11"><div class="slide-content">
+<div class="header">BRAND APPLICATIONS</div>
+
+<div class="grid">
+<!-- 1. iPhone home screen -->
+<div class="item item-1">
+<div class="phone-home">
+<div class="app-grid">
+<div><div class="app-icon"></div><div class="app-label">VROOM</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Maps</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Camera</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Photos</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Music</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Weather</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Wallet</div></div>
+<div><div class="app-icon small"><div class="icon-placeholder"></div></div><div class="app-label">Settings</div></div>
+</div>
+</div>
+<div class="item-label">iPhone Home Screen</div>
+</div>
+
+<!-- 2. Car door badge -->
+<div class="item item-2">
+<div class="car-door">
+<div class="car-panel">
+<div class="door-handle"></div>
+<div class="car-badge">
+<span class="badge-text">VROOM</span>
+</div>
+</div>
+</div>
+<div class="item-label">Vehicle Badge</div>
+</div>
+
+<!-- 3. Delivery uniform -->
+<div class="item item-3">
+<div class="uniform">
+<div class="jacket">
+<div class="jacket-body">
+<div class="jacket-collar"></div>
+<div class="jacket-badge">VROOM</div>
+<div class="jacket-logo">VROOM</div>
+</div>
+</div>
+</div>
+<div class="item-label">Delivery Uniform</div>
+</div>
+
+<!-- 4. Tow truck -->
+<div class="item item-4">
+<div class="truck">
+<svg class="truck-svg" viewBox="0 0 400 200">
+<rect x="50" y="100" width="300" height="80" rx="10" fill="#FFD600"/>
+<rect x="200" y="60" width="150" height="80" rx="10" fill="#0066FF"/>
+<path d="M200 60 L230 30 L320 30 L350 60" fill="#0066FF"/>
+<rect x="230" y="35" width="80" height="25" fill="rgba(255,255,255,0.3)" rx="3"/>
+<circle cx="100" cy="180" r="30" fill="#1a1a2e" stroke="#333"/>
+<circle cx="100" cy="180" r="18" fill="#0066FF" opacity="0.6"/>
+<circle cx="300" cy="180" r="30" fill="#1a1a2e" stroke="#333"/>
+<circle cx="300" cy="180" r="18" fill="#0066FF" opacity="0.6"/>
+<rect x="120" y="80" width="60" height="40" fill="rgba(255,255,255,0.2)" rx="5"/>
+<text x="200" y="140" text-anchor="middle" fill="#0D1117" font-family="'Space Grotesk'" font-size="20" font-weight="700">VROOM</text>
+</svg>
+</div>
+<div class="item-label">Service Vehicle</div>
+</div>
+
+<!-- 5. Instagram post -->
+<div class="item item-5">
+<div class="ig-post">
+<div class="ig-logo">📱</div>
+<div class="ig-main">Todo lo que tu carro necesita<br>en 15 minutos</div>
+<div class="ig-sub">Descarga VROOM ahora</div>
+<div class="ig-handle">@vroom.ve</div>
+</div>
+<div class="item-label">Social Media</div>
+</div>
+
+<!-- 6. Business card -->
+<div class="item item-6">
+<div class="card">
+<div class="business-card">
+<div class="card-logo">
+<div class="card-logo-mark">
+<svg viewBox="0 0 24 24" width="16" height="16">
+<path d="M6 18 L12 6 L18 18" stroke="#0D1117" stroke-width="2" fill="none"/>
+</svg>
+</div>
+VROOM
+</div>
+<div class="card-vroom">vroom.app</div>
+<div class="card-details">
+<div class="card-name">María González</div>
+<div class="card-title">CEO & Founder</div>
+<div class="card-contact">maria@vroom.app • +58 412 123 4567</div>
+</div>
+</div>
+</div>
+<div class="item-label">Corporate Identity</div>
+</div>
+</div>
+</div></div><div class="slide" data-slide="12"><div class="slide-content">
+<div class="glow"></div>
+<div class="ring ring-1"></div>
+<div class="ring ring-2"></div>
+<div class="ring ring-3"></div>
+
+<div class="header">THE ECOSYSTEM</div>
+<div class="title">Value flows in <span class="accent">every direction.</span></div>
+
+<div class="connections">
+<div class="line line-1"></div>
+<div class="line line-2"></div>
+<div class="line line-3"></div>
+<div class="line line-4"></div>
+<div class="line line-5"></div>
+<div class="line line-6"></div>
+<div class="line line-7"></div>
+<div class="line line-8"></div>
+</div>
+
+<div class="hub">
+<div class="car-hub">
+<div class="car-icon">🚗</div>
+</div>
+</div>
+
+<div class="node node-1">
+<div class="node-icon">🔧</div>
+<div class="node-name">Repuestos</div>
+<div class="node-value">Parts in minutes</div>
+</div>
+<div class="node node-2">
+<div class="node-icon">🏪</div>
+<div class="node-name">Talleres</div>
+<div class="node-value">Expert service</div>
+</div>
+<div class="node node-3">
+<div class="node-icon">🚜</div>
+<div class="node-name">Grúas</div>
+<div class="node-value">24/7 rescue</div>
+</div>
+<div class="node node-4">
+<div class="node-icon">📦</div>
+<div class="node-name">Rental</div>
+<div class="node-value">Temp wheels</div>
+</div>
+<div class="node node-5">
+<div class="node-icon">💳</div>
+<div class="node-name">Pagos</div>
+<div class="node-value">Any method</div>
+</div>
+<div class="node node-6">
+<div class="node-icon">🛡️</div>
+<div class="node-name">Seguros</div>
+<div class="node-value">Instant quote</div>
+</div>
+<div class="node node-7">
+<div class="node-icon">🤖</div>
+<div class="node-name">AI Search</div>
+<div class="node-value">Smart match</div>
+</div>
+<div class="node node-8">
+<div class="node-icon">📍</div>
+<div class="node-name">Delivery</div>
+<div class="node-value">Track live</div>
+</div>
+
+<div class="bottom-note">
+<p>Every service connects. Every transaction enriches the ecosystem. One driver, infinite possibilities.</p>
+</div>
+</div></div><div class="slide" data-slide="13"><div class="slide-content">
+<div class="header">ADVERTISING CAMPAIGN</div>
+<div class="title">"TODO LO QUE MUEVE TU CARRO" — <span class="accent">Campaign executions</span></div>
+
+<div class="campaigns">
+<!-- Campaign 1: Billboard -->
+<div class="campaign billboard-campaign">
+<div class="campaign-label">Billboard</div>
+<div class="billboard-structure"></div>
+<div class="motion-lines">
+<div class="motion-line" style="top:25%;animation-delay:0s"></div>
+<div class="motion-line" style="top:45%;animation-delay:0.3s"></div>
+<div class="motion-line" style="top:65%;animation-delay:0.6s"></div>
+</div>
+<div class="billboard-frame">
+<div class="billboard-main">¿TU CARRO<br>NECESITA<br>ALGO?</div>
+<div class="billboard-sub">VROOM — La app que lo resuelve todo</div>
+<div class="billboard-cta">vroom.app ↓</div>
+</div>
+</div>
+
+<!-- Campaign 2: Digital -->
+<div class="campaign digital-campaign">
+<div class="campaign-label">Digital</div>
+<div class="digital-motifs">
+<div class="motif motif-1"></div>
+<div class="motif motif-2"></div>
+</div>
+<div class="digital-frame">
+<div class="digital-header">
+<div class="digital-logo">VROOM</div>
+</div>
+<div class="digital-steps">
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-text">ENCUÉNTRALO</div>
+<div class="step-arrow">→</div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-text">PÍDELO</div>
+<div class="step-arrow">→</div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-text">SÍGUELO</div>
+</div>
+</div>
+<div class="digital-cta">⚡ Entrega en 15 minutos</div>
+</div>
+</div>
+
+<!-- Campaign 3: Transit -->
+<div class="campaign transit-campaign">
+<div class="campaign-label">Transit Shelter</div>
+<div class="transit-frame">
+<div class="transit-top">
+<div class="transit-lines">
+<div class="transit-line"></div><div class="transit-line"></div><div class="transit-line"></div>
+<div class="transit-line"></div><div class="transit-line"></div><div class="transit-line"></div>
+<div class="transit-line"></div><div class="transit-line"></div>
+</div>
+<div class="transit-main">TODO LO QUE<br>MUEVE TU CARRO</div>
+</div>
+<div class="transit-bottom">
+<div class="transit-logo">VROOM</div>
+<div class="transit-sub">Repuestos, grúas, talleres, rental... todo en una sola app</div>
+<div class="transit-cta">Descarga Gratis</div>
+</div>
+<div class="transit-shelter"></div>
+</div>
+</div>
+</div>
+</div></div><div class="slide" data-slide="14"><div class="slide-content">
+<div class="glow"></div>
+
+<div class="header">THE ROADMAP</div>
+<div class="quote">"We build one thing <span>well</span> before we build everything."</div>
+
+<div class="connector"></div>
+
+<div class="timeline">
+<!-- Phase 1 -->
+<div class="phase phase-1">
+<div class="phase-num">01</div>
+<div class="phase-content">
+<div class="phase-header">
+<span class="phase-icon">🚗</span>
+<span class="phase-name">Repuestos Express</span>
+<span class="phase-year">2027 Q1</span>
+</div>
+<div class="phase-desc">Repuestos delivery in 2 cities. Caracas + Maracaibo. AI-powered search. 50K+ parts catalog.</div>
+<div class="phase-metrics">
+<div class="metric"><div class="metric-label">Cities</div><div class="metric-value">2</div></div>
+<div class="metric"><div class="metric-label">Parts</div><div class="metric-value">50K+</div></div>
+<div class="metric"><div class="metric-label">Target</div><div class="metric-value">100K MAU</div></div>
+</div>
+</div>
+<div class="users-label">Progress</div>
+<div class="users-bar"><div class="users-fill"></div></div>
+</div>
+
+<!-- Phase 2 -->
+<div class="phase phase-2">
+<div class="phase-num">02</div>
+<div class="phase-content">
+<div class="phase-header">
+<span class="phase-icon">🏪</span>
+<span class="phase-name">Full Ecosystem</span>
+<span class="phase-year">2027 Q3</span>
+</div>
+<div class="phase-desc">Workshops, grúas, rental, insurance. All automotive services unified. 4 cities.</div>
+<div class="phase-metrics">
+<div class="metric"><div class="metric-label">Cities</div><div class="metric-value">4</div></div>
+<div class="metric"><div class="metric-label">Services</div><div class="metric-value">8+</div></div>
+<div class="metric"><div class="metric-label">Target</div><div class="metric-value">500K MAU</div></div>
+</div>
+</div>
+<div class="users-label">Progress</div>
+<div class="users-bar"><div class="users-fill"></div></div>
+</div>
+
+<!-- Phase 3 -->
+<div class="phase phase-3">
+<div class="phase-num">03</div>
+<div class="phase-content">
+<div class="phase-header">
+<span class="phase-icon">📱</span>
+<span class="phase-name">Super App Launch</span>
+<span class="phase-year">2028 Q1</span>
+</div>
+<div class="phase-desc">Complete Super App experience. Marketplace, wallet, loyalty. 9 major cities.</div>
+<div class="phase-metrics">
+<div class="metric"><div class="metric-label">Cities</div><div class="metric-value">9</div></div>
+<div class="metric"><div class="metric-label">MAU Target</div><div class="metric-value">1M</div></div>
+<div class="metric"><div class="metric-label">Partners</div><div class="metric-value">2,000+</div></div>
+</div>
+</div>
+<div class="users-label">Progress</div>
+<div class="users-bar"><div class="users-fill"></div></div>
+</div>
+
+<!-- Phase 4 -->
+<div class="phase phase-4">
+<div class="phase-num">04</div>
+<div class="phase-content">
+<div class="phase-header">
+<span class="phase-icon">🌎</span>
+<span class="phase-name">LatAm Expansion</span>
+<span class="phase-year">2028+</span>
+</div>
+<div class="phase-desc">Regional dominance. Colombia, Ecuador, Perú, Chile. Building Venezuela's tech export.</div>
+<div class="phase-metrics">
+<div class="metric"><div class="metric-label">Countries</div><div class="metric-value">5</div></div>
+<div class="metric"><div class="metric-label">MAU Target</div><div class="metric-value">2M</div></div>
+<div class="metric"><div class="metric-label">Revenue</div><div class="metric-value">$50M ARR</div></div>
+</div>
+</div>
+<div class="users-label">Progress</div>
+<div class="users-bar"><div class="users-fill"></div></div>
+</div>
+</div>
+</div></div><div class="slide" data-slide="15"><div class="slide-content">
+<div class="radial-glow"></div>
+
+<div class="speed-lines">
+<div class="speed-line" style="width:400px;animation-delay:0s"></div>
+<div class="speed-line" style="width:380px;animation-delay:0.2s"></div>
+<div class="speed-line" style="width:360px;animation-delay:0.4s"></div>
+<div class="speed-line" style="width:340px;animation-delay:0.6s"></div>
+<div class="speed-line" style="width:320px;animation-delay:0.8s"></div>
+<div class="speed-line" style="width:300px;animation-delay:1s"></div>
+<div class="speed-line" style="width:280px;animation-delay:1.2s"></div>
+<div class="speed-line" style="width:260px;animation-delay:1.4s"></div>
+<div class="speed-line" style="width:240px;animation-delay:1.6s"></div>
+<div class="speed-line" style="width:220px;animation-delay:1.8s"></div>
+<div class="speed-line" style="width:200px;animation-delay:2s"></div>
+<div class="speed-line" style="width:180px;animation-delay:2.2s"></div>
+<div class="speed-line" style="width:160px;animation-delay:2.4s"></div>
+</div>
+
+<div class="accent-ring"></div>
+
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+
+<div class="wordmark">
+<div class="vroom-main">VROOM</div>
+</div>
+
+<div class="tagline">This is VROOM.</div>
+
+<div class="stats">
+<div class="stat">
+<div class="stat-value"><span class="accent">2M</span> MAU</div>
+<div class="stat-label">3-Year Target</div>
+</div>
+<div class="stat">
+<div class="stat-value"><span class="yellow">4</span> Phases</div>
+<div class="stat-label">To Scale</div>
+</div>
+<div class="stat">
+<div class="stat-value"><span class="accent">1</span> Vision</div>
+<div class="stat-label">Venezuela to LatAm</div>
+</div>
+</div>
+
+<div class="vignette"></div>
+</div></div>
+  </div>
+  <div class="controls" id="controls">
+    <button class="btn" id="prevBtn" onclick="prevSlide()">← Anterior</button>
+    <div class="dots" id="dots">
+      <div class="dot active" onclick="goToSlide(1)"></div><div class="dot" onclick="goToSlide(2)"></div><div class="dot" onclick="goToSlide(3)"></div><div class="dot" onclick="goToSlide(4)"></div><div class="dot" onclick="goToSlide(5)"></div><div class="dot" onclick="goToSlide(6)"></div><div class="dot" onclick="goToSlide(7)"></div><div class="dot" onclick="goToSlide(8)"></div><div class="dot" onclick="goToSlide(9)"></div><div class="dot" onclick="goToSlide(10)"></div><div class="dot" onclick="goToSlide(11)"></div><div class="dot" onclick="goToSlide(12)"></div><div class="dot" onclick="goToSlide(13)"></div><div class="dot" onclick="goToSlide(14)"></div><div class="dot" onclick="goToSlide(15)"></div>
+    </div>
+    <button class="btn" id="nextBtn" onclick="nextSlide()">Siguiente →</button>
+  </div>
+  <script>
+    let current = 1;
+    const total = 15;
+    function goToSlide(n) {
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+      document.querySelector('.slide[data-slide="' + n + '"]').classList.add('active');
+      document.querySelectorAll('.dot')[' + (n-1) + '].classList.add('active');
+      current = n;
+      updateButtons();
+    }
+    function prevSlide() { if(current > 1) goToSlide(current - 1); }
+    function nextSlide() { if(current < total) goToSlide(current + 1); }
+    function updateButtons() {
+      document.getElementById('prevBtn').disabled = current === 1;
+      document.getElementById('nextBtn').disabled = current === total;
+    }
+    document.addEventListener('keydown', e => {
+      if(e.key === 'ArrowRight' || e.key === 'ArrowDown') nextSlide();
+      if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevSlide();
+    });
+    function showViewer(v) {
+      document.getElementById('slideContainer').style.display = v === 'deck' ? 'block' : 'none';
+      document.getElementById('controls').style.display = v === 'deck' ? 'flex' : 'none';
+    }
+  </script>
+</body>
+</html>
