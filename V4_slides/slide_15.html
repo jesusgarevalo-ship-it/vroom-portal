@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920,height=1080">
+<title>VROOM Vision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;background:linear-gradient(180deg,#020208 0%,#050510 50%,#0a0a1a 100%);position:relative}
+/* Radial glow behind wordmark */
+.radial-glow{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(255,214,0,0.15) 0%,rgba(0,102,255,0.1) 30%,transparent 70%)}
+/* Speed lines radiating outward */
+.speed-lines{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:1200px;height:600px;pointer-events:none}
+.speed-line{position:absolute;left:50%;top:50%;height:2px;background:linear-gradient(90deg,rgba(0,102,255,0.6),transparent);transform-origin:left center;animation:speed-fade 3s ease-out infinite}
+@keyframes speed-fade{0%{opacity:0;transform:scaleX(0)}50%{opacity:1}100%{opacity:0;transform:scaleX(1)}}
+.speed-line:nth-child(1){transform:rotate(0deg) translateY(-200px)}
+.speed-line:nth-child(2){transform:rotate(15deg) translateY(-200px)}
+.speed-line:nth-child(3){transform:rotate(30deg) translateY(-200px)}
+.speed-line:nth-child(4){transform:rotate(45deg) translateY(-200px)}
+.speed-line:nth-child(5){transform:rotate(60deg) translateY(-200px)}
+.speed-line:nth-child(6){transform:rotate(75deg) translateY(-200px)}
+.speed-line:nth-child(7){transform:rotate(90deg) translateY(-200px)}
+.speed-line:nth-child(8){transform:rotate(105deg) translateY(-200px)}
+.speed-line:nth-child(9){transform:rotate(120deg) translateY(-200px)}
+.speed-line:nth-child(10){transform:rotate(135deg) translateY(-200px)}
+.speed-line:nth-child(11){transform:rotate(150deg) translateY(-200px)}
+.speed-line:nth-child(12){transform:rotate(165deg) translateY(-200px)}
+.speed-line:nth-child(13){transform:rotate(180deg) translateY(-200px)}
+/* Main wordmark */
+.wordmark{position:absolute;left:50%;top:45%;transform:translate(-50%,-55%);text-align:center;z-index:10}
+.vroom-main{font-family:'Space Grotesk',sans-serif;font-size:180px;font-weight:700;background:linear-gradient(180deg,#fff 0%,#E0E0E0 30%,#0066FF 60%,#FFD600 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:0.9;filter:drop-shadow(0 10px 60px rgba(0,102,255,0.5))}
+/* Tagline */
+.tagline{position:absolute;left:50%;top:50%;transform:translate(-50%,20px);font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:500;color:#FFD600;text-align:center;letter-spacing:8px;text-transform:uppercase;z-index:10}
+/* Stats row */
+.stats{position:absolute;bottom:100px;left:80px;right:80px;display:flex;justify-content:center;gap:100px;z-index:10}
+.stat{text-align:center}
+.stat-value{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;color:#fff;margin-bottom:5px}
+.stat-value .accent{color:#0066FF}
+.stat-value .yellow{color:#FFD600}
+.stat-label{font-size:14px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:3px}
+/* Corner decorations */
+.corner{position:absolute;width:120px;height:120px;border:2px solid rgba(0,102,255,0.2);pointer-events:none}
+.corner-tl{top:40px;left:40px;border-right:none;border-bottom:none}
+.corner-tr{top:40px;right:40px;border-left:none;border-bottom:none}
+.corner-bl{bottom:40px;left:40px;border-right:none;border-top:none}
+.corner-br{bottom:40px;right:40px;border-left:none;border-top:none}
+/* Subtle vignette */
+.vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 40%,rgba(0,0,0,0.5) 100%);pointer-events:none}
+/* Animated accent */
+.accent-ring{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);width:600px;height:300px;border:1px solid rgba(255,214,0,0.2);border-radius:50%;animation:pulse-ring 4s ease-out infinite}
+@keyframes pulse-ring{0%{transform:translate(-50%,-50%) scale(0.9);opacity:1}100%{transform:translate(-50%,-50%) scale(1.5);opacity:0}}
+</style>
+</head>
+<body>
+<div class="radial-glow"></div>
+
+<div class="speed-lines">
+<div class="speed-line" style="width:400px;animation-delay:0s"></div>
+<div class="speed-line" style="width:380px;animation-delay:0.2s"></div>
+<div class="speed-line" style="width:360px;animation-delay:0.4s"></div>
+<div class="speed-line" style="width:340px;animation-delay:0.6s"></div>
+<div class="speed-line" style="width:320px;animation-delay:0.8s"></div>
+<div class="speed-line" style="width:300px;animation-delay:1s"></div>
+<div class="speed-line" style="width:280px;animation-delay:1.2s"></div>
+<div class="speed-line" style="width:260px;animation-delay:1.4s"></div>
+<div class="speed-line" style="width:240px;animation-delay:1.6s"></div>
+<div class="speed-line" style="width:220px;animation-delay:1.8s"></div>
+<div class="speed-line" style="width:200px;animation-delay:2s"></div>
+<div class="speed-line" style="width:180px;animation-delay:2.2s"></div>
+<div class="speed-line" style="width:160px;animation-delay:2.4s"></div>
+</div>
+
+<div class="accent-ring"></div>
+
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+
+<div class="wordmark">
+<div class="vroom-main">VROOM</div>
+</div>
+
+<div class="tagline">This is VROOM.</div>
+
+<div class="stats">
+<div class="stat">
+<div class="stat-value"><span class="accent">2M</span> MAU</div>
+<div class="stat-label">3-Year Target</div>
+</div>
+<div class="stat">
+<div class="stat-value"><span class="yellow">4</span> Phases</div>
+<div class="stat-label">To Scale</div>
+</div>
+<div class="stat">
+<div class="stat-value"><span class="accent">1</span> Vision</div>
+<div class="stat-label">Venezuela to LatAm</div>
+</div>
+</div>
+
+<div class="vignette"></div>
+</body>
+</html>
